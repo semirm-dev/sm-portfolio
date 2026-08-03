@@ -1,3 +1,3 @@
-import { getCareer } from '../repositories/career'
+import { getCareer } from "../repositories/career";
 
-export default defineEventHandler(() => getCareer())
+export default defineEventHandler(() => getCareer());

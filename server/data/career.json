@@ -129,12 +129,7 @@
       "projectUrl": "https://sportradar.com/",
       "start": "2023-08",
       "end": "2024-07",
-      "technologies": [
-        "Golang",
-        "gRPC (streams)",
-        "Kubernetes",
-        "Redis"
-      ],
+      "technologies": ["Golang", "gRPC (streams)", "Kubernetes", "Redis"],
       "responsibilities": [
         "Implemented real-time data synchronization services for Sportradar, a leading sports streaming platform, leveraging Golang, gRPC and Kubernetes to ensure low-latency of data distribution."
       ]
@@ -222,11 +217,7 @@
       "start": "2025-11",
       "end": "2026-07",
       "current": true,
-      "technologies": [
-        "Typescript",
-        "VMware Cloud Automation",
-        "Claude Code"
-      ],
+      "technologies": ["Typescript", "VMware Cloud Automation", "Claude Code"],
       "responsibilities": [
         "Implement custom forms in Aria Automation for catalog items so customers can automate deployment of VMs for their private Cloud infrastructure.",
         "Implementing custom solutions (plugins) for automating infrastructure configurations and management in Aria Automation (custom workflows, actions).",

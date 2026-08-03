@@ -1,5 +1,5 @@
-import type { CareerRecord } from '~/types/career'
-import rawRecord from '../data/career.json'
+import type { CareerRecord } from "~/types/career";
+import rawRecord from "../data/career.json";
 
 /**
  * The one seam between the site and where its data lives.
@@ -13,8 +13,8 @@ import rawRecord from '../data/career.json'
  * function body and nothing else: the endpoint, the composable and every
  * component above them only know they receive a `CareerRecord`.
  */
-const record: CareerRecord = rawRecord
+const record: CareerRecord = rawRecord;
 
 export function getCareer(): Promise<CareerRecord> {
-  return Promise.resolve(record)
+  return Promise.resolve(record);
 }
