@@ -1,0 +1,237 @@
+{
+  "technologyAliases": {
+    "gRPC (streams)": "gRPC"
+  },
+  "projects": [
+    {
+      "company": "Imel d.o.o.",
+      "label": "Imel",
+      "location": "Lukavac, Bosnia and Herzegovina",
+      "website": "https://www.imel.ba/",
+      "project": "Android + backend",
+      "start": "2015-05",
+      "end": "2017-08",
+      "technologies": [
+        "PHP",
+        "Laravel",
+        "AngularJS",
+        "Linux",
+        "Websockets",
+        "Android",
+        "MySQL",
+        "SQLite"
+      ],
+      "responsibilities": [
+        "Developed backend services for a dental monitoring application, enhancing service efficiency.",
+        "Built a location-based e-commerce platform for heavy truck and machinery rentals, optimizing the user experience for real-time transactions.",
+        "Used AngularJS for client facing frontends.",
+        "Led the development of Android applications for restaurants and commercialists to manage orders and track status in real-time, improving workflow and reducing errors."
+      ]
+    },
+    {
+      "company": "MOP",
+      "location": "Sarajevo, Bosnia and Herzegovina",
+      "website": "https://mop.ba/",
+      "project": "NAGA",
+      "projectUrl": "https://naga.com/en",
+      "summary": "Online cryptoexchange platform.",
+      "start": "2018-03",
+      "end": "2019-05",
+      "technologies": [
+        "Golang",
+        "Kubernetes",
+        "RabbitMQ",
+        "Websockets",
+        "AWS",
+        "Redis",
+        "Postgres",
+        "gRPC"
+      ],
+      "responsibilities": [
+        "Developed real-time backend services for a cryptocurrency exchange, providing instant price updates across web and mobile platforms.",
+        "Utilized Kubernetes for managing and orchestrating scalable services, ensuring high availability and reliability in a cloud-native environment.",
+        "Integrated RabbitMQ for event-driven messaging and Websockets/MQTT for real-time communication."
+      ]
+    },
+    {
+      "company": "Mistral",
+      "location": "Sarajevo, Bosnia and Herzegovina",
+      "website": "https://www.mistral.ba/",
+      "project": "MTVO",
+      "projectUrl": "https://www.activationstation.org/purpose",
+      "summary": "Masters of Void Organization.",
+      "start": "2019-06",
+      "end": "2021-11",
+      "technologies": [
+        "Angular",
+        "dotnet",
+        "AWS",
+        "Websockets",
+        "Redis",
+        "MSSQL"
+      ],
+      "responsibilities": [
+        "Developed real-time data synchronization services for a virtual goods trading platform, enabling smooth, cross-browser synchronization.",
+        "Assisted frontend team with building client facing features with Angular to speed up the development.",
+        "Setup testing environment for continuous integration and deployment pipelines, ensuring high-quality code."
+      ]
+    },
+    {
+      "company": "Endava",
+      "location": "London, UK",
+      "website": "https://www.endava.com/",
+      "project": "Agilent",
+      "projectUrl": "https://www.agilent.com/",
+      "summary": "Custom software for Agilent's laboratory instruments, used for chemical analysis and research \u2014 from fuel and oil quality testing to cancer research.",
+      "start": "2021-11",
+      "end": "2022-07",
+      "technologies": [
+        "dotnet",
+        "Angular",
+        "Microservices",
+        "Embedded software"
+      ],
+      "responsibilities": [
+        "Developed .NET microservices running on the instruments themselves, custom hardware built on Windows Embedded.",
+        "Built Angular interfaces for configuring analysis runs and reading back results."
+      ]
+    },
+    {
+      "company": "Endava",
+      "location": "London, UK",
+      "website": "https://www.endava.com/",
+      "project": "CSFN",
+      "projectUrl": "https://aws.amazon.com/marketplace/pp/prodview-3lsp4y4zoa6jw",
+      "client": "Cisco Secure Firewall Cloud Native",
+      "start": "2022-08",
+      "end": "2023-07",
+      "technologies": [
+        "Golang",
+        "Kubernetes",
+        "Helm charts",
+        "ArgoCD",
+        "AWS",
+        "gRPC (streams)",
+        "Postgres",
+        "Redis"
+      ],
+      "responsibilities": [
+        "Led a team in developing Kubernetes Operators for Cisco's Firewall and VPN, automating deployments, security configurations, and resource management.",
+        "Designed and implemented a Kubernetes Operator that integrates AWS Shield with newly deployed Kubernetes services, enhancing service security.",
+        "Implemented resource access control by refining Kubernetes RBAC and integrating AWS IAM, enhancing security across cloud environments."
+      ]
+    },
+    {
+      "company": "Endava",
+      "location": "London, UK",
+      "website": "https://www.endava.com/",
+      "project": "Sportradar",
+      "projectUrl": "https://sportradar.com/",
+      "start": "2023-08",
+      "end": "2024-07",
+      "technologies": [
+        "Golang",
+        "gRPC (streams)",
+        "Kubernetes",
+        "Redis"
+      ],
+      "responsibilities": [
+        "Implemented real-time data synchronization services for Sportradar, a leading sports streaming platform, leveraging Golang, gRPC and Kubernetes to ensure low-latency of data distribution."
+      ]
+    },
+    {
+      "company": "Evoila",
+      "location": "Mainz, Germany",
+      "website": "https://www.evoila.com/",
+      "project": "MFC",
+      "client": "MultiFeedCenter",
+      "start": "2024-07",
+      "end": "2025-11",
+      "technologies": [
+        "dotnet",
+        "Kubernetes",
+        "Helm charts",
+        "ArgoCD",
+        "GCP",
+        "RabbitMQ",
+        "MongoDB",
+        "MySQL",
+        "Postgres",
+        "Claude Code"
+      ],
+      "responsibilities": [
+        "Building and managing Kubernetes environments, using Helm charts to define, package, and deploy microservices efficiently.",
+        "Implementing GitOps CD with ArgoCD, using the app-of-apps pattern to automate and streamline Kubernetes application deployments.",
+        "Developed and integrated an observability stack on Kubernetes, setting up Grafana, Loki, Prometheus, Elasticsearch, and OpenTelemetry Collector to enable monitoring, logging, and distributed tracing across services.",
+        "Configured and integrated Keycloak IAM, enabling seamless login for Grafana, ArgoCD, and backend services (Golang and .NET).",
+        "Developing asynchronous services to synchronize data from multiple data feed providers, improving data accuracy and reducing latency."
+      ]
+    },
+    {
+      "company": "ByteBuds",
+      "location": "Sarajevo, Bosnia and Herzegovina",
+      "website": "https://bytebuds.io/",
+      "project": "TVM",
+      "projectUrl": "https://www.tvmarkets.com/en/",
+      "client": "TradeView Markets",
+      "start": "2026-04",
+      "end": "2026-07",
+      "technologies": [
+        "Golang",
+        "Aeron",
+        "Postgres",
+        "React",
+        "FIX",
+        "Claude Code"
+      ],
+      "responsibilities": [
+        "Developed low latency backend system for online trading platform with zero allocs in hot path.",
+        "Implemented client facing interfaces for order placement and tracking on the platform.",
+        "Used Aeron protocol to implement low latency communication between services.",
+        "Integrated with multiple LPs (liquidity providers), end to end order executions.",
+        "Setup of Github actions for automated deployments."
+      ]
+    },
+    {
+      "company": "BytOps",
+      "location": "Lukavac, Bosnia and Herzegovina",
+      "website": "https://bytops.xyz/",
+      "project": "Fakturko",
+      "projectUrl": "https://fakturko.xyz/",
+      "start": "2026-04",
+      "end": "2026-07",
+      "technologies": [
+        "PHP",
+        "Laravel",
+        "Notifications",
+        "Inertia",
+        "Vue",
+        "Postgres",
+        "Claude Code"
+      ],
+      "summary": "Personal project to manage and track invoices. Developer friendly, templated invoices."
+    },
+    {
+      "company": "Evoila",
+      "label": "VMware",
+      "location": "Mainz, Germany",
+      "website": "https://www.evoila.com/",
+      "project": "VCF Aria Automation",
+      "projectUrl": "https://techdocs.broadcom.com/us/en/vmware-cis/vcf/vcf-9-0-and-later/9-0/overview-of-vmware-cloud-foundation-9/what-is-vmware-cloud-foundation-and-vmware-vsphere-foundation/vcf-automation-overview.html",
+      "client": "Broadcom/VMware",
+      "start": "2025-11",
+      "end": "2026-07",
+      "current": true,
+      "technologies": [
+        "Typescript",
+        "VMware Cloud Automation",
+        "Claude Code"
+      ],
+      "responsibilities": [
+        "Implement custom forms in Aria Automation for catalog items so customers can automate deployment of VMs for their private Cloud infrastructure.",
+        "Implementing custom solutions (plugins) for automating infrastructure configurations and management in Aria Automation (custom workflows, actions).",
+        "Improve existing libraries for better reusability and type safety, taking advantage of the TypeScript type system."
+      ]
+    }
+  ]
+}

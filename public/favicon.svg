@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="semir.mahovkic">
+    <!--
+        A shell prompt: chevron and cursor. Two strokes and a bar, which is all
+        that survives 16px — the previous "SM" monogram put two glyphs in a tab
+        and neither one read.
+
+        Colours are the site's own tokens, not a second palette: the tile is
+        --color-accent #2d46b9 and the mark is --color-on-accent #ffffff, the
+        same pairing the "Email me" buttons use. Because the tile carries its
+        own ground, the mark holds on light and dark browser chrome alike
+        rather than depending on whichever one the user runs.
+
+        The mark looks right-of-centre but isn't. The chevron carries ~76% of
+        the ink, so the centre of MASS lands at x=64.3 while the bounding box
+        centres at 70.5. Balance the box instead and it reads as sitting left.
+        Vertically the mark is lifted 4 above box-centre for the same reason,
+        leaving mass at y=65 — a shade low, which a prompt should be, since it
+        sits on a baseline.
+
+        This file is the source. favicon.ico (16/32/48) is a straight raster
+        of it; apple-touch-icon.png (180) is the same mark on a SQUARE tile —
+        no rx — because iOS applies its own corner mask and would otherwise
+        round an already-rounded corner. Change the geometry here, then
+        re-rasterise both.
+    -->
+    <rect width="128" height="128" rx="28" fill="#2d46b9" />
+    <path d="M40 34 L70 60 L40 86" fill="none" stroke="#ffffff" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" />
+    <rect x="78" y="75" width="30" height="12" rx="6" fill="#ffffff" />
+</svg>

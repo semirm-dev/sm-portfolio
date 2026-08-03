@@ -1,0 +1,118 @@
+@import 'tailwindcss';
+
+/*
+ * The portfolio is deliberately light-only: these pages carry no appearance
+ * switcher, so there is nothing here to switch.
+ *
+ * One accent does every job. Indigo measures 7.9:1 on white and 7.4:1 on the
+ * band, so unlike the cyan palette this replaced there is no split between a
+ * "graphic weight" that may only be a shape and a "text weight" that may be
+ * read — the same value is legal everywhere. Keep it that way: if a future
+ * accent cannot clear 4.5:1 on white, it does not belong in this variable.
+ */
+@theme {
+  --color-ground: #ffffff;
+  --color-band: #f6f9fb;
+  --color-rule: #e7ecf1;
+  --color-ink: #0b1017;
+  /*
+   * Body copy, and most of the small mono chrome: nav, page heads, role
+   * summaries, locations, tech tags. It carries far more of the page than the
+   * name suggests, so "muted" is about hierarchy, not lightness — this is a
+   * normal dark body grey (10.3:1 on white), not a wash. An earlier #5b6675
+   * measured 5.8:1 and read grey-blue and faded across the top bar and the
+   * work page. Heading/body separation is carried by size and weight here,
+   * not by making the body lighter.
+   */
+  --color-muted: #374151;
+
+  --color-accent: #2d46b9;
+  --color-accent-deep: #243a9c;
+  --color-accent-soft: #eef1fd;
+  --color-accent-rule: #c6cff5;
+  /* Type on an accent fill. White clears 7.9:1 on both accent weights. */
+  --color-on-accent: #ffffff;
+
+  /* The one dark object on a white page. */
+  --color-yaml-bg: #131c3d;
+  --color-yaml-rule: #26325f;
+  --color-yaml-ink: #d6dbf0;
+  --color-yaml-key: #7f8bc0;
+  --color-yaml-value: #93a6ff;
+
+  /*
+   * No webfonts. Both stacks resolve to whatever the reader's OS already has —
+   * Segoe UI on Windows, SF Pro on macOS, Roboto on Android — which is the
+   * same approach GitHub and Bootstrap take. Nothing downloads, nothing shifts
+   * on load, and every weight is genuinely present: the previous setup shipped
+   * JetBrains Mono at 400/500 only while a heading asked for 600, so the
+   * browser faked it by dilating the outlines and the text looked smeared.
+   * A system face cannot fail that way.
+   *
+   * --font-mono is now for code and nothing else — only inside
+   * EngineerManifest, on the YAML block where the indentation is the meaning
+   * and on the `engineer.yaml` filename above it. Everywhere else the site
+   * used to set labels in mono; it no longer does. If you find yourself
+   * reaching for font-mono on a heading or an eyebrow, that is the old
+   * convention, and it is gone deliberately.
+   */
+  --font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+
+  /*
+   * The page's one elevation recipe. Every raised surface takes this whole
+   * token; nothing takes half of it, or the page grows two lighting models.
+   */
+  --shadow-card: 0 1px 2px rgb(11 16 23 / 0.04), 0 14px 30px -24px rgb(11 16 23 / 0.4);
+  /* Deeper, because the manifest is dark and has further to fall. */
+  --shadow-yaml: 0 20px 42px -26px rgb(19 28 61 / 0.8);
+}
+
+/*
+ * Entrance motion is limited to what is above the fold on arrival. Sections
+ * further down are not animated: without scroll triggers they would play
+ * unseen, and a reveal the visitor never witnesses is just a delay.
+ */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.28;
+  }
+}
+
+@utility animate-rise {
+  animation: rise 0.55s cubic-bezier(0.2, 0.8, 0.3, 1) backwards;
+}
+
+@utility animate-pulse-dot {
+  animation: pulse 2.4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+}
