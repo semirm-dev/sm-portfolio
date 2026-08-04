@@ -150,12 +150,30 @@ defineProps<{ project: Project }>()
       it. `content-start` keeps the tags at the top of a cell that stretches to
       the full height of the entry, so the rule runs the whole way down while
       the chips stay level with the company name.
+
+      The chip is filled with `--color-accent-soft` and outlined in
+      `--color-accent-rule`, and the fill is the reason for the accent rather
+      than a grey one. The row's own hover wash is `#fafbfe` and `--color-band`
+      is `#f6f9fb` — two points apart, so a band-filled chip all but vanishes
+      the moment its row is hovered, and only the outline still holds the
+      shape. The accent fill is the one that survives the row highlighting
+      itself.
+
+      It keeps a border for the other half of the job: backgrounds do not
+      print, and the CV export is this page printed, so a chip carried by its
+      fill alone stops existing on paper. `--color-accent-rule` is a stronger
+      hairline there than the `--color-rule` it replaced, so the printed chip
+      is better off, not worse.
+
+      If the stack ever reads too loud, the runner-up was the same chip with
+      `--color-band` behind it and the accent left only in the outline — drop
+      `bg-accent-soft` and `text-accent` and that is what you have.
     -->
     <ul class="mt-3.5 flex flex-wrap gap-1.5 md:col-start-2 xl:col-start-3 xl:row-start-1 xl:mt-1 xl:content-start xl:border-l xl:border-rule xl:pl-8">
       <li
         v-for="tech in project.technologies"
         :key="tech"
-        class="rounded-[3px] border border-rule px-2 py-0.5 text-[11.5px] text-muted"
+        class="rounded-[3px] border border-accent-rule bg-accent-soft px-2 py-0.5 text-[11.5px] text-accent"
       >
         {{ tech }}
       </li>
