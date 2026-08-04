@@ -4,16 +4,22 @@ import SectionHead from '~/components/portfolio/SectionHead.vue'
 import SkillCard from '~/components/portfolio/SkillCard.vue'
 import WorkCard from '~/components/portfolio/WorkCard.vue'
 
-const EMAIL = 'smahovkic89@gmail.com'
-const GITHUB = 'https://github.com/semirm-dev'
+const { profile, skills, selectedWork, projects, years } = await useCareer()
 
-usePageSeo({
-  title: 'Senior Software Engineer',
-  description: 'Senior software engineer with over 11 years of experience. Golang, Kubernetes and cloud-native technologies — soft real-time systems, asynchronous communications and distributed applications.',
-})
-
-const { projects } = await useCareer()
 const projectCount = computed(() => projects.value.length)
+
+/*
+ * The page's own copy, not the CV's. The headline is a landing-page line and
+ * has no place in a document that is meant to export as a CV; the description
+ * is metadata about this page rather than a fact about him. Both stay here.
+ *
+ * The year count does not: it is interpolated so the one figure a reader could
+ * check against the work history cannot drift from it.
+ */
+usePageSeo({
+  title: profile.value.title,
+  description: `Senior software engineer with over ${years.value} years of experience. Golang, Kubernetes and cloud-native technologies — soft real-time systems, asynchronous communications and distributed applications.`,
+})
 
 // Both grids sit below the fold, so they are revealed on scroll rather than on
 // arrival. The hero above keeps its own hand-set delays: it is already in view
@@ -42,7 +48,7 @@ const workGrid = useReveal()
             class="animate-rise text-[12.5px] font-semibold uppercase tracking-[0.14em] text-accent"
             style="animation-delay: 60ms"
           >
-            Senior Software Engineer
+            {{ profile.title }}
           </p>
           <h1
             class="animate-rise mt-4 text-[clamp(35px,4.6vw,58px)] font-bold leading-[1.04] tracking-[-0.042em] text-balance"
@@ -57,30 +63,27 @@ const workGrid = useReveal()
             class="animate-rise max-w-[54ch] space-y-3 text-[16.5px] leading-[1.72] text-muted lg:max-w-none xl:text-[18px] xl:leading-[1.75] 2xl:text-[19.5px]"
             style="animation-delay: 180ms"
           >
-            <p>
-              Over 11 years of experience in software development, I specialize in
-              <span class="font-medium text-accent">Golang</span>,
-              <span class="font-medium text-accent">Kubernetes</span>, and cloud-native
-              technologies. My expertise covers soft real-time systems,
-              asynchronous communications, and distributed applications
-              for some really cool and big projects (<strong class="font-medium text-ink">Cisco's Cloud Native Firewall</strong>,
-              <strong class="font-medium text-ink">Sportradar's data sync/streaming platform</strong>,
-              <strong class="font-medium text-ink">Agilent's laboratory custom analysis</strong>,
-              <strong class="font-medium text-ink">low latency trading platform &mdash; submillisecond</strong>), utilizing tools like <strong class="font-medium text-ink">RabbitMQ</strong>,
-              <strong class="font-medium text-ink">MQTT</strong>, <strong class="font-medium text-ink">SQS/SNS</strong>,
-              <strong class="font-medium text-ink">PubSub</strong>, <strong class="font-medium text-ink">gRPC</strong>,
-              <strong class="font-medium text-ink">Aeron</strong> and <strong class="font-medium text-ink">WebSockets</strong>.
-            </p>
-            <p>
-              Additionally, I have experience setting up, configuring and
-              implementing Keycloak IAM on Kubernetes environments,
-              integrating it with Grafana, ArgoCD and backend services
-              (Golang and .NET) to enable seamless authentication and
-              access control.
-            </p>
-            <p>
-              I can take full ownership of an application's lifecycle —
-              from coding and building to deploying and monitoring.
+            <!--
+              Rendered from segments, not from markup in the record. `v-html`
+              would be the shorter route and would give the site its only
+              injection sink; this keeps the record saying which phrases are
+              emphasised and leaves the page deciding what emphasis looks like.
+            -->
+            <p
+              v-for="(paragraph, index) in profile.summary"
+              :key="index"
+            >
+              <template
+                v-for="(segment, part) in paragraph"
+                :key="part"
+              >
+                <span
+                  v-if="typeof segment !== 'string'"
+                  :class="segment.emphasis === 'accent' ? 'font-medium text-accent' : 'font-medium text-ink'"
+                >{{ segment.text }}</span><template v-else>
+                  {{ resolveSummaryText(segment, years) }}
+                </template>
+              </template>
             </p>
           </div>
 
@@ -89,11 +92,11 @@ const workGrid = useReveal()
             style="animation-delay: 240ms"
           >
             <a
-              :href="`mailto:${EMAIL}`"
+              :href="`mailto:${profile.email}`"
               class="rounded-lg bg-accent px-4.5 py-2.5 text-[14px] font-medium text-on-accent shadow-[0_8px_20px_-10px_rgba(45,70,185,0.7)] transition-colors hover:bg-accent-deep focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
             >Email me</a>
             <a
-              :href="GITHUB"
+              :href="profile.github"
               rel="noopener noreferrer"
               target="_blank"
               class="rounded-lg border border-accent-rule bg-ground px-4.5 py-2.5 text-[14px] font-medium text-accent transition-colors hover:border-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
@@ -120,24 +123,17 @@ const workGrid = useReveal()
           ref="skillsGrid"
           class="grid gap-3 md:grid-cols-2"
         >
-          <SkillCard name="Golang">
-            RabbitMQ · MQTT · SQS · SNS · gRPC + streams · WebSockets ·
-            Kubernetes Operators · Gin · Gorm · Jaeger · Docker · GraphQL ·
-            Temporal · FX · Wire · Aeron · FIX · Claude Code
-          </SkillCard>
-          <SkillCard name="PHP">
-            Laravel · Websockets · Redis · MySQL · SQS/SNS · Postgres ·
-            RabbitMQ · Inertia · Notifications · Reverb · Social Logins ·
-            PDF generating · Claude Code
-          </SkillCard>
-          <SkillCard name="C#">
-            .NET Core · IdentityServer4 · HangFire · Jaeger · WebSockets ·
-            Automapper · Docker
-          </SkillCard>
-          <SkillCard name="Kubernetes">
-            Operators/CRDs · Helm charts · ArgoCD (app-of-apps) · Prometheus
-            · Loki · RabbitMQ · Jaeger · Elasticsearch · Grafana ·
-            OpenTelemetry Collector · SealedSecrets
+          <!--
+            The separator is joined here, not stored. A record that writes its
+            own ` · ` between technologies is a record that has decided how it
+            gets printed, and this list has to survive a PDF too.
+          -->
+          <SkillCard
+            v-for="group in skills"
+            :key="group.name"
+            :name="group.name"
+          >
+            {{ group.technologies.join(' · ') }}
           </SkillCard>
         </div>
       </div>
@@ -154,30 +150,12 @@ const workGrid = useReveal()
           class="grid gap-3 lg:grid-cols-3"
         >
           <WorkCard
-            org="Endava · Cisco"
-            title="Secure Firewall Cloud Native"
+            v-for="work in selectedWork"
+            :key="work.title"
+            :org="work.org"
+            :title="work.title"
           >
-            Led a team building Kubernetes Operators for Cisco's firewall
-            and VPN. Designed an Operator that wires AWS Shield into newly
-            deployed services, and tightened access control across
-            Kubernetes RBAC and AWS IAM.
-          </WorkCard>
-          <WorkCard
-            org="ByteBuds · TVM"
-            title="TradeView Markets"
-          >
-            Low-latency (sub-millisecond) backend for an online trading
-            platform with zero allocations in the hot path. Aeron for
-            inter-service transport, FIX integration with multiple liquidity
-            providers, end-to-end order execution.
-          </WorkCard>
-          <WorkCard
-            org="Endava · Sportradar"
-            title="Sportradar"
-          >
-            Real-time data synchronisation services for Sportradar, a
-            leading sports streaming platform. Golang, gRPC streams and
-            Kubernetes, kept low-latency across the distribution path.
+            {{ work.summary }}
           </WorkCard>
         </div>
 

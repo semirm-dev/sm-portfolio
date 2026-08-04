@@ -40,9 +40,32 @@ server/api/career.get.ts         GET /api/career
 app/composables/useCareer.ts     useAsyncData over that endpoint
 ```
 
-`app/utils/career.ts` holds the pure derivations — durations, timeline
-percentages, trace spans, the technology recurrence graph. Data lives in JSON,
-maths lives in TypeScript, and neither reaches across.
+`app/utils/career.ts` holds the pure derivations — durations, the technology
+recurrence graph, the whole-year count the prose and the manifest both quote.
+Data lives in JSON, maths lives in TypeScript, and neither reaches across.
+
+**The record is the whole CV, not just the job history.** It carries `profile`
+(contact, location, availability, languages, ownership, and the summary
+paragraphs), `skills`, `selectedWork`, `technologyAliases` and `projects`. No
+component may state a fact about Semir in its own markup — the pages are
+renderers over this record, which is what lets a PDF export be another one.
+That includes the navbar wordmark, the footer links and the YAML manifest.
+
+Two things are deliberately *not* in it. The hero headline and the SEO
+descriptions are copy about this page rather than facts about him, and any
+number derivable from `projects` — the "over N years" figure is computed and
+interpolated through a `{years}` token, so it cannot drift from the history
+below it.
+
+The summary is stored as **segments**, not as a string containing markup:
+`"plain text"` or `{ text, emphasis }`. Rendering markup would need `v-html`,
+the one injection sink this site otherwise does not have. Keep it that way.
+
+`server/repositories/career.ts` narrows the record's closed sets
+(`availability`, `emphasis`) and throws on anything else. TypeScript widens
+JSON strings to `string`, so assignability alone cannot check a union — and a
+silent typo in `availability` would mean "not open". A bad value must stay a
+failed build.
 
 Under `nuxt generate` the endpoint is genuinely called at build time and the
 payload baked into the HTML. What makes the site static is the **deploy

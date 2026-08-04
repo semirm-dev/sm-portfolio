@@ -157,3 +157,31 @@ export function careerDuration(projects: Project[]): string {
 
   return formatDuration(Math.min(...starts), Math.max(...ends))
 }
+
+/**
+ * Whole years of career, for the prose that says "over N years" and for the
+ * manifest's `experience` line.
+ *
+ * Floored rather than rounded, because both call sites are claims: "over 11
+ * years" has to stay true, and rounding 11y 8mo up to 12 would make it a
+ * slight overstatement of a figure a reader can check against the history
+ * below it. Separate from `careerDuration` because that one is precise to the
+ * month and reads `11y 3mo`, which is not a thing prose can say.
+ */
+export function careerYears(projects: Project[]): number {
+  const starts = projects.map(project => monthStart(project.start))
+  const ends = projects.map(project => monthEnd(project.end))
+
+  return Math.floor(Math.max(...ends) - Math.min(...starts))
+}
+
+/**
+ * Fills the `{years}` token a stored summary paragraph may carry.
+ *
+ * The record keeps the sentence and the site keeps the arithmetic, which is
+ * the same split the rest of this file exists to hold: data in JSON, maths in
+ * TypeScript.
+ */
+export function resolveSummaryText(text: string, years: number): string {
+  return text.replaceAll('{years}', String(years))
+}

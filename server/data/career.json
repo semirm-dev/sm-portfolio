@@ -1,4 +1,190 @@
 {
+  "profile": {
+    "name": "Semir Mahovkic",
+    "handle": "semir.mahovkic",
+    "title": "Senior Software Engineer",
+    "location": "Remote",
+    "availability": "open",
+    "email": "smahovkic89@gmail.com",
+    "github": "https://github.com/semirm-dev",
+    "linkedin": "https://www.linkedin.com/in/semir-mahovkic-a42ba7135",
+    "languages": [
+      "go",
+      "php",
+      "csharp",
+      "typescript"
+    ],
+    "ownership": [
+      "code",
+      "build",
+      "deploy",
+      "monitor"
+    ],
+    "summary": [
+      [
+        "Over {years} years of experience in software development, I specialize in ",
+        {
+          "text": "Golang",
+          "emphasis": "accent"
+        },
+        ", ",
+        {
+          "text": "Kubernetes",
+          "emphasis": "accent"
+        },
+        ", and cloud-native technologies. My expertise covers soft real-time systems, asynchronous communications, and distributed applications for some really cool and big projects (",
+        {
+          "text": "Cisco's Cloud Native Firewall",
+          "emphasis": "strong"
+        },
+        ", ",
+        {
+          "text": "Sportradar's data sync/streaming platform",
+          "emphasis": "strong"
+        },
+        ", ",
+        {
+          "text": "Agilent's laboratory custom analysis",
+          "emphasis": "strong"
+        },
+        ", ",
+        {
+          "text": "low latency trading platform — submillisecond",
+          "emphasis": "strong"
+        },
+        "), utilizing tools like ",
+        {
+          "text": "RabbitMQ",
+          "emphasis": "strong"
+        },
+        ", ",
+        {
+          "text": "MQTT",
+          "emphasis": "strong"
+        },
+        ", ",
+        {
+          "text": "SQS/SNS",
+          "emphasis": "strong"
+        },
+        ", ",
+        {
+          "text": "PubSub",
+          "emphasis": "strong"
+        },
+        ", ",
+        {
+          "text": "gRPC",
+          "emphasis": "strong"
+        },
+        ", ",
+        {
+          "text": "Aeron",
+          "emphasis": "strong"
+        },
+        " and ",
+        {
+          "text": "WebSockets",
+          "emphasis": "strong"
+        },
+        "."
+      ],
+      [
+        "Additionally, I have experience setting up, configuring and implementing Keycloak IAM on Kubernetes environments, integrating it with Grafana, ArgoCD and backend services (Golang and .NET) to enable seamless authentication and access control."
+      ],
+      [
+        "I can take full ownership of an application's lifecycle — from coding and building to deploying and monitoring."
+      ]
+    ]
+  },
+  "skills": [
+    {
+      "name": "Golang",
+      "technologies": [
+        "RabbitMQ",
+        "MQTT",
+        "SQS",
+        "SNS",
+        "gRPC + streams",
+        "WebSockets",
+        "Kubernetes Operators",
+        "Gin",
+        "Gorm",
+        "Jaeger",
+        "Docker",
+        "GraphQL",
+        "Temporal",
+        "FX",
+        "Wire",
+        "Aeron",
+        "FIX",
+        "Claude Code"
+      ]
+    },
+    {
+      "name": "PHP",
+      "technologies": [
+        "Laravel",
+        "Websockets",
+        "Redis",
+        "MySQL",
+        "SQS/SNS",
+        "Postgres",
+        "RabbitMQ",
+        "Inertia",
+        "Notifications",
+        "Reverb",
+        "Social Logins",
+        "PDF generating",
+        "Claude Code"
+      ]
+    },
+    {
+      "name": "C#",
+      "technologies": [
+        ".NET Core",
+        "IdentityServer4",
+        "HangFire",
+        "Jaeger",
+        "WebSockets",
+        "Automapper",
+        "Docker"
+      ]
+    },
+    {
+      "name": "Kubernetes",
+      "technologies": [
+        "Operators/CRDs",
+        "Helm charts",
+        "ArgoCD (app-of-apps)",
+        "Prometheus",
+        "Loki",
+        "RabbitMQ",
+        "Jaeger",
+        "Elasticsearch",
+        "Grafana",
+        "OpenTelemetry Collector",
+        "SealedSecrets"
+      ]
+    }
+  ],
+  "selectedWork": [
+    {
+      "org": "Endava · Cisco",
+      "title": "Secure Firewall Cloud Native",
+      "summary": "Led a team building Kubernetes Operators for Cisco's firewall and VPN. Designed an Operator that wires AWS Shield into newly deployed services, and tightened access control across Kubernetes RBAC and AWS IAM."
+    },
+    {
+      "org": "ByteBuds · TVM",
+      "title": "TradeView Markets",
+      "summary": "Low-latency (sub-millisecond) backend for an online trading platform with zero allocations in the hot path. Aeron for inter-service transport, FIX integration with multiple liquidity providers, end-to-end order execution."
+    },
+    {
+      "org": "Endava · Sportradar",
+      "title": "Sportradar",
+      "summary": "Real-time data synchronisation services for Sportradar, a leading sports streaming platform. Golang, gRPC streams and Kubernetes, kept low-latency across the distribution path."
+    }
+  ],
   "technologyAliases": {
     "gRPC (streams)": "gRPC"
   },
@@ -82,7 +268,7 @@
       "website": "https://www.endava.com/",
       "project": "Agilent",
       "projectUrl": "https://www.agilent.com/",
-      "summary": "Custom software for Agilent's laboratory instruments, used for chemical analysis and research \u2014 from fuel and oil quality testing to cancer research.",
+      "summary": "Custom software for Agilent's laboratory instruments, used for chemical analysis and research — from fuel and oil quality testing to cancer research.",
       "start": "2021-11",
       "end": "2022-07",
       "technologies": [
@@ -129,7 +315,12 @@
       "projectUrl": "https://sportradar.com/",
       "start": "2023-08",
       "end": "2024-07",
-      "technologies": ["Golang", "gRPC (streams)", "Kubernetes", "Redis"],
+      "technologies": [
+        "Golang",
+        "gRPC (streams)",
+        "Kubernetes",
+        "Redis"
+      ],
       "responsibilities": [
         "Implemented real-time data synchronization services for Sportradar, a leading sports streaming platform, leveraging Golang, gRPC and Kubernetes to ensure low-latency of data distribution."
       ]
@@ -217,7 +408,11 @@
       "start": "2025-11",
       "end": "2026-07",
       "current": true,
-      "technologies": ["Typescript", "VMware Cloud Automation", "Claude Code"],
+      "technologies": [
+        "Typescript",
+        "VMware Cloud Automation",
+        "Claude Code"
+      ],
       "responsibilities": [
         "Implement custom forms in Aria Automation for catalog items so customers can automate deployment of VMs for their private Cloud infrastructure.",
         "Implementing custom solutions (plugins) for automating infrastructure configurations and management in Aria Automation (custom workflows, actions).",

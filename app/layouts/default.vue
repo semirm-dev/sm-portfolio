@@ -1,7 +1,23 @@
 <script setup lang="ts">
-const EMAIL = 'smahovkic89@gmail.com'
-const GITHUB = 'https://github.com/semirm-dev'
-const LINKEDIN = 'https://www.linkedin.com/in/semir-mahovkic-a42ba7135'
+/*
+ * The layout reads the record too. Awaiting here makes this an async component,
+ * which needs a Suspense boundary above it — Nuxt's app root supplies one, and
+ * the prerendered HTML carries the resolved values, so the footer is baked into
+ * the static output rather than filled in on hydration.
+ */
+const { profile } = await useCareer()
+
+/*
+ * One field decides whether the prompt is running anything. Setting
+ * `availability` to `closed` in the record drops the command and the words
+ * behind it in the same move — and the manifest's own availability line reads
+ * the same field, so the two halves of the page cannot disagree about whether
+ * he is looking.
+ */
+const isOpenToWork = computed(() => profile.value.availability === 'open')
+
+/** Shell hosts are lowercase; the record spells the place properly. */
+const host = computed(() => profile.value.location.toLowerCase())
 
 // The stack section only exists on the landing page, so the nav changes shape
 // rather than offering an anchor that goes nowhere.
@@ -50,9 +66,9 @@ const isHome = computed(() => route.path === '/')
         <div class="flex items-center gap-1.5 font-mono text-[14px] font-medium">
           <NuxtLink
             to="/"
-            aria-label="semir.mahovkic — home"
+            :aria-label="`${profile.handle} — home`"
             class="group transition-colors hover:text-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-          >semir.mahovkic<span class="hidden text-muted transition-colors group-hover:text-accent sm:inline">@remote:$</span></NuxtLink>
+          >{{ profile.handle }}<span class="hidden text-muted transition-colors group-hover:text-accent sm:inline">@{{ host }}:$</span></NuxtLink>
 
           <!--
             The status in words, always, for screen readers. The visual prompt
@@ -60,13 +76,23 @@ const isHome = computed(() => route.path === '/')
             `display: none` hides from assistive tech too — so the readable
             form lives outside that wrapper rather than inside it.
           -->
-          <span class="sr-only">Open to work</span>
+          <span
+            v-if="isOpenToWork"
+            class="sr-only"
+          >Open to work</span>
 
+          <!--
+            The cursor is not conditional: a prompt has one whether or not
+            something is being run at it. Only the command comes and goes.
+          -->
           <span
             class="hidden items-center sm:flex"
             aria-hidden="true"
           >
-            <span class="text-accent">./open-to-work</span>
+            <span
+              v-if="isOpenToWork"
+              class="text-accent"
+            >./open-to-work</span>
             <i class="animate-cursor ml-[3px] h-[15px] w-[8px] bg-accent" />
           </span>
         </div>
@@ -109,24 +135,24 @@ const isHome = computed(() => route.path === '/')
       <div class="mx-auto flex max-w-[110rem] flex-wrap items-center justify-between gap-3 px-6 py-6 lg:px-10">
         <div class="flex flex-wrap gap-4 text-[14px]">
           <a
-            :href="`mailto:${EMAIL}`"
+            :href="`mailto:${profile.email}`"
             class="border-b border-accent-rule text-accent transition-colors hover:border-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-          >{{ EMAIL }}</a>
+          >{{ profile.email }}</a>
           <a
-            :href="GITHUB"
+            :href="profile.github"
             rel="noopener noreferrer"
             target="_blank"
             class="border-b border-accent-rule text-accent transition-colors hover:border-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
           >GitHub</a>
           <a
-            :href="LINKEDIN"
+            :href="profile.linkedin"
             rel="noopener noreferrer"
             target="_blank"
             class="border-b border-accent-rule text-accent transition-colors hover:border-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
           >LinkedIn</a>
         </div>
         <p class="text-[13px] text-muted">
-          Remote
+          {{ profile.location }}
         </p>
       </div>
     </footer>

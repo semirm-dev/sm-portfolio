@@ -46,7 +46,85 @@ export interface Project {
   responsibilities?: string[]
 }
 
+/**
+ * A run of emphasised words inside a summary paragraph.
+ *
+ * The summary is stored as segments rather than as a string with markup in it.
+ * Markup would have to be rendered with `v-html`, which is an injection sink
+ * the site otherwise does not have anywhere, and it would put presentation
+ * decisions — which words are accent, which are ink — inside the record. This
+ * keeps the record declarative: it says *that* a phrase is emphasised and how
+ * strongly, and the component decides what that looks like.
+ */
+export interface SummaryEmphasis {
+  text: string
+  /**
+   * `accent` for the two technologies the summary leads on, `strong` for the
+   * named projects and tools. Two levels because the prose already had two.
+   */
+  emphasis: 'accent' | 'strong'
+}
+
+/** Plain text, or a run of it that carries emphasis. */
+export type SummarySegment = string | SummaryEmphasis
+
+/**
+ * Who the CV is about — everything the pages state about the person rather
+ * than about the work.
+ */
+export interface Profile {
+  name: string
+  /** The wordmark, and what the tab title is suffixed with. */
+  handle: string
+  title: string
+  location: string
+  /**
+   * Drives both the navbar prompt and the manifest's availability line, so the
+   * two cannot disagree about whether he is looking.
+   */
+  availability: 'open' | 'closed'
+  email: string
+  github: string
+  linkedin: string
+  /** Manifest: the languages line and the lifecycle-ownership line. */
+  languages: string[]
+  ownership: string[]
+  /**
+   * The CV's summary, as paragraphs of segments.
+   *
+   * Plain segments may carry a `{years}` token where the career length belongs.
+   * The figure is computed from `projects` at render — see `careerYears` — so
+   * the sentence cannot go stale the way a written number does.
+   */
+  summary: SummarySegment[][]
+}
+
+/** One card in the technical-skills grid. */
+export interface SkillGroup {
+  name: string
+  technologies: string[]
+}
+
+/**
+ * A landing-page work card.
+ *
+ * Deliberately its own list rather than a filter over `projects`. The cards
+ * carry a condensed summary that appears nowhere in the record, and their
+ * `org`/`title` split does not follow from a project's fields — the Cisco card
+ * shows `Endava · Cisco` where the project's client reads
+ * `Cisco Secure Firewall Cloud Native`. This is edited content about the work,
+ * not a view of it.
+ */
+export interface SelectedWork {
+  org: string
+  title: string
+  summary: string
+}
+
 export interface CareerRecord {
+  profile: Profile
+  skills: SkillGroup[]
+  selectedWork: SelectedWork[]
   /**
    * Technology spellings the graph collapses into a single node.
    *

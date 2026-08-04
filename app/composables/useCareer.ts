@@ -45,9 +45,14 @@ export async function useCareer() {
 
   return {
     record,
+    profile: computed(() => record.value.profile),
+    skills: computed(() => record.value.skills),
+    selectedWork: computed(() => record.value.selectedWork),
     projects: computed(() => record.value.projects),
     projectsNewest: computed(() => projectsNewestFirst(record.value.projects)),
     total: computed(() => careerDuration(record.value.projects)),
+    /** Whole years, for the prose and the manifest. `total` is the exact span. */
+    years: computed(() => careerYears(record.value.projects)),
     graph: computed(() => techGraph(record.value)),
   }
 }
