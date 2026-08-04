@@ -32,18 +32,42 @@ const isHome = computed(() => route.path === '/')
     -->
     <header class="animate-rise sticky top-0 z-10 border-b border-rule bg-ground">
       <div class="mx-auto flex h-14 max-w-[110rem] items-center justify-between gap-4 px-6 lg:px-10">
-        <div class="flex items-center gap-3">
+        <!--
+          The wordmark as a shell prompt. `@remote` is the one token here that
+          states a fact — the footer says Remote and the work is — so the rest
+          stays minimal: no `~`, because there is no filesystem to be in.
+
+          The link stops at the prompt. A "go home" link has no business
+          containing a job-status command, so `./open-to-work` sits outside it
+          as text. They read as one line because they are adjacent, not because
+          they are one element.
+
+          The accent moved rather than multiplied. It used to sit on the dot in
+          `semir.mahovkic`; putting it on the command instead keeps one accent
+          moment in the corner and keeps the thing worth reading — that he is
+          looking — as loud as the pill it replaces.
+        -->
+        <div class="flex items-center gap-1.5 font-mono text-[14px] font-medium">
           <NuxtLink
             to="/"
-            class="text-[15.5px] font-semibold tracking-[-0.02em] transition-colors hover:text-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+            aria-label="semir.mahovkic — home"
+            class="group transition-colors hover:text-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+          >semir.mahovkic<span class="hidden text-muted transition-colors group-hover:text-accent sm:inline">@remote:$</span></NuxtLink>
+
+          <!--
+            The status in words, always, for screen readers. The visual prompt
+            is hidden below sm and would take the announcement down with it —
+            `display: none` hides from assistive tech too — so the readable
+            form lives outside that wrapper rather than inside it.
+          -->
+          <span class="sr-only">Open to work</span>
+
+          <span
+            class="hidden items-center sm:flex"
+            aria-hidden="true"
           >
-            semir<span class="text-accent">.</span>mahovkic
-          </NuxtLink>
-          <span class="hidden items-center gap-2 rounded-full border border-accent-rule bg-accent-soft px-2.5 py-1 text-[11.5px] font-semibold uppercase tracking-[0.09em] text-accent sm:inline-flex">
-            <i
-              class="animate-pulse-dot size-[5px] rounded-full bg-accent"
-              aria-hidden="true"
-            />open to work
+            <span class="text-accent">./open-to-work</span>
+            <i class="animate-cursor ml-[3px] h-[15px] w-[8px] bg-accent" />
           </span>
         </div>
 

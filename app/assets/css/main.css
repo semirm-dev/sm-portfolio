@@ -16,7 +16,7 @@
   --color-rule: #e7ecf1;
   --color-ink: #0b1017;
   /*
-   * Body copy, and most of the small mono chrome: nav, page heads, role
+   * Body copy, and most of the small chrome: nav, page heads, role
    * summaries, locations, tech tags. It carries far more of the page than the
    * name suggests, so "muted" is about hierarchy, not lightness — this is a
    * normal dark body grey (10.3:1 on white), not a wash. An earlier #5b6675
@@ -49,12 +49,17 @@
    * browser faked it by dilating the outlines and the text looked smeared.
    * A system face cannot fail that way.
    *
-   * --font-mono is now for code and nothing else — only inside
-   * EngineerManifest, on the YAML block where the indentation is the meaning
-   * and on the `engineer.yaml` filename above it. Everywhere else the site
-   * used to set labels in mono; it no longer does. If you find yourself
-   * reaching for font-mono on a heading or an eyebrow, that is the old
-   * convention, and it is gone deliberately.
+   * --font-mono is for code and for the one thing that imitates it: the
+   * EngineerManifest YAML block, where the indentation is the meaning, and the
+   * navbar prompt, where the monospace *is* the joke — the same string set in
+   * the sans reads as an email address with punctuation after it.
+   *
+   * That is the whole list. Everywhere else the site used to set labels in
+   * mono and no longer does; if you find yourself reaching for font-mono on a
+   * heading or an eyebrow, that is the old convention and it is gone
+   * deliberately. Note the ban above was never about monospace as such — it
+   * was about the webfont that used to supply it, which is why a system stack
+   * can hold these two cases without reopening the problem.
    */
   --font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   --font-mono: ui-monospace, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
@@ -96,12 +101,37 @@
   }
 }
 
+/*
+ * A terminal cursor snaps between states; it does not fade. `step-end` is what
+ * makes it read as a cursor rather than as the status dot the prompt replaced,
+ * which breathes on `pulse` above.
+ *
+ * Under `prefers-reduced-motion` the global rule below stops this at full
+ * opacity, leaving a solid block — which is what an unfocused terminal shows
+ * anyway, so the reduced case loses nothing.
+ */
+@keyframes cursor-blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
 @utility animate-rise {
   animation: rise 0.55s cubic-bezier(0.2, 0.8, 0.3, 1) backwards;
 }
 
 @utility animate-pulse-dot {
   animation: pulse 2.4s ease-in-out infinite;
+}
+
+@utility animate-cursor {
+  animation: cursor-blink 1.06s step-end infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
