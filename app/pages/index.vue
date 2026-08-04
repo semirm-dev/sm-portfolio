@@ -18,6 +18,7 @@ const projectCount = computed(() => projects.value.length)
  */
 usePageSeo({
   title: profile.value.title,
+  siteName: profile.value.handle,
   description: `Senior software engineer with over ${years.value} years of experience. Golang, Kubernetes and cloud-native technologies — soft real-time systems, asynchronous communications and distributed applications.`,
 })
 
@@ -68,6 +69,11 @@ const workGrid = useReveal()
               would be the shorter route and would give the site its only
               injection sink; this keeps the record saying which phrases are
               emphasised and leaves the page deciding what emphasis looks like.
+
+              Both branches resolve `{years}`. Only the plain one needed it for
+              today's copy, but a token that works in one kind of segment and
+              silently prints itself in the other is a trap set for whoever
+              edits the summary next.
             -->
             <p
               v-for="(paragraph, index) in profile.summary"
@@ -80,7 +86,7 @@ const workGrid = useReveal()
                 <span
                   v-if="typeof segment !== 'string'"
                   :class="segment.emphasis === 'accent' ? 'font-medium text-accent' : 'font-medium text-ink'"
-                >{{ segment.text }}</span><template v-else>
+                >{{ resolveSummaryText(segment.text, years) }}</span><template v-else>
                   {{ resolveSummaryText(segment, years) }}
                 </template>
               </template>

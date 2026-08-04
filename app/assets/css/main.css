@@ -165,6 +165,23 @@
   animation: rise 0.55s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
 }
 
+/*
+ * Printing does not scroll, so the observer never fires for anything below the
+ * fold and those cards would go to paper at opacity 0 — the skills grid and the
+ * selected work, blank. A reveal is an entrance for a reader who is arriving at
+ * a section; a printer arrives at all of them at once and needs none of it.
+ *
+ * This matters beyond the odd Ctrl+P: the intended PDF export is this page
+ * rendered to PDF, so anything that hides content from the print renderer hides
+ * it from the CV.
+ */
+@media print {
+  .reveal-hidden {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

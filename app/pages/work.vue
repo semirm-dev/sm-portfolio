@@ -2,10 +2,11 @@
 import ProjectEntry from '~/components/portfolio/ProjectEntry.vue'
 import WorkGraph from '~/components/portfolio/WorkGraph.vue'
 
-const { projectsNewest, total } = await useCareer()
+const { profile, projectsNewest, total } = await useCareer()
 
 usePageSeo({
   title: 'Work history',
+  siteName: profile.value.handle,
   description: 'Full work history of Semir Mahovkic, senior software engineer: Cisco Secure Firewall Cloud Native, Sportradar, MultiFeedCenter, TradeView Markets and more.',
 })
 </script>

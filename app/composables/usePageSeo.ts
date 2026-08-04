@@ -9,21 +9,38 @@
  * Canonical and `og:url` are absolute because both must be, and they resolve
  * against the www host: the apex 308-redirects to www, so www is the address
  * these pages actually live at and the one to point crawlers and share cards at.
+ *
+ * The host stays a constant here while the wordmark comes from the record. They
+ * look alike and are not: `robots.txt` and `sitemap.xml` are static files that
+ * hardcode the same host and that no composable can reach, so a runtime value
+ * would put the site's address in two kinds of place at once. The wordmark has
+ * no such second home — it is a fact about him, and the navbar already reads it
+ * from the record.
  */
 
 const SITE_URL = 'https://www.semirmahovkic.xyz'
-const SITE_NAME = 'semir.mahovkic'
 
 interface PageSeo {
   /** Short page title. The wordmark is appended for the tab and the card. */
   title: string
   description: string
+  /**
+   * The wordmark, from `profile.handle`.
+   *
+   * Passed in rather than fetched here, and the reason is a hard constraint
+   * rather than a preference: awaiting inside a composable loses the Nuxt
+   * instance, so every `useRoute`/`useSeoMeta`/`useHead` call after the await
+   * runs without context and the page 500s during prerender. Both callers hold
+   * the record already, so handing the value over costs a line and keeps this
+   * function synchronous, which is what those composables require.
+   */
+  siteName: string
 }
 
-export function usePageSeo({ title, description }: PageSeo) {
+export function usePageSeo({ title, description, siteName }: PageSeo) {
   const route = useRoute()
   const url = computed(() => new URL(route.path, SITE_URL).href)
-  const shareTitle = `${title} - ${SITE_NAME}`
+  const shareTitle = `${title} - ${siteName}`
 
   useSeoMeta({
     title,
@@ -32,7 +49,7 @@ export function usePageSeo({ title, description }: PageSeo) {
     ogDescription: description,
     ogUrl: url,
     ogType: 'website',
-    ogSiteName: SITE_NAME,
+    ogSiteName: siteName,
     /*
      * `summary`, not `summary_large_image`: there is no og:image yet, and
      * asking for the large-image card without one renders an empty banner.
