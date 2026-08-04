@@ -83,17 +83,60 @@ a component** — that collapses the seam this structure exists to keep open.
 
 ## Design
 
-Light-only, deliberately: there is no appearance switcher, so there is nothing
-to switch. Tokens are Tailwind `@theme` variables in `app/assets/css/main.css`.
-One accent, indigo `#2d46b9`, measuring 7.9:1 on white — legible as type
-anywhere, which is what lets a single value do every job. If you propose a new
-accent and it can't clear 4.5:1 on white, it doesn't belong in that variable.
-`--color-on-accent` is the paired token for type set on an accent fill (the
-hero's "Email me" button, which is now the only one) — currently white, since
-white clears 7.9:1 on both accent weights.
+Tokens are Tailwind `@theme` variables in `app/assets/css/main.css`. One accent,
+indigo `#2d46b9`, measuring 7.9:1 on white — legible as type anywhere, which is
+what lets a single value do every job. If you propose a new accent and it can't
+clear 4.5:1 on white, it doesn't belong in that variable. `--color-on-accent` is
+the paired token for type set on an accent fill — currently white, since white
+clears 7.9:1 on both accent weights. Nothing carries an accent fill outside the
+masthead at the moment, so `--color-on-accent` is waiting for the next one
+rather than in use.
 
-Full-bleed sections alternate white and `#f6f9fb`, content sits in a centred
-`max-w-6xl` container, section headings are centred.
+### The masthead, and the theme
+
+The sticky bar and the landing page's first screen are the site's one saturated
+surface, and **the only part of it with two appearances**. Light is the site as
+it originally stood; dark fills them with `--color-hero` `#2b3c86`.
+
+**Below the masthead the two themes are identical** — white ground, `#f6f9fb`
+band, white cards, and the same `WorkGraph`. That is the constraint that makes a
+switcher affordable here rather than a decision to revisit: no component outside
+the `--color-hero-*` block knows a theme exists, no card treatment forks, and
+there is no second set of contrast numbers for the body of the site. Keep it
+that way. A change that gives dark its own card or its own band has quietly
+doubled the surface every future change has to be checked against.
+
+The dark weight is chosen against two limits. Darker, and `EngineerManifest`
+stops separating from the ground behind it (1.16:1 at `#16204a`, where the card
+reads as a rectangle drawn on the hero); lighter, and the accent has nothing
+left to pick out up there. `#2b3c86` measures 1.66:1 against the card, 6.05:1
+for `--color-hero-accent`, 10:1 for white headlines and 7.4:1 for body copy.
+
+Three pieces, and each has one job:
+
+- **`main.css`** declares the light values in `@theme` and the dark values once
+  as `--hero-dark-*` aliases. Both routes into dark — `[data-theme='dark']` and
+  `prefers-color-scheme` — map those aliases onto the `--color-hero-*` tokens,
+  and both live inside `@media screen`.
+- **The inline script in `nuxt.config.ts`** resolves the theme before first
+  paint and stamps `data-theme` on `<html>`. Pages are prerendered, so this is
+  the only thing that runs early enough to stop a white masthead flashing blue.
+- **`useTheme`** adopts whatever that script decided, flips it on request, and
+  writes `localStorage` *only* on an explicit press.
+
+Precedence is "stored choice, else the OS", in all three. `useTheme` reads it
+off the attribute rather than deriving it again, and the stylesheet's
+`:not([data-theme='light'])` is what lets a choice beat a dark OS in both
+directions.
+
+**Do not set a colour on the masthead that isn't a `--color-hero-*` token.** The
+`@media screen` wrapper means paper gets the light values with no override at
+all — which is what stops dark mode printing a blank first page, since browsers
+don't print background colours but do print type, and the CV export is this page
+printed. A literal in a component escapes that and prints white on white.
+
+Below the masthead, full-bleed sections alternate white and `#f6f9fb`, content
+sits in a centred `max-w-6xl` container, section headings are centred.
 
 **Tailwind is the default.** Only `WorkGraph.vue` carries a scoped `<style>`
 block, because its values are computed geometry — SVG coordinates, and type

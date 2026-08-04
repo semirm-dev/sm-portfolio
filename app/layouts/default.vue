@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import ThemeToggle from '~/components/portfolio/ThemeToggle.vue'
+
 /*
  * The layout reads the record too. Awaiting here makes this an async component,
  * which needs a Suspense boundary above it — Nuxt's app root supplies one, and
@@ -45,8 +47,15 @@ const isHome = computed(() => route.path === '/')
       The blur was buying nothing anyway: everything that scrolls under it is
       white or #f6f9fb, and the one dark element (EngineerManifest) looked
       better behind a clean edge than smeared through 10% of a white bar.
+
+      The bar carries --color-hero, so on the landing page it and the hero read
+      as one filled masthead with no seam between them. It keeps that fill once
+      you scroll past the hero onto white, and on /work, which has no hero at
+      all — deliberately. A bar that changed colour on scroll would be the one
+      piece of chrome on the site that animates while you read, and the rule
+      here is that nothing does.
     -->
-    <header class="animate-rise sticky top-0 z-10 border-b border-rule bg-ground">
+    <header class="animate-rise sticky top-0 z-10 border-b border-hero-rule bg-hero text-hero-ink">
       <div class="mx-auto flex h-14 max-w-[110rem] items-center justify-between gap-4 px-6 lg:px-10">
         <!--
           The wordmark as a shell prompt. `@remote` is the one token here that
@@ -67,8 +76,8 @@ const isHome = computed(() => route.path === '/')
           <NuxtLink
             to="/"
             :aria-label="`${profile.handle} — home`"
-            class="group transition-colors hover:text-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-          >{{ profile.handle }}<span class="hidden text-muted transition-colors group-hover:text-accent sm:inline">@{{ host }}:$</span></NuxtLink>
+            class="group transition-colors hover:text-hero-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-hero-accent"
+          >{{ profile.handle }}<span class="hidden text-hero-muted transition-colors group-hover:text-hero-accent sm:inline">@{{ host }}:$</span></NuxtLink>
 
           <!--
             The status in words, always, for screen readers. The visual prompt
@@ -91,36 +100,47 @@ const isHome = computed(() => route.path === '/')
           >
             <span
               v-if="isOpenToWork"
-              class="text-accent"
+              class="text-hero-accent"
             >./open-to-work</span>
-            <i class="animate-cursor ml-[3px] h-[15px] w-[8px] bg-accent" />
+            <i class="animate-cursor ml-[3px] h-[15px] w-[8px] bg-hero-accent" />
           </span>
         </div>
 
-        <nav
-          class="flex items-center gap-6 text-[13px] text-muted"
-          aria-label="Sections"
-        >
-          <template v-if="isHome">
+        <!--
+          The switch sits beside the section links rather than inside them: it
+          goes nowhere, and a `<nav>` labelled "Sections" is a promise about
+          what its contents do.
+        -->
+        <div class="flex items-center gap-5">
+          <nav
+            class="flex items-center gap-6 text-[13px] text-hero-muted"
+            aria-label="Sections"
+          >
+            <template v-if="isHome">
+              <NuxtLink
+                to="/work"
+                class="transition-colors hover:text-hero-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-hero-accent"
+              >work</NuxtLink>
+              <a
+                href="#stack"
+                class="hidden transition-colors hover:text-hero-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-hero-accent sm:inline"
+              >stack</a>
+            </template>
             <NuxtLink
-              to="/work"
-              class="transition-colors hover:text-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-            >work</NuxtLink>
+              v-else
+              to="/"
+              class="transition-colors hover:text-hero-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-hero-accent"
+            >home</NuxtLink>
             <a
-              href="#stack"
-              class="hidden transition-colors hover:text-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent sm:inline"
-            >stack</a>
-          </template>
-          <NuxtLink
-            v-else
-            to="/"
-            class="transition-colors hover:text-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-          >home</NuxtLink>
-          <a
-            href="#contact"
-            class="transition-colors hover:text-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-          >contact</a>
-        </nav>
+              href="#contact"
+              class="transition-colors hover:text-hero-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-hero-accent"
+            >contact</a>
+          </nav>
+
+          <ClientOnly>
+            <ThemeToggle />
+          </ClientOnly>
+        </div>
       </div>
     </header>
 

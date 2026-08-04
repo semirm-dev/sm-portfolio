@@ -31,7 +31,19 @@ const workGrid = useReveal()
 
 <template>
   <div>
-    <section class="border-b border-rule">
+    <!--
+      The masthead. It runs into the sticky bar above it, which carries the same
+      token, so in dark the two read as one surface and the hero needs no top
+      edge of its own.
+
+      The bottom edge is a token rather than a fixed `border-rule` because the
+      two themes disagree about whether it should exist: light needs a line
+      between white and the #f6f9fb band below, and dark has a
+      saturated-to-white colour change already doing that job. It stays a border
+      that is drawn in `transparent` rather than a border that is removed, so
+      the hero's height does not change by a pixel when the theme does.
+    -->
+    <section class="hero-glow border-b border-hero-edge bg-hero text-hero-ink">
       <!--
         Three cells, not two: the headline spans the full width on its own row,
         so the columns below it are free to size themselves to their content
@@ -46,7 +58,7 @@ const workGrid = useReveal()
       <div class="mx-auto grid max-w-[110rem] gap-x-10 gap-y-8 px-6 py-16 lg:px-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,38rem)] lg:items-center">
         <div class="lg:col-span-2">
           <p
-            class="animate-rise text-[12.5px] font-semibold uppercase tracking-[0.14em] text-accent"
+            class="animate-rise text-[12.5px] font-semibold uppercase tracking-[0.14em] text-hero-accent"
             style="animation-delay: 60ms"
           >
             {{ profile.title }}
@@ -55,13 +67,13 @@ const workGrid = useReveal()
             class="animate-rise mt-4 text-[clamp(35px,4.6vw,58px)] font-bold leading-[1.04] tracking-[-0.042em] text-balance"
             style="animation-delay: 120ms"
           >
-            I build backends that <em class="not-italic text-accent">hold under load</em>.
+            I build backends that <em class="not-italic text-hero-accent">hold under load</em>.
           </h1>
         </div>
 
         <div>
           <div
-            class="animate-rise max-w-[54ch] space-y-3 text-[16.5px] leading-[1.72] text-muted lg:max-w-none xl:text-[18px] xl:leading-[1.75] 2xl:text-[19.5px]"
+            class="animate-rise max-w-[54ch] space-y-3 text-[16.5px] leading-[1.72] text-hero-muted lg:max-w-none xl:text-[18px] xl:leading-[1.75] 2xl:text-[19.5px]"
             style="animation-delay: 180ms"
           >
             <!--
@@ -85,7 +97,7 @@ const workGrid = useReveal()
               >
                 <span
                   v-if="typeof segment !== 'string'"
-                  :class="segment.emphasis === 'accent' ? 'font-medium text-accent' : 'font-medium text-ink'"
+                  :class="segment.emphasis === 'accent' ? 'font-medium text-hero-accent' : 'font-medium text-hero-ink'"
                 >{{ resolveSummaryText(segment.text, years) }}</span><template v-else>
                   {{ resolveSummaryText(segment, years) }}
                 </template>
@@ -97,15 +109,26 @@ const workGrid = useReveal()
             class="animate-rise mt-6 flex flex-wrap gap-2.5"
             style="animation-delay: 240ms"
           >
+            <!--
+              Both buttons are the same markup in both themes; only the tokens
+              move. Light is the accent fill it always was, and dark inverts it
+              to a white fill with a hero-coloured label — an accent fill on a
+              ground that close to the accent is a button you have to look for.
+
+              The coloured drop shadow is gone. It was tuned to sit under indigo
+              on white and is invisible on a saturated ground, and a shadow that
+              only exists in one theme is a second lighting model for the sake
+              of one element.
+            -->
             <a
               :href="`mailto:${profile.email}`"
-              class="rounded-lg bg-accent px-4.5 py-2.5 text-[14px] font-medium text-on-accent shadow-[0_8px_20px_-10px_rgba(45,70,185,0.7)] transition-colors hover:bg-accent-deep focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+              class="rounded-lg bg-hero-btn px-4.5 py-2.5 text-[14px] font-medium text-hero-btn-ink transition-colors hover:bg-hero-btn-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-hero-accent"
             >Email me</a>
             <a
               :href="profile.github"
               rel="noopener noreferrer"
               target="_blank"
-              class="rounded-lg border border-accent-rule bg-ground px-4.5 py-2.5 text-[14px] font-medium text-accent transition-colors hover:border-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+              class="rounded-lg border border-hero-ghost-rule bg-hero-ghost-bg px-4.5 py-2.5 text-[14px] font-medium text-hero-ghost transition-colors hover:border-hero-ghost focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-hero-accent"
             >GitHub</a>
           </div>
         </div>

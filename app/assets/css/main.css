@@ -33,6 +33,94 @@
   /* Type on an accent fill. White clears 7.9:1 on both accent weights. */
   --color-on-accent: #ffffff;
 
+  /*
+   * The masthead — the sticky bar and the landing page's first screen.
+   *
+   * This is the only part of the site that has two appearances, and the whole
+   * theme switch is these eleven values and nothing else. Below the hero both
+   * themes are identical: white ground, #f6f9fb band, white cards. That is
+   * deliberate and it is what keeps a switcher affordable here — no component
+   * outside this block knows a theme exists, the card treatments never fork,
+   * and there is no second set of contrast numbers to maintain for the body of
+   * the site.
+   *
+   * The values below are the LIGHT set, which is the site as it originally
+   * stood. The dark set lives in the theme block further down. Adding a value
+   * here means adding it there too, or dark silently inherits a light colour.
+   *
+   * Every value on this surface is a token for a second reason: the print rule
+   * at the bottom of this file forces the light set back regardless of theme.
+   * Set a masthead colour as a literal in a component and dark mode will print
+   * white on white.
+   */
+  --color-hero: #ffffff;
+  --color-hero-ink: #0b1017;
+  --color-hero-muted: #374151;
+  --color-hero-accent: #2d46b9;
+  /* The bar's own bottom edge. */
+  --color-hero-rule: #e7ecf1;
+  /* The hero's bottom edge, which dark does not draw — see the theme block. */
+  --color-hero-edge: #e7ecf1;
+  /* The wash behind the hero. Light has none. */
+  --color-hero-glow: transparent;
+  /* The primary button: an accent fill in light, inverted in dark. */
+  --color-hero-btn: #2d46b9;
+  --color-hero-btn-hover: #243a9c;
+  --color-hero-btn-ink: #ffffff;
+  /* The secondary beside it: an outline in both, on its own fill in light. */
+  --color-hero-ghost: #2d46b9;
+  --color-hero-ghost-bg: #ffffff;
+  --color-hero-ghost-rule: #c6cff5;
+
+  /*
+   * The dark masthead's values, named once here and mapped onto the tokens
+   * above by the two theme blocks below. They are declared rather than written
+   * inline in those blocks because there are two routes into dark — an explicit
+   * choice and an OS preference — and a hex written twice is a hex that can
+   * drift on one route only.
+   *
+   * #2b3c86 is a lift of --color-yaml-bg toward the accent, and the lift is
+   * load-bearing in both directions. Darker, and EngineerManifest stops
+   * separating from the ground behind it: at #16204a the two measure 1.16:1 and
+   * the card reads as a rectangle drawn on the hero rather than an object
+   * sitting in it. Lighter — at the accent itself — and the accent has nothing
+   * left to pick out up here, so the emphasised phrases in the summary fall
+   * back to a tint of white and the hero trades its highlight colour for a
+   * background one. This value holds both: 1.66:1 against the card, and 6.05:1
+   * for the accent, which is still recognisably the same blue doing the same
+   * job. White headlines measure 10:1 and body copy 7.4:1.
+   */
+  --hero-dark: #2b3c86;
+  --hero-dark-ink: #ffffff;
+  --hero-dark-muted: #d7dcf0;
+  --hero-dark-accent: #bcc6ff;
+  --hero-dark-rule: #43539b;
+  /*
+   * No bottom edge. The hero and the band below it are already separated by a
+   * saturated-to-white colour change, and a rule drawn across that is a line
+   * doing work the colour has done.
+   */
+  --hero-dark-edge: transparent;
+  /*
+   * One soft light source off the top-right. White rather than blue: a blue
+   * glow on a blue ground is not visible, which is why this is not simply the
+   * accent at low opacity.
+   */
+  --hero-dark-glow: rgb(255 255 255 / 0.1);
+  /*
+   * The primary button inverts here. An accent fill on a ground this close to
+   * the accent is a button you have to look for, so it becomes a white fill
+   * with a hero-coloured label — 10:1, and the loudest thing on the surface,
+   * which is what a primary button should be.
+   */
+  --hero-dark-btn: #ffffff;
+  --hero-dark-btn-hover: #e8ebfa;
+  --hero-dark-btn-ink: #2b3c86;
+  /* The secondary loses its fill: a white pill here would read as a second primary. */
+  --hero-dark-ghost: #e8ebfa;
+  --hero-dark-ghost-bg: transparent;
+  --hero-dark-ghost-rule: #6a76ad;
+
   /* The one dark object on a white page. */
   --color-yaml-bg: #131c3d;
   --color-yaml-rule: #26325f;
@@ -79,6 +167,75 @@
   --shadow-card-raised: 0 2px 4px rgb(11 16 23 / 0.05), 0 22px 44px -26px rgb(11 16 23 / 0.5);
   /* Deeper, because the manifest is dark and has further to fall. */
   --shadow-yaml: 0 20px 42px -26px rgb(19 28 61 / 0.8);
+}
+
+/*
+ * The theme switch, in full.
+ *
+ * `@media screen` wraps both routes, and it is doing real work rather than
+ * documenting intent: it means neither dark rule exists on paper, so the print
+ * case falls back to the light values declared in `@theme` with no override,
+ * no duplicated palette and no specificity contest to win. The alternative —
+ * re-declaring the light set inside `@media print` — has to out-specify
+ * `:root[data-theme='dark']`, and gets it wrong silently for exactly the
+ * readers it exists to protect. Scoping the cause beats overriding the effect.
+ *
+ * Both routes map the same aliases onto the same tokens. The mapping is
+ * repeated because a media condition and an attribute selector cannot be
+ * combined into a single rule; repeating a mapping is cheap, and it is the
+ * values — declared once above — that would hurt if they drifted.
+ *
+ * `:not([data-theme='light'])` is what makes an explicit choice beat the
+ * operating system in *both* directions. A reader on a dark OS who asks for
+ * light must get light, and the naive
+ * `@media (prefers-color-scheme: dark) { :root { … } }` cannot give them that
+ * whatever the attribute says.
+ *
+ * That media branch is also what makes the OS preference work with no
+ * JavaScript at all. `useTheme` stamps the attribute before first paint, so in
+ * practice this is the branch that serves a reader who has never touched the
+ * toggle and has scripting off — and the site's rule is that nothing about it
+ * requires a script to have run.
+ *
+ * Deliberately no `color-scheme: dark` on either block. It reads like the
+ * obvious companion to a dark theme and it is wrong here: it would repaint the
+ * UA canvas and the scrollbars dark on a page that is white everywhere below
+ * the masthead. Only the first screen is dark; the document is not.
+ */
+@media screen {
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme='light']) {
+      --color-hero: var(--hero-dark);
+      --color-hero-ink: var(--hero-dark-ink);
+      --color-hero-muted: var(--hero-dark-muted);
+      --color-hero-accent: var(--hero-dark-accent);
+      --color-hero-rule: var(--hero-dark-rule);
+      --color-hero-edge: var(--hero-dark-edge);
+      --color-hero-glow: var(--hero-dark-glow);
+      --color-hero-btn: var(--hero-dark-btn);
+      --color-hero-btn-hover: var(--hero-dark-btn-hover);
+      --color-hero-btn-ink: var(--hero-dark-btn-ink);
+      --color-hero-ghost: var(--hero-dark-ghost);
+      --color-hero-ghost-bg: var(--hero-dark-ghost-bg);
+      --color-hero-ghost-rule: var(--hero-dark-ghost-rule);
+    }
+  }
+
+  :root[data-theme='dark'] {
+    --color-hero: var(--hero-dark);
+    --color-hero-ink: var(--hero-dark-ink);
+    --color-hero-muted: var(--hero-dark-muted);
+    --color-hero-accent: var(--hero-dark-accent);
+    --color-hero-rule: var(--hero-dark-rule);
+    --color-hero-edge: var(--hero-dark-edge);
+    --color-hero-glow: var(--hero-dark-glow);
+    --color-hero-btn: var(--hero-dark-btn);
+    --color-hero-btn-hover: var(--hero-dark-btn-hover);
+    --color-hero-btn-ink: var(--hero-dark-btn-ink);
+    --color-hero-ghost: var(--hero-dark-ghost);
+    --color-hero-ghost-bg: var(--hero-dark-ghost-bg);
+    --color-hero-ghost-rule: var(--hero-dark-ghost-rule);
+  }
 }
 
 /*
@@ -149,6 +306,21 @@
 }
 
 /*
+ * One soft light source off the top-right of the hero. The geometry is fixed
+ * and the tint is a token, so this single rule serves both themes: light sets
+ * --color-hero-glow to `transparent` and the gradient renders as nothing.
+ * Themes swap colours here; they do not swap which rules apply.
+ *
+ * A utility and not a scoped `<style>` block, because the rule is that only
+ * WorkGraph gets one of those. It is also not an arbitrary `bg-[…]` value on
+ * the section — the geometry wants to be readable, and turning it off wants to
+ * happen in one place, which is what the print rule below relies on.
+ */
+@utility hero-glow {
+  background-image: radial-gradient(58rem 24rem at 78% -12%, var(--color-hero-glow), transparent 64%);
+}
+
+/*
  * Scroll reveal, driven by `useReveal`.
  *
  * Both classes are applied by script and never by this stylesheet. A card is
@@ -179,6 +351,33 @@
   .reveal-hidden {
     opacity: 1;
     transform: none;
+  }
+
+  /*
+   * The masthead needs nothing here. Both dark rules sit inside `@media
+   * screen`, so on paper the light values in `@theme` are simply what is in
+   * force — which is the point of scoping them there. Without that, a page
+   * printed in dark mode would put white headlines onto white paper: browsers
+   * do not print background colours by default, but they do print type, and
+   * the first page of the CV would come out empty.
+   *
+   * The one thing print is not is either theme's primary button. On paper the
+   * type has to carry itself — a white label prints as nothing — so it becomes
+   * accent type, which is what the ghost button beside it already does.
+   *
+   * The fill is cleared rather than left alone, and that is the part worth
+   * keeping. Backgrounds do not print by default, so accent type on the light
+   * theme's accent fill *looks* safe; tick "Background graphics" in the print
+   * dialog and it becomes accent on accent, and the button disappears from a
+   * CV at exactly the moment the reader asked for more ink, not less. Clearing
+   * it makes both settings print the same thing.
+   *
+   * Two tokens, and no specificity contest — nothing under `@media screen` is
+   * here to argue with them.
+   */
+  :root {
+    --color-hero-btn: transparent;
+    --color-hero-btn-ink: var(--color-accent);
   }
 }
 
