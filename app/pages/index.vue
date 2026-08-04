@@ -39,18 +39,33 @@ const workGrid = useReveal()
     -->
     <section class="hero-glow border-b border-hero-edge bg-hero text-hero-ink">
       <!--
-        Three cells, not two: the headline spans the full width on its own row,
-        so the columns below it are free to size themselves to their content
-        rather than to the longest line of type on the page.
-        The summary takes the slack (1fr) and the manifest is capped at the
-        width its dozen short YAML lines actually need — sized the other way
-        round, the card grows into a mostly-empty dark panel.
-        The two are centred against each other rather than stretched: the card
-        is usually the taller of the pair, and stretching left the summary
-        hanging from the top of the row with a gap under its buttons.
+        Two cells. Everything the page says about him — eyebrow, headline,
+        summary, buttons — is one column and the manifest is the other, so the
+        headline sits with the prose it introduces instead of running the full
+        width above both.
+
+        The prose column takes the slack (1fr) and the manifest is capped at
+        the width its dozen short YAML lines actually need; sized the other way
+        round, the card grows into a mostly-empty dark panel. The headline now
+        wraps inside that 1fr rather than across the page, which is the work
+        `text-balance` is there to do.
+
+        That cap is `min(38rem, 40%)` rather than a flat 38rem, and the
+        percentage is what earns its keep at the bottom of the range. Flat, the
+        card takes 608px at every width — which at the `lg` breakpoint is most
+        of the row, leaving the prose 296px and standing the headline four
+        lines deep. The percentage hands width back on the way down; the 38rem
+        ceiling still stops the card growing into that empty panel on the way
+        up, so nothing above about 1520px moves at all.
+
+        `items-center` is what holds the card against the middle of the prose
+        instead of the top of it, at every width the two columns exist. It
+        centres the pair against each other, so whichever is shorter is the one
+        that moves — in practice the manifest, the prose column being the
+        taller of the two now that the headline has joined it.
       -->
-      <div class="mx-auto grid max-w-[110rem] gap-x-10 gap-y-8 px-6 py-16 lg:px-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,38rem)] lg:items-center">
-        <div class="lg:col-span-2">
+      <div class="mx-auto grid max-w-[110rem] gap-x-10 gap-y-8 px-6 py-16 lg:px-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,min(38rem,40%))] lg:items-center">
+        <div>
           <p
             class="animate-rise text-[12.5px] font-semibold uppercase tracking-[0.14em] text-hero-accent"
             style="animation-delay: 60ms"
@@ -63,11 +78,11 @@ const workGrid = useReveal()
           >
             I build backends that <em class="not-italic text-hero-accent">hold under load</em>.
           </h1>
-        </div>
 
-        <div>
+          <!-- `mt-8` stands in for the `gap-y-8` this used to get as its own
+               grid row, so the space under the headline is unchanged. -->
           <div
-            class="animate-rise max-w-[54ch] space-y-3 text-[16.5px] leading-[1.72] text-hero-muted lg:max-w-none xl:text-[18px] xl:leading-[1.75] 2xl:text-[19.5px]"
+            class="animate-rise mt-8 max-w-[54ch] space-y-3 text-[16.5px] leading-[1.72] text-hero-muted lg:max-w-none xl:text-[18px] xl:leading-[1.75] 2xl:text-[19.5px]"
             style="animation-delay: 180ms"
           >
             <!--
