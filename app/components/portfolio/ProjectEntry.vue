@@ -182,7 +182,7 @@ defineProps<{ project: Project }>()
       <li
         v-for="tech in project.technologies"
         :key="tech"
-        class="rounded-[3px] border border-accent-rule bg-accent-soft/50 px-2 py-0.5 text-[11.5px] text-accent"
+        class="rounded-[3px] border border-accent-rule bg-accent-soft/30 px-2 py-0.5 text-[11.5px] text-accent"
       >
         {{ tech }}
       </li>
