@@ -39,28 +39,33 @@ defineProps<{ project: Project }>()
     row stops reading as a block at all and leaves the rail hanging beside
     unchanged text. The rail is meant to carry the highlight, not to be it.
 
-    The bleed is taken on hover alone. `-mx-5` and `px-5` cancel, so the content
-    box never moves and the rule keeps the width it has at rest — and Tailwind's
-    `transition` covers neither margin nor padding, so the bleed snaps instead
-    of animating open. The rules on both sides of the hovered row fade, `has-`
-    reaching the one above, so no hairline runs through the wash.
+    Nothing about the layout changes on hover. The wash and the rail are both
+    pseudo-elements pinned 20px outside the content box, and hovering only
+    paints them: no margin, no padding, no width. Keeping those apart is the
+    whole design here rather than tidiness.
 
-    The rail has to be absolutely positioned, and not only to sit it against the
-    edge: this `li` is a grid container, so an in-flow `::before` would become a
-    grid item and open a fourth column.
+    An earlier version bled the row outward with `-mx-5`/`px-5` on hover, and
+    Tailwind's `transition` covers neither margin nor padding — so the geometry
+    snapped back the moment the pointer left while the colour still had 200ms
+    to fade. The row contracted by 40px at full strength and then faded at the
+    wrong width, and the rail, placed against a padding box that had just
+    moved, spent that fade sitting on top of the date column. Paint transitions
+    and layout does not, so anything that has to animate belongs to paint.
 
-    Which is why the rail is offset twice for one position. An absolutely
-    positioned box is placed against its ancestor's *padding* box, and the bleed
-    moves that box — so a single `left` would mean two different places, and on
-    the way out the worse of the two. The pointer leaves, `left`, margin and
-    padding all snap back together while `scale-y` is still 200ms from done, and
-    a rail written `left-0` spends that fade sitting on top of the date column.
-    `-left-5` at rest and `left-0` under the pointer resolve to the same x in
-    both states, so the rail cannot move at all: out, it just shortens. Both
-    hold because Tailwind's `transition` covers none of `left`, margin or
-    padding — check that list before adding either to it.
+    Both pseudo-elements have to be absolutely positioned, and not only to place
+    them: this `li` is a grid container, so in flow they would become grid items
+    and open two more columns.
+
+    `isolate` is what makes `-z-10` safe on the wash. A negative z-index child
+    paints behind the in-flow content of its stacking context, and with no
+    context of its own that context is the page — the wash would slide behind
+    an ancestor's background and simply not be there. Making the row its own
+    context bounds it: behind this row's text, in front of everything else.
+
+    The rules on both sides of the hovered row fade, `has-` reaching the one
+    above, so no hairline runs through the wash.
   -->
-  <li class="relative grid gap-2 rounded-lg border-b border-rule py-7 transition duration-200 before:absolute before:inset-y-2 before:-left-5 before:w-[3px] before:origin-top before:scale-y-0 before:rounded-full before:bg-accent before:transition-transform before:duration-200 last:border-b-0 has-[+li:hover]:border-transparent hover:-mx-5 hover:border-transparent hover:bg-accent-soft/30 hover:px-5 hover:before:left-0 hover:before:scale-y-100 md:grid-cols-[150px_1fr] md:gap-x-6 xl:grid-cols-[150px_minmax(0,1fr)_minmax(0,24rem)] xl:gap-x-8">
+  <li class="relative isolate grid gap-2 border-b border-rule py-7 transition duration-200 before:absolute before:inset-y-0 before:-inset-x-5 before:-z-10 before:rounded-lg before:transition-colors before:duration-200 after:absolute after:inset-y-2 after:-left-5 after:w-[3px] after:origin-top after:scale-y-0 after:rounded-full after:bg-accent after:transition-transform after:duration-200 last:border-b-0 has-[+li:hover]:border-transparent hover:border-transparent hover:before:bg-accent-soft/30 hover:after:scale-y-100 md:grid-cols-[150px_1fr] md:gap-x-6 xl:grid-cols-[150px_minmax(0,1fr)_minmax(0,24rem)] xl:gap-x-8">
     <div class="flex flex-wrap items-baseline gap-2 md:block">
       <!--
         tabular-nums survives the move off monospace: the system sans stacks
