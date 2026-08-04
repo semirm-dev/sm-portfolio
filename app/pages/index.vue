@@ -32,16 +32,10 @@ const workGrid = useReveal()
 <template>
   <div>
     <!--
-      The masthead. It runs into the sticky bar above it, which carries the same
-      token, so in dark the two read as one surface and the hero needs no top
-      edge of its own.
-
-      The bottom edge is a token rather than a fixed `border-rule` because the
-      two themes disagree about whether it should exist: light needs a line
-      between white and the #f6f9fb band below, and dark has a
-      saturated-to-white colour change already doing that job. It stays a border
-      that is drawn in `transparent` rather than a border that is removed, so
-      the hero's height does not change by a pixel when the theme does.
+      The bottom edge is a token, not a fixed `border-rule`: light draws the
+      line, dark has a colour change already doing that job. It stays a border
+      painted `transparent` rather than one that is removed, so the hero's
+      height does not shift when the theme does.
     -->
     <section class="hero-glow border-b border-hero-edge bg-hero text-hero-ink">
       <!--
@@ -77,15 +71,10 @@ const workGrid = useReveal()
             style="animation-delay: 180ms"
           >
             <!--
-              Rendered from segments, not from markup in the record. `v-html`
-              would be the shorter route and would give the site its only
-              injection sink; this keeps the record saying which phrases are
-              emphasised and leaves the page deciding what emphasis looks like.
-
-              Both branches resolve `{years}`. Only the plain one needed it for
-              today's copy, but a token that works in one kind of segment and
-              silently prints itself in the other is a trap set for whoever
-              edits the summary next.
+              Rendered from segments, not markup: `v-html` would be shorter and
+              would give the site its only injection sink. Both branches resolve
+              `{years}` — a token that works in one kind of segment and prints
+              itself in the other is a trap for whoever edits the summary next.
             -->
             <p
               v-for="(paragraph, index) in profile.summary"
@@ -110,19 +99,12 @@ const workGrid = useReveal()
             style="animation-delay: 240ms"
           >
             <!--
-              Both buttons are the same markup in both themes; only the tokens
-              move. Light is the accent fill it always was, and dark inverts it
-              to a white fill with a hero-coloured label — an accent fill on a
-              ground that close to the accent is a button you have to look for.
-
-              The coloured drop shadow is gone. It was tuned to sit under indigo
-              on white and is invisible on a saturated ground, and a shadow that
-              only exists in one theme is a second lighting model for the sake
-              of one element.
+              Same markup in both themes; only the tokens move. Dark inverts the
+              primary to a white fill and clears its glow.
             -->
             <a
               :href="`mailto:${profile.email}`"
-              class="rounded-lg bg-hero-btn px-4.5 py-2.5 text-[14px] font-medium text-hero-btn-ink transition-colors hover:bg-hero-btn-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-hero-accent"
+              class="rounded-lg bg-hero-btn px-4.5 py-2.5 text-[14px] font-medium text-hero-btn-ink shadow-hero-btn transition-colors hover:bg-hero-btn-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-hero-accent"
             >Email me</a>
             <a
               :href="profile.github"
@@ -134,16 +116,11 @@ const workGrid = useReveal()
         </div>
 
         <!--
-          `min-w-0` is load-bearing, and only below `lg`. The two columns above
-          are declared `minmax(0, …)` for this exact reason; the single column
-          this collapses to below that breakpoint has no such floor, and a grid
-          item's `min-width` is `auto` — which resolves to its min-content size.
-          The manifest's min-content is its longest YAML line, which cannot wrap,
-          so at 360px the card held the whole page 9px wider than the viewport
-          and at 320px 49px wider: every line of the hero ran off the right edge
-          and the page scrolled sideways. Zeroing it hands the overflow back to
-          the `overflow-x-auto` the `<pre>` already carries, which is where it
-          belongs — the YAML scrolls inside its own card and the page does not.
+          `min-w-0` is load-bearing below `lg`. A grid item's `min-width` is
+          `auto`, which resolves to min-content — here the longest YAML line,
+          which cannot wrap — and that pushed the whole page wider than the
+          viewport. Zeroing it hands the overflow to the `overflow-x-auto` the
+          `<pre>` already carries, so the YAML scrolls and the page does not.
         -->
         <div
           class="animate-rise min-w-0"
@@ -164,11 +141,8 @@ const workGrid = useReveal()
           ref="skillsGrid"
           class="grid gap-3 md:grid-cols-2"
         >
-          <!--
-            The separator is joined here, not stored. A record that writes its
-            own ` · ` between technologies is a record that has decided how it
-            gets printed, and this list has to survive a PDF too.
-          -->
+          <!-- The separator is joined here, not stored: the record should not
+               decide how it gets printed. -->
           <SkillCard
             v-for="group in skills"
             :key="group.name"

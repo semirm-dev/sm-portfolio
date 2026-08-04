@@ -94,46 +94,52 @@ rather than in use.
 
 ### The masthead, and the theme
 
-The sticky bar and the landing page's first screen are the site's one saturated
-surface, and **the only part of it with two appearances**. Light is the site as
-it originally stood; dark fills them with `--color-hero` `#2b3c86`.
+The sticky bar and the landing page's first screen are the only part of the site
+with two appearances. **Light is the site exactly as it stood before a dark theme
+existed** — white, accent-filled button, the lot. Dark fills them with `#2b3c86`,
+and **dark is the default**.
 
 **Below the masthead the two themes are identical** — white ground, `#f6f9fb`
-band, white cards, and the same `WorkGraph`. That is the constraint that makes a
-switcher affordable here rather than a decision to revisit: no component outside
-the `--color-hero-*` block knows a theme exists, no card treatment forks, and
-there is no second set of contrast numbers for the body of the site. Keep it
-that way. A change that gives dark its own card or its own band has quietly
-doubled the surface every future change has to be checked against.
+band, white cards, the same `WorkGraph`. That is the constraint that makes a
+switcher affordable rather than a decision to revisit: no component outside the
+`--color-hero-*` block knows a theme exists, no card treatment forks, and there
+is no second set of contrast numbers for the body of the site. A change that
+gives dark its own card or its own band quietly doubles the surface every future
+change has to be checked against.
 
-The dark weight is chosen against two limits. Darker, and `EngineerManifest`
-stops separating from the ground behind it (1.16:1 at `#16204a`, where the card
-reads as a rectangle drawn on the hero); lighter, and the accent has nothing
-left to pick out up there. `#2b3c86` measures 1.66:1 against the card, 6.05:1
-for `--color-hero-accent`, 10:1 for white headlines and 7.4:1 for body copy.
+`#2b3c86` is bounded on both sides. Darker and `EngineerManifest` stops
+separating from the ground behind it (1.16:1 at `#16204a`, where the card reads
+as a rectangle drawn on the hero); lighter and the accent has nothing left to
+pick out. Here it measures 1.66:1 against the card, 6.05:1 for the accent, 10:1
+for white headlines and 7.4:1 for body copy.
 
-Three pieces, and each has one job:
+Three pieces, each with one job:
 
-- **`main.css`** declares the light values in `@theme` and the dark values once
-  as `--hero-dark-*` aliases. Both routes into dark — `[data-theme='dark']` and
-  `prefers-color-scheme` — map those aliases onto the `--color-hero-*` tokens,
-  and both live inside `@media screen`.
-- **The inline script in `nuxt.config.ts`** resolves the theme before first
-  paint and stamps `data-theme` on `<html>`. Pages are prerendered, so this is
-  the only thing that runs early enough to stop a white masthead flashing blue.
+- **`main.css`** declares light in `@theme` and dark once as `--hero-dark-*`
+  aliases, mapped onto the `--color-hero-*` tokens by a single rule inside
+  `@media screen`.
+- **The inline script in `nuxt.config.ts`** resolves the theme before first paint
+  and stamps `data-theme` on `<html>`. Pages are prerendered, so this is the only
+  thing that runs early enough to stop a flash on load.
 - **`useTheme`** adopts whatever that script decided, flips it on request, and
   writes `localStorage` *only* on an explicit press.
 
-Precedence is "stored choice, else the OS", in all three. `useTheme` reads it
-off the attribute rather than deriving it again, and the stylesheet's
-`:not([data-theme='light'])` is what lets a choice beat a dark OS in both
-directions.
+**Precedence is "stored choice, else dark", in all three.** The operating system
+does not get a vote — there is no `prefers-color-scheme` anywhere, deliberately.
+`:not([data-theme='light'])` is what makes dark the default: it matches with no
+attribute and with `dark`, so one selector covers both and there is no second
+copy of the mapping. A reader with no JavaScript gets dark too.
 
 **Do not set a colour on the masthead that isn't a `--color-hero-*` token.** The
-`@media screen` wrapper means paper gets the light values with no override at
-all — which is what stops dark mode printing a blank first page, since browsers
-don't print background colours but do print type, and the CV export is this page
-printed. A literal in a component escapes that and prints white on white.
+`@media screen` wrapper means dark does not exist on paper, so printing falls
+back to the light values with no override — which is what stops a page printed
+in dark putting white headlines on white paper. Browsers don't print background
+colours but do print type, and the CV export is this page printed. A literal in
+a component escapes that.
+
+The one place paper is neither theme is the primary button: no fill survives to
+paper, so `@media print` gives its label the accent rather than white. Without
+it, "Email me" prints as nothing.
 
 Below the masthead, full-bleed sections alternate white and `#f6f9fb`, content
 sits in a centred `max-w-6xl` container, section headings are centred.

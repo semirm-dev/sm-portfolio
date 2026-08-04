@@ -1,122 +1,74 @@
 @import 'tailwindcss';
 
 /*
- * The portfolio is deliberately light-only: these pages carry no appearance
- * switcher, so there is nothing here to switch.
+ * Two appearances, reaching one surface: the masthead (sticky bar + the landing
+ * page's first screen). Dark is the default. Everything below the masthead is
+ * identical in both themes and on paper.
  *
- * One accent does every job. Indigo measures 7.9:1 on white and 7.4:1 on the
- * band, so unlike the cyan palette this replaced there is no split between a
- * "graphic weight" that may only be a shape and a "text weight" that may be
- * read — the same value is legal everywhere. Keep it that way: if a future
- * accent cannot clear 4.5:1 on white, it does not belong in this variable.
+ * One accent does every job. If a future accent can't clear 4.5:1 on white, it
+ * doesn't belong in that variable.
  */
 @theme {
   --color-ground: #ffffff;
   --color-band: #f6f9fb;
   --color-rule: #e7ecf1;
   --color-ink: #0b1017;
-  /*
-   * Body copy, and most of the small chrome: nav, page heads, role
-   * summaries, locations, tech tags. It carries far more of the page than the
-   * name suggests, so "muted" is about hierarchy, not lightness — this is a
-   * normal dark body grey (10.3:1 on white), not a wash. An earlier #5b6675
-   * measured 5.8:1 and read grey-blue and faded across the top bar and the
-   * work page. Heading/body separation is carried by size and weight here,
-   * not by making the body lighter.
-   */
+  /* Body copy and most small chrome. "Muted" is hierarchy, not lightness. */
   --color-muted: #374151;
 
   --color-accent: #2d46b9;
   --color-accent-deep: #243a9c;
   --color-accent-soft: #eef1fd;
   --color-accent-rule: #c6cff5;
-  /* Type on an accent fill. White clears 7.9:1 on both accent weights. */
   --color-on-accent: #ffffff;
 
   /*
-   * The masthead — the sticky bar and the landing page's first screen.
+   * The masthead, light — the site as it stood before a dark theme existed.
+   * Dark is declared below and mapped over these by the one rule in
+   * `@media screen`, which is also why these are what prints.
    *
-   * This is the only part of the site that has two appearances, and the whole
-   * theme switch is these eleven values and nothing else. Below the hero both
-   * themes are identical: white ground, #f6f9fb band, white cards. That is
-   * deliberate and it is what keeps a switcher affordable here — no component
-   * outside this block knows a theme exists, the card treatments never fork,
-   * and there is no second set of contrast numbers to maintain for the body of
-   * the site.
-   *
-   * The values below are the LIGHT set, which is the site as it originally
-   * stood. The dark set lives in the theme block further down. Adding a value
-   * here means adding it there too, or dark silently inherits a light colour.
-   *
-   * Every value on this surface is a token for a second reason: the print rule
-   * at the bottom of this file forces the light set back regardless of theme.
-   * Set a masthead colour as a literal in a component and dark mode will print
-   * white on white.
+   * Every masthead colour is a token even where light's value equals a general
+   * one. That indirection is what lets dark move it: reach for `text-accent` in
+   * the hero instead and dark silently keeps the light colour.
    */
   --color-hero: #ffffff;
   --color-hero-ink: #0b1017;
   --color-hero-muted: #374151;
   --color-hero-accent: #2d46b9;
-  /* The bar's own bottom edge. */
+  /* Chrome hover. Separate from the accent: on navy the accent is *dimmer* than
+     the resting colour, so dark hovers to white instead. */
+  --color-hero-hover: #2d46b9;
   --color-hero-rule: #e7ecf1;
-  /* The hero's bottom edge, which dark does not draw — see the theme block. */
   --color-hero-edge: #e7ecf1;
-  /* The wash behind the hero. Light has none. */
   --color-hero-glow: transparent;
-  /* The primary button: an accent fill in light, inverted in dark. */
   --color-hero-btn: #2d46b9;
   --color-hero-btn-hover: #243a9c;
   --color-hero-btn-ink: #ffffff;
-  /* The secondary beside it: an outline in both, on its own fill in light. */
   --color-hero-ghost: #2d46b9;
   --color-hero-ghost-bg: #ffffff;
   --color-hero-ghost-rule: #c6cff5;
 
   /*
-   * The dark masthead's values, named once here and mapped onto the tokens
-   * above by the two theme blocks below. They are declared rather than written
-   * inline in those blocks because there are two routes into dark — an explicit
-   * choice and an OS preference — and a hex written twice is a hex that can
-   * drift on one route only.
-   *
-   * #2b3c86 is a lift of --color-yaml-bg toward the accent, and the lift is
-   * load-bearing in both directions. Darker, and EngineerManifest stops
-   * separating from the ground behind it: at #16204a the two measure 1.16:1 and
-   * the card reads as a rectangle drawn on the hero rather than an object
-   * sitting in it. Lighter — at the accent itself — and the accent has nothing
-   * left to pick out up here, so the emphasised phrases in the summary fall
-   * back to a tint of white and the hero trades its highlight colour for a
-   * background one. This value holds both: 1.66:1 against the card, and 6.05:1
-   * for the accent, which is still recognisably the same blue doing the same
-   * job. White headlines measure 10:1 and body copy 7.4:1.
+   * The masthead, dark. #2b3c86 is bounded on both sides: darker and
+   * EngineerManifest stops separating from the ground behind it (1.16:1 at
+   * #16204a); lighter and the accent has nothing left to pick out. Here it is
+   * 1.66:1 against the card, 6.05:1 for the accent, 10:1 for white headlines.
    */
   --hero-dark: #2b3c86;
   --hero-dark-ink: #ffffff;
   --hero-dark-muted: #d7dcf0;
   --hero-dark-accent: #bcc6ff;
+  --hero-dark-hover: #ffffff;
   --hero-dark-rule: #43539b;
-  /*
-   * No bottom edge. The hero and the band below it are already separated by a
-   * saturated-to-white colour change, and a rule drawn across that is a line
-   * doing work the colour has done.
-   */
+  /* No hero edge: a saturated-to-white colour change already draws that line. */
   --hero-dark-edge: transparent;
-  /*
-   * One soft light source off the top-right. White rather than blue: a blue
-   * glow on a blue ground is not visible, which is why this is not simply the
-   * accent at low opacity.
-   */
+  /* White, not blue — a blue glow on a blue ground is invisible. */
   --hero-dark-glow: rgb(255 255 255 / 0.1);
-  /*
-   * The primary button inverts here. An accent fill on a ground this close to
-   * the accent is a button you have to look for, so it becomes a white fill
-   * with a hero-coloured label — 10:1, and the loudest thing on the surface,
-   * which is what a primary button should be.
-   */
+  /* The primary button inverts: an accent fill this close to the accent is a
+     button you have to look for. */
   --hero-dark-btn: #ffffff;
   --hero-dark-btn-hover: #e8ebfa;
   --hero-dark-btn-ink: #2b3c86;
-  /* The secondary loses its fill: a white pill here would read as a second primary. */
   --hero-dark-ghost: #e8ebfa;
   --hero-dark-ghost-bg: transparent;
   --hero-dark-ghost-rule: #6a76ad;
@@ -129,103 +81,46 @@
   --color-yaml-value: #93a6ff;
 
   /*
-   * No webfonts. Both stacks resolve to whatever the reader's OS already has —
-   * Segoe UI on Windows, SF Pro on macOS, Roboto on Android — which is the
-   * same approach GitHub and Bootstrap take. Nothing downloads, nothing shifts
-   * on load, and every weight is genuinely present: the previous setup shipped
-   * JetBrains Mono at 400/500 only while a heading asked for 600, so the
-   * browser faked it by dilating the outlines and the text looked smeared.
-   * A system face cannot fail that way.
-   *
-   * --font-mono is for code and for the one thing that imitates it: the
-   * EngineerManifest YAML block, where the indentation is the meaning, and the
-   * navbar prompt, where the monospace *is* the joke — the same string set in
-   * the sans reads as an email address with punctuation after it.
-   *
-   * That is the whole list. Everywhere else the site used to set labels in
-   * mono and no longer does; if you find yourself reaching for font-mono on a
-   * heading or an eyebrow, that is the old convention and it is gone
-   * deliberately. Note the ban above was never about monospace as such — it
-   * was about the webfont that used to supply it, which is why a system stack
-   * can hold these two cases without reopening the problem.
+   * No webfonts: both stacks resolve to whatever the reader's OS already has,
+   * so nothing downloads and every weight is genuinely present. `--font-mono`
+   * is for code and the two things that imitate it — the manifest YAML and the
+   * navbar prompt. Nowhere else.
    */
   --font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   --font-mono: ui-monospace, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
 
-  /*
-   * The page's one elevation recipe. Every raised surface takes this whole
-   * token; nothing takes half of it, or the page grows two lighting models.
-   */
+  /* One elevation recipe. Every raised surface takes the whole token; nothing
+     takes half of it, or the page grows two lighting models. */
   --shadow-card: 0 1px 2px rgb(11 16 23 / 0.04), 0 14px 30px -24px rgb(11 16 23 / 0.4);
-  /*
-   * The same recipe at a second elevation, for a card under the pointer. Both
-   * layers are kept — the 1px contact shadow and the wide ambient one — and
-   * only moved; taking one layer and not the other is what would give the page
-   * two lighting models. A lift with a fixed shadow reads as sliding rather
-   * than rising, which is what this exists to correct.
-   */
   --shadow-card-raised: 0 2px 4px rgb(11 16 23 / 0.05), 0 22px 44px -26px rgb(11 16 23 / 0.5);
   /* Deeper, because the manifest is dark and has further to fall. */
   --shadow-yaml: 0 20px 42px -26px rgb(19 28 61 / 0.8);
+  /* Tuned for indigo on white; dark clears it, being invisible there. */
+  --shadow-hero-btn: 0 8px 20px -10px rgb(45 70 185 / 0.7);
 }
 
 /*
- * The theme switch, in full.
+ * The whole theme switch. `:not([data-theme='light'])` is what makes dark the
+ * default: it matches with no attribute and with `dark`, and stops matching the
+ * moment a reader picks light. No `prefers-color-scheme` anywhere — precedence
+ * is "stored choice, else dark", and `nuxt.config.ts` and `useTheme` agree.
  *
- * `@media screen` wraps both routes, and it is doing real work rather than
- * documenting intent: it means neither dark rule exists on paper, so the print
- * case falls back to the light values declared in `@theme` with no override,
- * no duplicated palette and no specificity contest to win. The alternative —
- * re-declaring the light set inside `@media print` — has to out-specify
- * `:root[data-theme='dark']`, and gets it wrong silently for exactly the
- * readers it exists to protect. Scoping the cause beats overriding the effect.
+ * `@media screen` is load-bearing, not decorative: it means dark does not exist
+ * on paper, so printing falls back to the light values with no override and no
+ * specificity contest. Without it, a page printed in dark puts white headlines
+ * on white paper — backgrounds don't print, type does — and the CV export is
+ * this page printed.
  *
- * Both routes map the same aliases onto the same tokens. The mapping is
- * repeated because a media condition and an attribute selector cannot be
- * combined into a single rule; repeating a mapping is cheap, and it is the
- * values — declared once above — that would hurt if they drifted.
- *
- * `:not([data-theme='light'])` is what makes an explicit choice beat the
- * operating system in *both* directions. A reader on a dark OS who asks for
- * light must get light, and the naive
- * `@media (prefers-color-scheme: dark) { :root { … } }` cannot give them that
- * whatever the attribute says.
- *
- * That media branch is also what makes the OS preference work with no
- * JavaScript at all. `useTheme` stamps the attribute before first paint, so in
- * practice this is the branch that serves a reader who has never touched the
- * toggle and has scripting off — and the site's rule is that nothing about it
- * requires a script to have run.
- *
- * Deliberately no `color-scheme: dark` on either block. It reads like the
- * obvious companion to a dark theme and it is wrong here: it would repaint the
- * UA canvas and the scrollbars dark on a page that is white everywhere below
- * the masthead. Only the first screen is dark; the document is not.
+ * No `color-scheme: dark`: it would repaint the UA canvas and scrollbars dark
+ * on a page that is white everywhere below the masthead.
  */
 @media screen {
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme='light']) {
-      --color-hero: var(--hero-dark);
-      --color-hero-ink: var(--hero-dark-ink);
-      --color-hero-muted: var(--hero-dark-muted);
-      --color-hero-accent: var(--hero-dark-accent);
-      --color-hero-rule: var(--hero-dark-rule);
-      --color-hero-edge: var(--hero-dark-edge);
-      --color-hero-glow: var(--hero-dark-glow);
-      --color-hero-btn: var(--hero-dark-btn);
-      --color-hero-btn-hover: var(--hero-dark-btn-hover);
-      --color-hero-btn-ink: var(--hero-dark-btn-ink);
-      --color-hero-ghost: var(--hero-dark-ghost);
-      --color-hero-ghost-bg: var(--hero-dark-ghost-bg);
-      --color-hero-ghost-rule: var(--hero-dark-ghost-rule);
-    }
-  }
-
-  :root[data-theme='dark'] {
+  :root:not([data-theme='light']) {
     --color-hero: var(--hero-dark);
     --color-hero-ink: var(--hero-dark-ink);
     --color-hero-muted: var(--hero-dark-muted);
     --color-hero-accent: var(--hero-dark-accent);
+    --color-hero-hover: var(--hero-dark-hover);
     --color-hero-rule: var(--hero-dark-rule);
     --color-hero-edge: var(--hero-dark-edge);
     --color-hero-glow: var(--hero-dark-glow);
@@ -235,19 +130,19 @@
     --color-hero-ghost: var(--hero-dark-ghost);
     --color-hero-ghost-bg: var(--hero-dark-ghost-bg);
     --color-hero-ghost-rule: var(--hero-dark-ghost-rule);
+    --shadow-hero-btn: none;
   }
 }
 
 /*
- * Entrance motion above the fold plays on arrival. Below it, the card grids
- * are revealed on scroll instead — see `useReveal`.
+ * Entrance motion above the fold plays on arrival; the card grids below are
+ * revealed on scroll instead. The rule is "no motion the reader misses", not
+ * "motion anywhere it fits" — nothing else animates on scroll.
  *
- * The original rule here was that nothing below the fold animates at all,
- * because "a reveal the visitor never witnesses is just a delay". That
- * argument is still right, and a scroll trigger is what satisfies it: the
- * reveal now happens when the section is actually looked at. What it does not
- * license is animating anything else on scroll. The rule is "no motion the
- * reader misses", not "motion anywhere it fits".
+ * `rise` is load-bearing beyond the entrance: `.reveal-in` animates it to clear
+ * the `opacity: 0` that `.reveal-hidden` sets. Delete or rename it and the
+ * animation silently does nothing, and every card below the fold stays
+ * invisible. The hero still looks fine, which is what makes it easy to miss.
  */
 @keyframes rise {
   from {
@@ -272,15 +167,7 @@
   }
 }
 
-/*
- * A terminal cursor snaps between states; it does not fade. `step-end` is what
- * makes it read as a cursor rather than as the status dot the prompt replaced,
- * which breathes on `pulse` above.
- *
- * Under `prefers-reduced-motion` the global rule below stops this at full
- * opacity, leaving a solid block — which is what an unfocused terminal shows
- * anyway, so the reduced case loses nothing.
- */
+/* A cursor snaps between states; it does not fade. Hence `step-end`. */
 @keyframes cursor-blink {
   0%,
   49% {
@@ -306,27 +193,19 @@
 }
 
 /*
- * One soft light source off the top-right of the hero. The geometry is fixed
- * and the tint is a token, so this single rule serves both themes: light sets
- * --color-hero-glow to `transparent` and the gradient renders as nothing.
- * Themes swap colours here; they do not swap which rules apply.
- *
- * A utility and not a scoped `<style>` block, because the rule is that only
- * WorkGraph gets one of those. It is also not an arbitrary `bg-[…]` value on
- * the section — the geometry wants to be readable, and turning it off wants to
- * happen in one place, which is what the print rule below relies on.
+ * The hero's light source. Geometry is fixed and the tint is a token, so one
+ * rule serves both themes and paper — light and paper leave it `transparent`,
+ * at which point the gradient renders as nothing.
  */
 @utility hero-glow {
   background-image: radial-gradient(58rem 24rem at 78% -12%, var(--color-hero-glow), transparent 64%);
 }
 
 /*
- * Scroll reveal, driven by `useReveal`.
- *
- * Both classes are applied by script and never by this stylesheet. A card is
- * therefore visible unless JavaScript has run and deliberately hidden it — so
- * a failed or blocked script leaves the page readable, which is the only
- * acceptable failure mode for a page whose whole job is to be read.
+ * Scroll reveal, driven by `useReveal`. Both classes are applied by script and
+ * never by this stylesheet, so a card is visible unless JavaScript has run and
+ * deliberately hidden it — the only acceptable failure mode for a page whose
+ * whole job is to be read.
  */
 .reveal-hidden {
   opacity: 0;
@@ -338,14 +217,8 @@
 }
 
 /*
- * Printing does not scroll, so the observer never fires for anything below the
- * fold and those cards would go to paper at opacity 0 — the skills grid and the
- * selected work, blank. A reveal is an entrance for a reader who is arriving at
- * a section; a printer arrives at all of them at once and needs none of it.
- *
- * This matters beyond the odd Ctrl+P: the intended PDF export is this page
- * rendered to PDF, so anything that hides content from the print renderer hides
- * it from the CV.
+ * Printing does not scroll, so the observer never fires and every card below
+ * the fold would go to paper at opacity 0. The CV export is this page printed.
  */
 @media print {
   .reveal-hidden {
@@ -354,26 +227,11 @@
   }
 
   /*
-   * The masthead needs nothing here. Both dark rules sit inside `@media
-   * screen`, so on paper the light values in `@theme` are simply what is in
-   * force — which is the point of scoping them there. Without that, a page
-   * printed in dark mode would put white headlines onto white paper: browsers
-   * do not print background colours by default, but they do print type, and
-   * the first page of the CV would come out empty.
-   *
-   * The one thing print is not is either theme's primary button. On paper the
-   * type has to carry itself — a white label prints as nothing — so it becomes
-   * accent type, which is what the ghost button beside it already does.
-   *
-   * The fill is cleared rather than left alone, and that is the part worth
-   * keeping. Backgrounds do not print by default, so accent type on the light
-   * theme's accent fill *looks* safe; tick "Background graphics" in the print
-   * dialog and it becomes accent on accent, and the button disappears from a
-   * CV at exactly the moment the reader asked for more ink, not less. Clearing
-   * it makes both settings print the same thing.
-   *
-   * Two tokens, and no specificity contest — nothing under `@media screen` is
-   * here to argue with them.
+   * The one place paper is neither theme. Backgrounds do not print, so the
+   * primary button's fill vanishes and its white label goes with it. On paper
+   * the type has to carry itself, which is what the ghost button beside it
+   * already does. The fill is cleared too, or ticking "Background graphics"
+   * prints accent type on an accent fill instead.
    */
   :root {
     --color-hero-btn: transparent;
@@ -391,9 +249,8 @@
 
   /*
    * The blanket rule above would kill `.reveal-in` and strand a hidden card at
-   * opacity 0 forever. `useReveal` already declines to hide anything when
-   * reduced motion is set, so this is the second lock on the same door — it
-   * matters because the two disagree if the preference changes after load.
+   * opacity 0. `useReveal` already declines to hide anything under reduced
+   * motion; this is the second lock, for when the preference changes after load.
    */
   .reveal-hidden {
     opacity: 1;

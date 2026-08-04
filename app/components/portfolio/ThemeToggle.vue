@@ -1,23 +1,16 @@
 <script setup lang="ts">
 /**
- * The masthead's light/dark switch.
- *
- * Rendered behind `<ClientOnly>` in the layout, which is not a hydration
- * workaround so much as the honest thing to do: without JavaScript the button
- * cannot work, and a control that does nothing when pressed is worse than no
- * control. The OS preference is still honoured in that case — the stylesheet's
- * `prefers-color-scheme` branch does it with no script at all.
+ * The masthead's light/dark switch. Behind `<ClientOnly>` in the layout:
+ * without JavaScript it cannot work, and a control that does nothing when
+ * pressed is worse than no control.
  */
 const { theme, toggle } = useTheme()
 
 const isDark = computed(() => theme.value === 'dark')
 
 /*
- * The label says what pressing does, not what is currently true — so it is the
- * label that changes, and there is no `aria-pressed` beside it. Both together
- * contradict each other: a control announced as "pressed" whose name is
- * "Switch to the light theme" leaves a screen reader user to work out which of
- * the two describes the state.
+ * The label says what pressing does, not what is true — so the label changes
+ * and there is no `aria-pressed`. Both together contradict each other.
  */
 const label = computed(() =>
   isDark.value ? 'Switch to the light theme' : 'Switch to the dark theme',
@@ -32,14 +25,8 @@ const label = computed(() =>
     class="-mr-1 flex size-8 items-center justify-center rounded-lg text-hero-muted transition-colors hover:text-hero-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-hero-accent"
     @click="toggle"
   >
-    <!--
-      The icon shows the theme you would be moving to, which is the same thing
-      the label says. Showing the current theme instead would be defensible on
-      its own and contradictory next to that label.
-
-      `aria-hidden`, because the button is already named: without it a screen
-      reader announces the graphic as well and the control reads twice.
-    -->
+    <!-- The icon shows the theme you would move to, matching the label.
+         `aria-hidden` because the button is already named. -->
     <svg
       v-if="isDark"
       aria-hidden="true"
