@@ -64,7 +64,7 @@ const workGrid = useReveal()
         that moves — in practice the manifest, the prose column being the
         taller of the two now that the headline has joined it.
       -->
-      <div class="mx-auto grid max-w-[110rem] gap-x-10 gap-y-8 px-6 py-16 lg:px-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,min(38rem,40%))] lg:items-center">
+      <div class="mx-auto grid max-w-[115rem] gap-x-10 gap-y-8 px-6 py-16 lg:px-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,min(38rem,40%))] lg:items-center xl:px-20">
         <div>
           <p
             class="animate-rise text-[12.5px] font-semibold uppercase tracking-[0.14em] text-hero-accent"
@@ -147,7 +147,7 @@ const workGrid = useReveal()
     </section>
 
     <section class="border-b border-rule bg-band">
-      <div class="mx-auto max-w-[110rem] px-6 py-16 lg:px-10">
+      <div class="mx-auto max-w-[115rem] px-6 py-16 lg:px-10 xl:px-20">
         <SectionHead id="stack">
           Technical skills
         </SectionHead>
@@ -170,7 +170,7 @@ const workGrid = useReveal()
     </section>
 
     <section>
-      <div class="mx-auto max-w-[110rem] px-6 py-16 lg:px-10">
+      <div class="mx-auto max-w-[115rem] px-6 py-16 lg:px-10 xl:px-20">
         <SectionHead>
           Selected work
         </SectionHead>

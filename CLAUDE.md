@@ -88,9 +88,14 @@ indigo `#2d46b9`, measuring 7.9:1 on white — legible as type anywhere, which i
 what lets a single value do every job. If you propose a new accent and it can't
 clear 4.5:1 on white, it doesn't belong in that variable. `--color-on-accent` is
 the paired token for type set on an accent fill — currently white, since white
-clears 7.9:1 on both accent weights. Nothing carries an accent fill outside the
-masthead at the moment, so `--color-on-accent` is waiting for the next one
-rather than in use.
+clears 7.9:1 on both accent weights. Nothing sets type on an accent fill outside
+the masthead, so `--color-on-accent` is waiting for the next one rather than in
+use.
+
+The accent's lighter weights do work below the masthead, and neither of them
+reaches for that token: `--color-accent-rule` draws link underlines and the
+card hover border, `--color-accent-soft` is the work-history hover wash. Both
+sit under ordinary ink rather than carrying type of their own.
 
 ### The masthead, and the theme
 
@@ -142,7 +147,41 @@ paper, so `@media print` gives its label the accent rather than white. Without
 it, "Email me" prints as nothing.
 
 Below the masthead, full-bleed sections alternate white and `#f6f9fb`, content
-sits in a centred `max-w-6xl` container, section headings are centred.
+sits in a centred `max-w-[115rem]` container, section headings are centred.
+
+That container and its gutter appear **six times** — navbar, footer, hero, both
+landing sections and `/work` — and all six must agree or the navbar stops
+lining up with the page under it. The gutter is `px-6`, `lg:px-10`, `xl:px-20`,
+and the width and the gutter are **one decision, not two**: `115rem` is
+`110rem` plus the `xl` increase doubled, which is what holds every screen past
+1840px at the 1680px of content it had before the gutter grew. Between `lg` and
+that cap there are no auto margins, so the gutter is the only air the page has
+— raise it on its own and every wide screen narrows with it. Written out once,
+above the navbar container in `default.vue`.
+
+### Hover
+
+Two surfaces answer the pointer and they say different things. A **landing-page
+card** lifts 3px, deepens to `--shadow-card-raised` and warms its hairline to
+`--color-accent-rule`. A **work-history row** does not lift: it takes an accent
+rail down its left edge and a wash of `--color-accent-soft` at 30%. The
+difference is deliberate — a lift promises the thing can be opened, and a row
+cannot be. Only the links inside it go anywhere.
+
+**Hover may change paint. It must not change layout.** The row's rail and wash
+are both pseudo-elements pinned outside the content box, so no margin, padding
+or width moves. An earlier version bled the row outward with `-mx-5`/`px-5` on
+hover instead, and since Tailwind's `transition` covers neither margin nor
+padding, the geometry snapped back the moment the pointer left while the colour
+still had 200ms to fade: the row visibly contracted at full strength, and the
+rail — placed against a padding box that had just moved — spent the fade on top
+of the date column. Two separate bugs from one mistake. Anything that animates
+belongs to paint.
+
+The wash is 30% and the reasons it isn't lower, or a shade of `--color-band`,
+are in `ProjectEntry.vue`. The short version is that at this lightness the hue
+is settled by two or three points per channel, so read the resolved colour off
+the page rather than judging a token by its own hex.
 
 **Tailwind is the default.** Only `WorkGraph.vue` carries a scoped `<style>`
 block, because its values are computed geometry — SVG coordinates, and type

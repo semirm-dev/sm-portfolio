@@ -40,7 +40,20 @@ const isHome = computed(() => route.path === '/')
       piece of chrome that animates while you read.
     -->
     <header class="animate-rise sticky top-0 z-10 border-b border-hero-rule bg-hero text-hero-ink">
-      <div class="mx-auto flex h-14 max-w-[110rem] items-center justify-between gap-4 px-6 lg:px-10">
+      <!--
+        The page shell, and it appears six times: this bar, the footer, the
+        hero, both landing sections and /work. The `max-w` and the gutter have
+        to agree across all six or the navbar stops lining up with the page
+        underneath it.
+
+        Those two numbers are one decision, not two. `xl:px-20` is the gutter
+        the middle of the range was short of — between `lg` and the cap there
+        are no auto margins, so 40px was all the air the page had. `115rem` is
+        `110rem` plus exactly that increase doubled, which is what keeps every
+        screen past 1840px at the 1680px of content it already had. Raise the
+        gutter on its own and you narrow every wide screen with it.
+      -->
+      <div class="mx-auto flex h-14 max-w-[115rem] items-center justify-between gap-4 px-6 lg:px-10 xl:px-20">
         <!--
           The wordmark as a shell prompt. The link stops at the prompt:
           `./open-to-work` sits outside it as text, because a "go home" link has
@@ -126,7 +139,7 @@ const isHome = computed(() => route.path === '/')
         page still has the "Email me" button. `profile.email` is untouched in
         the record, so putting it back is one element.
       -->
-      <div class="mx-auto flex max-w-[110rem] flex-wrap items-center justify-center gap-x-4 gap-y-2 px-6 py-6 text-[14px] lg:px-10">
+      <div class="mx-auto flex max-w-[115rem] flex-wrap items-center justify-center gap-x-4 gap-y-2 px-6 py-6 text-[14px] lg:px-10 xl:px-20">
         <!--
           The rule sits on the label, not the anchor: on the anchor it would run
           under the mark too, reading as an underlined logo. `group` is what

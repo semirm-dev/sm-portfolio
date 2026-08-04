@@ -13,7 +13,7 @@ usePageSeo({
 
 <template>
   <section>
-    <div class="mx-auto max-w-[110rem] px-6 py-12 lg:px-10">
+    <div class="mx-auto max-w-[115rem] px-6 py-12 lg:px-10 xl:px-20">
       <h1 class="animate-rise flex flex-wrap items-baseline justify-between gap-3 border-b border-rule pb-3 text-[12.5px] font-semibold uppercase tracking-[0.13em] text-muted">
         <span class="text-accent">Work history</span>
         <span>{{ projectsNewest.length }} projects · {{ total }}</span>

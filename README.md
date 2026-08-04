@@ -17,6 +17,13 @@ npm install
 npm run dev          # http://localhost:3000
 ```
 
+`nuxt dev` takes the next free port when 3000 is busy and says so in its own
+output — worth reading rather than assuming, because a second dev server is
+also a second Tailwind scan. One started before a file existed will not have
+that file's classes, and the page then renders with only the utilities the rest
+of the site already uses, which looks like broken CSS rather than a stale
+server.
+
 ## Checks
 
 ```bash
