@@ -17,7 +17,40 @@ defineProps<{ project: Project }>()
     right of every entry went empty while the tags queued up under text they are
     not part of.
   -->
-  <li class="grid gap-2 border-b border-rule py-7 last:border-b-0 md:grid-cols-[150px_1fr] md:gap-x-6 xl:grid-cols-[150px_minmax(0,1fr)_minmax(0,24rem)] xl:gap-x-8">
+  <!--
+    The hover marks where you are reading; it does not lift. A card lift would
+    promise the entry is something you can open, and it isn't — only the company
+    and project links inside it go anywhere. So: an accent rail down the left
+    edge, and a wash of the band colour at 40%, which is `--color-band` reused
+    rather than a sixth body colour added for one state.
+
+    At 40% the ground barely moves — `#fbfdfd` against white — and the rail is
+    what the eye actually catches. That is the intended balance and not a value
+    to nudge on its own: take the wash much further down and the row stops
+    reading as a block at all, leaving a bar floating beside unchanged text.
+
+    The bleed is taken on hover alone. `-mx-5` and `px-5` cancel, so the content
+    box never moves and the rule keeps the width it has at rest — and Tailwind's
+    `transition` covers neither margin nor padding, so the bleed snaps instead
+    of animating open. The rules on both sides of the hovered row fade, `has-`
+    reaching the one above, so no hairline runs through the wash.
+
+    The rail has to be absolutely positioned, and not only to sit it against the
+    edge: this `li` is a grid container, so an in-flow `::before` would become a
+    grid item and open a fourth column.
+
+    Which is why the rail is offset twice for one position. An absolutely
+    positioned box is placed against its ancestor's *padding* box, and the bleed
+    moves that box — so a single `left` would mean two different places, and on
+    the way out the worse of the two. The pointer leaves, `left`, margin and
+    padding all snap back together while `scale-y` is still 200ms from done, and
+    a rail written `left-0` spends that fade sitting on top of the date column.
+    `-left-5` at rest and `left-0` under the pointer resolve to the same x in
+    both states, so the rail cannot move at all: out, it just shortens. Both
+    hold because Tailwind's `transition` covers none of `left`, margin or
+    padding — check that list before adding either to it.
+  -->
+  <li class="relative grid gap-2 rounded-lg border-b border-rule py-7 transition duration-200 before:absolute before:inset-y-2 before:-left-5 before:w-[3px] before:origin-top before:scale-y-0 before:rounded-full before:bg-accent before:transition-transform before:duration-200 last:border-b-0 has-[+li:hover]:border-transparent hover:-mx-5 hover:border-transparent hover:bg-band/40 hover:px-5 hover:before:left-0 hover:before:scale-y-100 md:grid-cols-[150px_1fr] md:gap-x-6 xl:grid-cols-[150px_minmax(0,1fr)_minmax(0,24rem)] xl:gap-x-8">
     <div class="flex flex-wrap items-baseline gap-2 md:block">
       <!--
         tabular-nums survives the move off monospace: the system sans stacks
