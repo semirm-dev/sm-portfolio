@@ -1,20 +1,12 @@
 <script setup lang="ts">
 import ThemeToggle from '~/components/portfolio/ThemeToggle.vue'
 
-/*
- * The layout reads the record too. Awaiting here makes this an async component,
- * which needs a Suspense boundary above it — Nuxt's app root supplies one, and
- * the prerendered HTML carries the resolved values, so the footer is baked into
- * the static output rather than filled in on hydration.
- */
 const { profile } = await useCareer()
 
 /*
- * One field decides whether the prompt is running anything. Setting
- * `availability` to `closed` in the record drops the command and the words
- * behind it in the same move — and the manifest's own availability line reads
- * the same field, so the two halves of the page cannot disagree about whether
- * he is looking.
+ * One field decides whether the prompt is running anything. The manifest's own
+ * availability line reads the same field, so the two halves of the page cannot
+ * disagree about whether he is looking.
  */
 const isOpenToWork = computed(() => profile.value.availability === 'open')
 
@@ -33,11 +25,6 @@ const isHome = computed(() => route.path === '/')
       Opaque, and no backdrop-blur: both drop the bar to grayscale antialiasing
       while the rest of the page keeps subpixel, so it reads as blurry next to
       the body copy.
-
-      It carries --color-hero, the same token as the hero, so the two read as
-      one surface. That fill holds once you scroll onto white and on /work,
-      which has no hero — a bar that changed colour on scroll would be the one
-      piece of chrome that animates while you read.
     -->
     <header class="animate-rise sticky top-0 z-10 border-b border-hero-rule bg-hero text-hero-ink">
       <!--
@@ -46,18 +33,16 @@ const isHome = computed(() => route.path === '/')
         to agree across all six or the navbar stops lining up with the page
         underneath it.
 
-        Those two numbers are one decision, not two. `xl:px-20` is the gutter
-        the middle of the range was short of — between `lg` and the cap there
-        are no auto margins, so 40px was all the air the page had. `115rem` is
-        `110rem` plus exactly that increase doubled, which is what keeps every
-        screen past 1840px at the 1680px of content it already had. Raise the
-        gutter on its own and you narrow every wide screen with it.
+        Those two numbers are one decision, not two. `115rem` is `110rem` plus
+        the `xl` gutter increase doubled, which keeps every screen past 1840px
+        at the 1680px of content it already had. Raise the gutter on its own and
+        you narrow every wide screen with it.
       -->
       <div class="mx-auto flex h-14 max-w-[115rem] items-center justify-between gap-4 px-6 lg:px-10 xl:px-20">
         <!--
-          The wordmark as a shell prompt. The link stops at the prompt:
-          `./open-to-work` sits outside it as text, because a "go home" link has
-          no business containing a job-status command.
+          The link stops at the prompt: `./open-to-work` sits outside it as
+          text, because a "go home" link has no business containing a job-status
+          command.
         -->
         <div class="flex items-center gap-1.5 font-mono text-[14px] font-medium">
           <NuxtLink
@@ -67,9 +52,8 @@ const isHome = computed(() => route.path === '/')
           >{{ profile.handle }}<span class="hidden text-hero-muted transition-colors group-hover:text-hero-hover sm:inline">@{{ host }}:$</span></NuxtLink>
 
           <!--
-            The status in words, for screen readers. It lives outside the visual
-            prompt because that is hidden below sm, and `display: none` hides
-            from assistive tech too.
+            The status in words, outside the visual prompt because that is
+            hidden below sm and `display: none` hides from assistive tech too.
           -->
           <span
             v-if="isOpenToWork"
@@ -89,7 +73,6 @@ const isHome = computed(() => route.path === '/')
           </span>
         </div>
 
-        <!-- Beside the section links, not inside: the switch goes nowhere. -->
         <div class="flex items-center gap-5">
           <nav
             class="flex items-center gap-6 text-[13px] text-hero-muted"
@@ -131,20 +114,12 @@ const isHome = computed(() => route.path === '/')
       id="contact"
       class="scroll-mt-20 border-t border-rule bg-band"
     >
-      <!--
-        `justify-center` and not `text-center`: these are flex children.
-
-        No email here. This footer carries `id="contact"`, so on /work the
-        contact link now reaches two profile links and no address — the landing
-        page still has the "Email me" button. `profile.email` is untouched in
-        the record, so putting it back is one element.
-      -->
+      <!-- `justify-center` and not `text-center`: these are flex children. -->
       <div class="mx-auto flex max-w-[115rem] flex-wrap items-center justify-center gap-x-4 gap-y-2 px-6 py-6 text-[14px] lg:px-10 xl:px-20">
         <!--
           The rule sits on the label, not the anchor: on the anchor it would run
           under the mark too, reading as an underlined logo. `group` is what
-          lets the hover still reach a border the anchor no longer owns. The
-          marks are `aria-hidden` — the anchor is already named by its label.
+          lets the hover still reach a border the anchor no longer owns.
         -->
         <a
           :href="profile.github"

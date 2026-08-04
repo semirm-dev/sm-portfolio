@@ -1,9 +1,5 @@
 <script setup lang="ts">
-/**
- * The masthead's light/dark switch. Behind `<ClientOnly>` in the layout:
- * without JavaScript it cannot work, and a control that does nothing when
- * pressed is worse than no control.
- */
+/** Behind `<ClientOnly>` in the layout: without JavaScript it cannot work. */
 const { theme, toggle } = useTheme()
 
 const isDark = computed(() => theme.value === 'dark')
@@ -25,8 +21,7 @@ const label = computed(() =>
     class="-mr-1 flex size-8 items-center justify-center rounded-lg text-hero-muted transition-colors hover:text-hero-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-hero-accent"
     @click="toggle"
   >
-    <!-- The icon shows the theme you would move to, matching the label.
-         `aria-hidden` because the button is already named. -->
+    <!-- The icon shows the theme you would move to, matching the label. -->
     <svg
       v-if="isDark"
       aria-hidden="true"

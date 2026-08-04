@@ -20,13 +20,8 @@ usePageSeo({
       </h1>
 
       <!--
-        The graph shows which technologies came back across projects, which the
-        list below cannot — a reader scanning ten stacks in sequence has no way
-        to see that Go carried five of them.
-
-        Every fact it draws is repeated in the history below, so it carries no
-        information of its own and the page still reads completely with the
-        graph hidden, as it is on narrow screens.
+        Every fact the graph draws is repeated in the history below, so the page
+        still reads completely with it hidden, as it is on narrow screens.
       -->
       <div class="mt-8">
         <WorkGraph />

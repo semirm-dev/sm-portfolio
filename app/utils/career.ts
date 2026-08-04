@@ -50,21 +50,13 @@ export function formatMonth(value: string): string {
   return `${String(month).padStart(2, '0')}/${year}`
 }
 
-/** End of a project as it reads on the page: a month, or `Present` while ongoing. */
 export function formatProjectEnd(project: Project): string {
   return project.current ? 'Present' : formatMonth(project.end)
 }
 
 /**
  * What the work graph labels a node with: the project name, not the employer.
- * Employers repeat (three Endava entries, two Evoila ones), so a figure labelled
- * by company shows near-identical nodes and the reader has to fall back on dates
- * to tell them apart. Project names are unique across the record, and they are
- * what the graph is about: CSFN and Sportradar used different stacks despite
- * sharing an employer.
- *
- * `label` overrides this where the project's own name is not the recognisable
- * one — see the field's own note.
+ * Employers repeat across the record; project names are unique.
  */
 export function projectLabel(project: Project): string {
   return project.label ?? project.project
@@ -75,15 +67,8 @@ export function projectDuration(project: Project): string {
 }
 
 /**
- * Stable identity for a project, for `:key` and graph lookups.
- *
- * Keyed on the project rather than on its start month. Employers repeat — three
- * Endava entries, two Evoila — so the company alone cannot identify a row, and
- * pairing it with the month only holds while no employer ever starts two
- * projects in the same one. Two of them already start in the same month as it
- * is, just at different companies. Project names are unique across the record
- * and are what the graph is keyed by anyway, so the pair is unique for the same
- * reason the graph's labels are.
+ * Stable identity for a project, for `:key` and graph lookups. Company alone
+ * cannot identify a row — three Endava entries, two Evoila.
  */
 export function projectKey(project: Project): string {
   return `${project.company}-${project.project}`
@@ -94,7 +79,6 @@ export function projectsNewestFirst(projects: Project[]): Project[] {
   return [...projects].reverse()
 }
 
-/** Canonical name for a technology, as the graph counts it. */
 export function normaliseTechnology(
   aliases: Record<string, string>,
   name: string,
@@ -114,12 +98,7 @@ export function projectTechnologies(
   ]
 }
 
-/**
- * Recurring technologies and the projects they connect.
- *
- * The trace answers "when"; this answers "what came back". Both read the same
- * record, so neither can drift from the CV.
- */
+/** Recurring technologies and the projects they connect. */
 export function techGraph(record: CareerRecord): TechGraph {
   const byProject = record.projects.map(project =>
     projectTechnologies(record.technologyAliases, project),
@@ -159,14 +138,11 @@ export function careerDuration(projects: Project[]): string {
 }
 
 /**
- * Whole years of career, for the prose that says "over N years" and for the
- * manifest's `experience` line.
+ * Whole years of career, for the prose that says "over N years".
  *
- * Floored rather than rounded, because both call sites are claims: "over 11
- * years" has to stay true, and rounding 11y 8mo up to 12 would make it a
- * slight overstatement of a figure a reader can check against the history
- * below it. Separate from `careerDuration` because that one is precise to the
- * month and reads `11y 3mo`, which is not a thing prose can say.
+ * Floored rather than rounded: "over 11 years" has to stay true, and rounding
+ * 11y 8mo up to 12 would overstate a figure the reader can check against the
+ * history below it.
  */
 export function careerYears(projects: Project[]): number {
   const starts = projects.map(project => monthStart(project.start))
@@ -175,13 +151,7 @@ export function careerYears(projects: Project[]): number {
   return Math.floor(Math.max(...ends) - Math.min(...starts))
 }
 
-/**
- * Fills the `{years}` token a stored summary paragraph may carry.
- *
- * The record keeps the sentence and the site keeps the arithmetic, which is
- * the same split the rest of this file exists to hold: data in JSON, maths in
- * TypeScript.
- */
+/** Fills the `{years}` token a stored summary paragraph may carry. */
 export function resolveSummaryText(text: string, years: number): string {
   return text.replaceAll('{years}', String(years))
 }

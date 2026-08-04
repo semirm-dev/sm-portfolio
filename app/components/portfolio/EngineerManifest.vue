@@ -1,18 +1,11 @@
 <script setup lang="ts">
 /**
- * The profile as a Kubernetes-style manifest — the landing page's one joke,
- * aimed at the platform engineers who'll recognise it. It is also the only dark
- * object on a white page, which is what the reference layout used an
- * illustration for.
- *
- * Every value is read from the record. The YAML casing is not: `semir-mahovkic`
- * and `remote` are this component lowercasing what the record spells properly,
- * because manifests are written that way and a CV is not. That transform is
- * presentation and belongs here; the facts are not and do not.
+ * The profile as a Kubernetes-style manifest. Every value is read from the
+ * record; the YAML casing is not — lowercasing is presentation and belongs
+ * here, the facts do not.
  */
 const { profile, years } = await useCareer()
 
-/** Manifest convention, applied to whatever name the record holds. */
 const manifestName = computed(() =>
   profile.value.name.toLowerCase().replaceAll(' ', '-'),
 )
@@ -29,10 +22,6 @@ const manifestName = computed(() =>
     </header>
 
     <!--
-      Centred vertically in whatever height the card is given, which matters
-      only if the summary beside it ever runs taller. Horizontally it stays
-      left-aligned: it is YAML, and centred code reads as a mistake.
-
       Built from `<template>` fragments rather than interpolated into one
       string, because the indentation *is* the meaning here — a list item that
       loses its two spaces stops being a list item.

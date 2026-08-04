@@ -6,18 +6,10 @@ import rawRecord from '../data/career.json'
  *
  * TypeScript widens every string in an imported JSON module to `string`, so a
  * union like `'open' | 'closed'` is the one field shape the assignability check
- * below cannot make on its own. That leaves two options: widen the types until
- * they accept anything, or narrow the values here.
- *
- * Widening loses the thing worth having. A typo in `availability` — `opne` —
- * would mean "not open": the navbar would quietly drop its command and the
- * manifest would quietly print something false, with nothing failing anywhere
- * to say so.
- *
- * So it throws instead. This runs while the pages are prerendered, which turns
- * a bad value into a failed build rather than a wrong page — and it is the same
- * check a database would need on the same columns, sitting where that check
- * will go when the JSON is replaced.
+ * below cannot make on its own. A typo in `availability` would mean "not open"
+ * — the navbar would drop its command and the manifest would print something
+ * false, with nothing failing to say so. This runs during prerender, so a bad
+ * value is a failed build rather than a wrong page.
  */
 function oneOf<T extends string>(
   field: string,
@@ -58,17 +50,12 @@ function parseProfile(raw: typeof rawRecord.profile): Profile {
 }
 
 /**
- * The one seam between the site and where its data lives.
+ * The one seam between the site and where its data lives. Swapping the JSON for
+ * a database is a change to this file and nothing else.
  *
- * Today that is a JSON file imported as a module. Binding it to a
- * `CareerRecord`-typed constant below (rather than asserting the whole thing
- * with `as`) is checked by assignability, not comparability: a project missing
- * a required key — even just one, among nine others that have it — fails the
- * build, because that key does not silently reconcile to
- * optional-and-undefined the way it would under `as`. Swapping the JSON for a
- * database is a change to this file and nothing else: the endpoint, the
- * composable and every component above them only know they receive a
- * `CareerRecord`.
+ * Bound to a `CareerRecord`-typed constant rather than asserted with `as`: that
+ * is checked by assignability, so a project missing a required key fails the
+ * build instead of silently reconciling to optional-and-undefined.
  */
 const record: CareerRecord = {
   ...rawRecord,
