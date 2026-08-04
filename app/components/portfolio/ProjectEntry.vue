@@ -21,13 +21,21 @@ defineProps<{ project: Project }>()
     The hover marks where you are reading; it does not lift. A card lift would
     promise the entry is something you can open, and it isn't — only the company
     and project links inside it go anywhere. So: an accent rail down the left
-    edge, and a wash of the band colour at 40%, which is `--color-band` reused
-    rather than a sixth body colour added for one state.
+    edge, and a wash at 40% of `--color-accent-soft`, which was declared and
+    unused rather than a sixth body colour added for one state.
 
-    At 40% the ground barely moves — `#fbfdfd` against white — and the rail is
-    what the eye actually catches. That is the intended balance and not a value
-    to nudge on its own: take the wash much further down and the row stops
-    reading as a block at all, leaving a bar floating beside unchanged text.
+    It has to be that token and not `--color-band`. Both are near-white and the
+    band is the obvious reach, but `#f6f9fb` washed to 40% resolves to `#fbfdfd`
+    — green and blue land on the same value and the row reads faintly cyan.
+    `#eef1fd` at the same 40% gives `#f8f9fe`, where blue stays nearly white
+    while red and green drop, so the tint is blue-grey. At this lightness the
+    hue is decided by two or three points per channel; check the resolved value
+    rather than the token's own hex before swapping it.
+
+    At 40% the ground barely moves and the rail is what the eye actually
+    catches. That is the intended balance and not a value to nudge on its own:
+    take the wash much further down and the row stops reading as a block at
+    all, leaving a bar floating beside unchanged text.
 
     The bleed is taken on hover alone. `-mx-5` and `px-5` cancel, so the content
     box never moves and the rule keeps the width it has at rest — and Tailwind's
@@ -50,7 +58,7 @@ defineProps<{ project: Project }>()
     hold because Tailwind's `transition` covers none of `left`, margin or
     padding — check that list before adding either to it.
   -->
-  <li class="relative grid gap-2 rounded-lg border-b border-rule py-7 transition duration-200 before:absolute before:inset-y-2 before:-left-5 before:w-[3px] before:origin-top before:scale-y-0 before:rounded-full before:bg-accent before:transition-transform before:duration-200 last:border-b-0 has-[+li:hover]:border-transparent hover:-mx-5 hover:border-transparent hover:bg-band/40 hover:px-5 hover:before:left-0 hover:before:scale-y-100 md:grid-cols-[150px_1fr] md:gap-x-6 xl:grid-cols-[150px_minmax(0,1fr)_minmax(0,24rem)] xl:gap-x-8">
+  <li class="relative grid gap-2 rounded-lg border-b border-rule py-7 transition duration-200 before:absolute before:inset-y-2 before:-left-5 before:w-[3px] before:origin-top before:scale-y-0 before:rounded-full before:bg-accent before:transition-transform before:duration-200 last:border-b-0 has-[+li:hover]:border-transparent hover:-mx-5 hover:border-transparent hover:bg-accent-soft/40 hover:px-5 hover:before:left-0 hover:before:scale-y-100 md:grid-cols-[150px_1fr] md:gap-x-6 xl:grid-cols-[150px_minmax(0,1fr)_minmax(0,24rem)] xl:gap-x-8">
     <div class="flex flex-wrap items-baseline gap-2 md:block">
       <!--
         tabular-nums survives the move off monospace: the system sans stacks
