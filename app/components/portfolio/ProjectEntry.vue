@@ -151,29 +151,38 @@ defineProps<{ project: Project }>()
       the full height of the entry, so the rule runs the whole way down while
       the chips stay level with the company name.
 
-      The chip is filled with `--color-accent-soft` and outlined in
-      `--color-accent-rule`, and the fill is the reason for the accent rather
-      than a grey one. The row's own hover wash is `#fafbfe` and `--color-band`
-      is `#f6f9fb` — two points apart, so a band-filled chip all but vanishes
-      the moment its row is hovered, and only the outline still holds the
-      shape. The accent fill is the one that survives the row highlighting
-      itself.
+      The chip is the accent at three strengths and nothing else: type in
+      `--color-accent`, outline in `--color-accent-rule`, fill in
+      `--color-accent-soft` at 60%. One colour walked down twice, rather than a
+      sixth added for one element. The stack is the scannable part of a row, so
+      letting it carry the colour is the point and not a side effect.
 
-      It keeps a border for the other half of the job: backgrounds do not
+      The fill is that and not `--color-band`, which is the obvious grey to
+      reach for and the wrong one. This row's own hover wash is `#fafbfe`, and
+      the band resolves within four points of it at the widest channel, so a
+      band-filled chip all but dissolves the moment its row is hovered and only
+      the outline still holds the shape. At 60% the fill resolves to `#f5f7fe`:
+      seven points clear of the wash where the band managed four, and ten clear
+      of the resting row where it managed nine.
+
+      60% is the bottom of the useful range, not a midpoint on the way to
+      lighter. 40% is *worse* than the band at rest despite being the bluer
+      colour, because it is lighter in red and green — the tint stops being a
+      tint before it stops being blue. Judge a candidate fill on a hovered row
+      rather than a resting one; the resting row is the easy case and hides the
+      whole problem.
+
+      It keeps a border for a reason that outlives the fill: backgrounds do not
       print, and the CV export is this page printed, so a chip carried by its
       fill alone stops existing on paper. `--color-accent-rule` is a stronger
       hairline there than the `--color-rule` it replaced, so the printed chip
-      is better off, not worse.
-
-      If the stack ever reads too loud, the runner-up was the same chip with
-      `--color-band` behind it and the accent left only in the outline — drop
-      `bg-accent-soft` and `text-accent` and that is what you have.
+      is better off.
     -->
     <ul class="mt-3.5 flex flex-wrap gap-1.5 md:col-start-2 xl:col-start-3 xl:row-start-1 xl:mt-1 xl:content-start xl:border-l xl:border-rule xl:pl-8">
       <li
         v-for="tech in project.technologies"
         :key="tech"
-        class="rounded-[3px] border border-accent-rule bg-accent-soft px-2 py-0.5 text-[11.5px] text-accent"
+        class="rounded-[3px] border border-accent-rule bg-accent-soft/60 px-2 py-0.5 text-[11.5px] text-accent"
       >
         {{ tech }}
       </li>
