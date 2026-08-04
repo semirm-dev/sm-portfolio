@@ -94,10 +94,6 @@ const isHome = computed(() => route.path === '/')
             href="#contact"
             class="transition-colors hover:text-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
           >contact</a>
-          <a
-            :href="`mailto:${EMAIL}`"
-            class="rounded-lg bg-accent px-3 py-1.5 text-[13px] font-medium text-on-accent transition-colors hover:bg-accent-deep focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-          >Email me</a>
         </nav>
       </div>
     </header>

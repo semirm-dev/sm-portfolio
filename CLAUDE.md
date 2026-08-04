@@ -66,8 +66,8 @@ One accent, indigo `#2d46b9`, measuring 7.9:1 on white — legible as type
 anywhere, which is what lets a single value do every job. If you propose a new
 accent and it can't clear 4.5:1 on white, it doesn't belong in that variable.
 `--color-on-accent` is the paired token for type set on an accent fill (the
-"Email me" buttons) — currently white, since white clears 7.9:1 on both
-accent weights.
+hero's "Email me" button, which is now the only one) — currently white, since
+white clears 7.9:1 on both accent weights.
 
 Full-bleed sections alternate white and `#f6f9fb`, content sits in a centred
 `max-w-6xl` container, section headings are centred.
