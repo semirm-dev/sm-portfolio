@@ -110,8 +110,20 @@ const workGrid = useReveal()
           </div>
         </div>
 
+        <!--
+          `min-w-0` is load-bearing, and only below `lg`. The two columns above
+          are declared `minmax(0, …)` for this exact reason; the single column
+          this collapses to below that breakpoint has no such floor, and a grid
+          item's `min-width` is `auto` — which resolves to its min-content size.
+          The manifest's min-content is its longest YAML line, which cannot wrap,
+          so at 360px the card held the whole page 9px wider than the viewport
+          and at 320px 49px wider: every line of the hero ran off the right edge
+          and the page scrolled sideways. Zeroing it hands the overflow back to
+          the `overflow-x-auto` the `<pre>` already carries, which is where it
+          belongs — the YAML scrolls inside its own card and the page does not.
+        -->
         <div
-          class="animate-rise"
+          class="animate-rise min-w-0"
           style="animation-delay: 220ms"
         >
           <EngineerManifest />

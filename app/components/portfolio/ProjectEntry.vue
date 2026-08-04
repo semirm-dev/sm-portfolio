@@ -47,20 +47,31 @@ defineProps<{ project: Project }>()
 
       <p class="mt-2.5 flex flex-wrap items-baseline gap-x-2 gap-y-1">
         <span class="text-[11px] font-semibold uppercase tracking-[0.11em] text-muted">Project</span>
-        <a
+        <!--
+          The separator trails the project rather than leading the client, and
+          sits inside the project's own flex item. A flex line breaks between
+          items, so a `before:` on the client took the `·` with it: on every
+          phone width `VCF Aria Automation` and `CSFN` wrapped and the next line
+          opened with a bare middot, which in a column that also carries `−`
+          bullets reads as one. Trailing, it can only ever end a line. The
+          non-breaking space glues it to the last word, so it cannot wrap onto a
+          line by itself either, and it stays outside the `<a>` so the link's
+          underline, hit area and accessible name are unchanged.
+        -->
+        <span class="text-[14.5px] font-medium text-accent"><a
           v-if="project.projectUrl"
           :href="project.projectUrl"
           rel="noopener noreferrer"
           target="_blank"
-          class="border-b border-accent-rule text-[14.5px] font-medium text-accent transition-colors hover:border-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-        >{{ project.project }}</a>
-        <span
-          v-else
-          class="text-[14.5px] font-medium text-accent"
-        >{{ project.project }}</span>
+          class="border-b border-accent-rule transition-colors hover:border-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+        >{{ project.project }}</a><template v-else>{{ project.project }}</template><span
+          v-if="project.client"
+          aria-hidden="true"
+          class="font-normal text-muted"
+        >&nbsp;·</span></span>
         <span
           v-if="project.client"
-          class="text-[14px] text-muted before:mr-2 before:content-['·']"
+          class="text-[14px] text-muted"
         >{{ project.client }}</span>
       </p>
 
