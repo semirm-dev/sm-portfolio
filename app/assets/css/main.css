@@ -69,14 +69,28 @@
    * token; nothing takes half of it, or the page grows two lighting models.
    */
   --shadow-card: 0 1px 2px rgb(11 16 23 / 0.04), 0 14px 30px -24px rgb(11 16 23 / 0.4);
+  /*
+   * The same recipe at a second elevation, for a card under the pointer. Both
+   * layers are kept — the 1px contact shadow and the wide ambient one — and
+   * only moved; taking one layer and not the other is what would give the page
+   * two lighting models. A lift with a fixed shadow reads as sliding rather
+   * than rising, which is what this exists to correct.
+   */
+  --shadow-card-raised: 0 2px 4px rgb(11 16 23 / 0.05), 0 22px 44px -26px rgb(11 16 23 / 0.5);
   /* Deeper, because the manifest is dark and has further to fall. */
   --shadow-yaml: 0 20px 42px -26px rgb(19 28 61 / 0.8);
 }
 
 /*
- * Entrance motion is limited to what is above the fold on arrival. Sections
- * further down are not animated: without scroll triggers they would play
- * unseen, and a reveal the visitor never witnesses is just a delay.
+ * Entrance motion above the fold plays on arrival. Below it, the card grids
+ * are revealed on scroll instead — see `useReveal`.
+ *
+ * The original rule here was that nothing below the fold animates at all,
+ * because "a reveal the visitor never witnesses is just a delay". That
+ * argument is still right, and a scroll trigger is what satisfies it: the
+ * reveal now happens when the section is actually looked at. What it does not
+ * license is animating anything else on scroll. The rule is "no motion the
+ * reader misses", not "motion anywhere it fits".
  */
 @keyframes rise {
   from {
@@ -134,12 +148,40 @@
   animation: cursor-blink 1.06s step-end infinite;
 }
 
+/*
+ * Scroll reveal, driven by `useReveal`.
+ *
+ * Both classes are applied by script and never by this stylesheet. A card is
+ * therefore visible unless JavaScript has run and deliberately hidden it — so
+ * a failed or blocked script leaves the page readable, which is the only
+ * acceptable failure mode for a page whose whole job is to be read.
+ */
+.reveal-hidden {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.reveal-in {
+  animation: rise 0.55s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
   *::after {
     animation: none !important;
     transition: none !important;
+  }
+
+  /*
+   * The blanket rule above would kill `.reveal-in` and strand a hidden card at
+   * opacity 0 forever. `useReveal` already declines to hide anything when
+   * reduced motion is set, so this is the second lock on the same door — it
+   * matters because the two disagree if the preference changes after load.
+   */
+  .reveal-hidden {
+    opacity: 1;
+    transform: none;
   }
 }
 

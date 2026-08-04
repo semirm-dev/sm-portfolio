@@ -14,6 +14,12 @@ usePageSeo({
 
 const { projects } = await useCareer()
 const projectCount = computed(() => projects.value.length)
+
+// Both grids sit below the fold, so they are revealed on scroll rather than on
+// arrival. The hero above keeps its own hand-set delays: it is already in view
+// when the page loads and has nothing to wait for.
+const skillsGrid = useReveal()
+const workGrid = useReveal()
 </script>
 
 <template>
@@ -110,7 +116,10 @@ const projectCount = computed(() => projects.value.length)
           Technical skills
         </SectionHead>
 
-        <div class="grid gap-3 md:grid-cols-2">
+        <div
+          ref="skillsGrid"
+          class="grid gap-3 md:grid-cols-2"
+        >
           <SkillCard name="Golang">
             RabbitMQ · MQTT · SQS · SNS · gRPC + streams · WebSockets ·
             Kubernetes Operators · Gin · Gorm · Jaeger · Docker · GraphQL ·
@@ -140,7 +149,10 @@ const projectCount = computed(() => projects.value.length)
           Selected work
         </SectionHead>
 
-        <div class="grid gap-3 lg:grid-cols-3">
+        <div
+          ref="workGrid"
+          class="grid gap-3 lg:grid-cols-3"
+        >
           <WorkCard
             org="Endava · Cisco"
             title="Secure Firewall Cloud Native"

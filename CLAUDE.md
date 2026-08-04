@@ -76,9 +76,16 @@ Full-bleed sections alternate white and `#f6f9fb`, content sits in a centred
 block, because its values are computed geometry — SVG coordinates, and type
 sizes the script also measures the viewBox with. No other component gets one.
 
-Entrance motion is limited to what is above the fold on arrival; nothing
-animates on scroll, and `prefers-reduced-motion: reduce` disables all of it
-globally in `main.css`.
+Entrance motion above the fold plays on arrival. The two card grids on the
+landing page are revealed on scroll instead, staggered, via `useReveal` — the
+rule is "no motion the reader misses", not "no motion on scroll", and a
+trigger is what satisfies it. Nothing else animates on scroll.
+
+`useReveal` hides cards from script and never from the stylesheet, so a page
+whose JavaScript did not run is still fully readable. Keep it that way.
+`prefers-reduced-motion: reduce` disables all motion globally in `main.css`,
+which is also why `useReveal` declines to hide anything when it is set — the
+blanket rule would cancel the reveal and strand the card invisible.
 
 ## Copy
 
