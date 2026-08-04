@@ -1,4 +1,4 @@
-import type { CareerRecord } from "~/types/career";
+import type { CareerRecord } from '~/types/career'
 
 /**
  * Fails the page rather than rendering it empty.
@@ -10,10 +10,10 @@ import type { CareerRecord } from "~/types/career";
 function unavailable(cause: unknown): never {
   throw createError({
     statusCode: 503,
-    statusMessage: "Career data is unavailable.",
+    statusMessage: 'Career data is unavailable.',
     cause,
     fatal: true,
-  });
+  })
 }
 
 /**
@@ -33,15 +33,15 @@ function unavailable(cause: unknown): never {
  * in one place, than to hand every caller a record that might be null.
  */
 export async function useCareer() {
-  const { data, error } = await useAsyncData<CareerRecord>("career", () =>
-    $fetch("/api/career"),
-  );
+  const { data, error } = await useAsyncData<CareerRecord>('career', () =>
+    $fetch('/api/career'),
+  )
 
   if (!data.value) {
-    unavailable(error.value);
+    unavailable(error.value)
   }
 
-  const record = computed(() => data.value ?? unavailable(error.value));
+  const record = computed(() => data.value ?? unavailable(error.value))
 
   return {
     record,
@@ -49,5 +49,5 @@ export async function useCareer() {
     projectsNewest: computed(() => projectsNewestFirst(record.value.projects)),
     total: computed(() => careerDuration(record.value.projects)),
     graph: computed(() => techGraph(record.value)),
-  };
+  }
 }

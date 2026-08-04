@@ -5,7 +5,19 @@ defineProps<{ project: Project }>()
 </script>
 
 <template>
-  <li class="grid gap-2 border-b border-rule py-7 last:border-b-0 md:grid-cols-[150px_1fr] md:gap-x-6">
+  <!--
+    Three columns once there is width for them: dates, the narrative, and the
+    stack. Below xl the stack drops back under the narrative, which is the only
+    place it fits.
+
+    The split is what the entry already is rather than a device to fill space —
+    dates and technologies are both metadata about the work, and the prose in
+    between is the account of it. Stacking the stack under the prose put a
+    reading measure capped at 74ch inside a column of nearly twice that, so the
+    right of every entry went empty while the tags queued up under text they are
+    not part of.
+  -->
+  <li class="grid gap-2 border-b border-rule py-7 last:border-b-0 md:grid-cols-[150px_1fr] md:gap-x-6 xl:grid-cols-[150px_minmax(0,1fr)_minmax(0,24rem)] xl:gap-x-8">
     <div class="flex flex-wrap items-baseline gap-2 md:block">
       <!--
         tabular-nums survives the move off monospace: the system sans stacks
@@ -71,16 +83,23 @@ defineProps<{ project: Project }>()
           {{ duty }}
         </li>
       </ul>
-
-      <ul class="mt-3.5 flex flex-wrap gap-1.5">
-        <li
-          v-for="tech in project.technologies"
-          :key="tech"
-          class="rounded-[3px] border border-rule px-2 py-0.5 text-[11.5px] text-muted"
-        >
-          {{ tech }}
-        </li>
-      </ul>
     </div>
+
+    <!--
+      Placed rather than flowed. At md it belongs under the narrative, which
+      auto-placement would put in the date column instead; at xl it moves beside
+      it. `content-start` keeps the tags at the top of a cell that stretches to
+      the full height of the entry, so the rule runs the whole way down while
+      the chips stay level with the company name.
+    -->
+    <ul class="mt-3.5 flex flex-wrap gap-1.5 md:col-start-2 xl:col-start-3 xl:row-start-1 xl:mt-1 xl:content-start xl:border-l xl:border-rule xl:pl-8">
+      <li
+        v-for="tech in project.technologies"
+        :key="tech"
+        class="rounded-[3px] border border-rule px-2 py-0.5 text-[11.5px] text-muted"
+      >
+        {{ tech }}
+      </li>
+    </ul>
   </li>
 </template>
