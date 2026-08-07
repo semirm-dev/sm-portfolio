@@ -141,24 +141,32 @@ try {
 
   await page.evaluate(() => document.fonts.ready)
 
-  // Chrome's `footerTemplate` cannot see the page's stylesheet, so these are
-  // read off the live page instead of retyped — that's what stops them
-  // drifting from `--color-rule` / `--color-muted` / `--font-sans` in main.css.
+  // Chrome's `footerTemplate` cannot see the page's stylesheet, so the colours
+  // are read off the live page instead of retyped — that's what stops them
+  // drifting from `--color-rule` and `--color-muted` in main.css.
   const tokens = await page.evaluate(() => {
     const root = getComputedStyle(document.documentElement)
 
     return {
       rule: root.getPropertyValue('--color-rule').trim(),
       muted: root.getPropertyValue('--color-muted').trim(),
-      font: root.getPropertyValue('--font-sans').trim(),
     }
   })
 
   /*
    * The rules go in a <style> element, not an inline style attribute. Chrome
-   * returns `--font-sans` with double quotes around `"Segoe UI"`, and
-   * interpolating that into `style="…"` closes the attribute early — silently
-   * dropping `font-size` and printing the footer at Chrome's 1px default.
+   * returns `--color-*` values plainly, but a font stack arrives with double
+   * quotes around `"Source Sans 3"`, and interpolating that into `style="…"`
+   * closes the attribute early — silently dropping `font-size` and printing
+   * the footer at Chrome's 1px default.
+   *
+   * **The foot cannot use the document's typeface.** Chrome renders header and
+   * footer templates in their own document and ignores `@font-face` there
+   * entirely — verified, including from a `data:` URI, which loads nothing.
+   * Only system fonts are available, so this names the most widely mapped
+   * stack rather than pretending. It is one 8.5pt line; the page numbers it
+   * carries are worth more than matching the face, and `pageNumber` /
+   * `totalPages` exist nowhere else.
    */
   const footer = `
     <style>
@@ -169,8 +177,8 @@ try {
         border-top: 0.5pt solid ${tokens.rule};
         display: flex;
         justify-content: space-between;
-        font-family: ${tokens.font};
-        font-size: 8pt;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 8.5pt;
         color: ${tokens.muted};
       }
     </style>

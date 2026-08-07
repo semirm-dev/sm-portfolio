@@ -1,5 +1,66 @@
 @import 'tailwindcss';
 
+/*
+ * The CV's typeface, and the only webfont on the site. The two pages read on
+ * screen keep the system stack deliberately — they should look native. A
+ * document cannot: `/cv` is printed to a PDF, and the machine running the
+ * printer decides what `system-ui` resolves to. On the WSL box that is DejaVu
+ * Sans, which has no semibold at all, so every `font-semibold` fell back to
+ * full bold — and the file would have looked different again from a Mac.
+ *
+ * **Static weights, deliberately not the variable font.** Chrome embeds a
+ * variable instance into a PDF as Type3 — glyphs redrawn as procedures rather
+ * than a real embedded face. It still selects and searches, but it is not a
+ * text font, and some readers render it poorly. Two static files embed as
+ * ordinary subsetted TrueType.
+ *
+ * `latin-ext` carries the diacritics a Bosnian record may yet need (č, ć, ž,
+ * š, đ); the browser fetches it only if such a glyph is actually used.
+ */
+@font-face {
+  font-family: 'Source Sans 3';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/ss3-400.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Source Sans 3';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/ss3-600.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Source Sans 3';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/ss3-ext-400.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+    U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
+    U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Source Sans 3';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/ss3-ext-600.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+    U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
+    U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
 @theme {
   --color-ground: #ffffff;
   --color-band: #f6f9fb;
@@ -56,6 +117,8 @@
 
   --font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   --font-mono: ui-monospace, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+  /* `/cv` only — the one place the typeface must not depend on the machine. */
+  --font-document: 'Source Sans 3', var(--font-sans);
 
   --shadow-card: 0 1px 2px rgb(11 16 23 / 0.04), 0 14px 30px -24px rgb(11 16 23 / 0.4);
   --shadow-card-raised: 0 2px 4px rgb(11 16 23 / 0.05), 0 22px 44px -26px rgb(11 16 23 / 0.5);

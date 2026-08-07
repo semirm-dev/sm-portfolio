@@ -28,7 +28,7 @@ const technologies = computed(() =>
     from the record. A fixed split would have to be re-measured every time a
     job is added.
   -->
-  <article class="grid break-inside-avoid grid-cols-[24mm_minmax(0,1fr)] gap-x-[4mm] border-b border-rule pt-[3mm] pb-[3.4mm] first:pt-0 last:border-b-0">
+  <article class="grid break-inside-avoid grid-cols-[26mm_minmax(0,1fr)] gap-x-[4mm] border-b border-rule pt-[3mm] pb-[3.4mm] first:pt-0 last:border-b-0">
     <p class="tabular-nums text-ink">
       {{ formatMonth(project.start) }} –<br>{{ formatProjectEnd(project) }}
     </p>
@@ -40,11 +40,11 @@ const technologies = computed(() =>
         one; a rule caps the header without competing. It also survives a
         hand-print, where background graphics are off and no fill exists.
       -->
-      <h3 class="-mt-[1mm] mb-[2mm] border-b border-rule pb-[1.4mm] text-[11.5pt] font-semibold leading-[1.3] tracking-[-0.01em]">
-        {{ project.company }}<span class="text-[9.5pt] font-normal tracking-normal text-muted"> — {{ project.location }}</span>
+      <h3 class="-mt-[1mm] mb-[2mm] border-b border-rule pb-[1.4mm] text-[12.5pt] font-semibold leading-[1.3] tracking-[-0.01em]">
+        {{ project.company }}<span class="text-[10.5pt] font-normal tracking-normal text-muted"> — {{ project.location }}</span>
       </h3>
 
-      <div class="grid grid-cols-[24mm_minmax(0,1fr)] items-baseline gap-x-[4mm] gap-y-[0.8mm]">
+      <div class="grid grid-cols-[26mm_minmax(0,1fr)] items-baseline gap-x-[4mm] gap-y-[0.8mm]">
         <CvField
           v-if="project.website"
           label="Website"

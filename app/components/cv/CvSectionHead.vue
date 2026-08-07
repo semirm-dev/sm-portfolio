@@ -14,7 +14,7 @@
     Negative margin against equal padding: the fill bleeds past the text block
     while the letters stay on the same left edge as the body copy under them.
   -->
-  <h2 class="-mx-[2.5mm] mb-[4mm] break-after-avoid border-b border-rule bg-band px-[2.5mm] pt-[1.4mm] pb-[1.6mm] text-[9.5pt] font-semibold uppercase tracking-[0.14em] text-ink">
+  <h2 class="-mx-[2.5mm] mb-[4mm] break-after-avoid border-b border-rule bg-band px-[2.5mm] pt-[1.4mm] pb-[1.6mm] text-[10.5pt] font-semibold uppercase tracking-[0.14em] text-ink">
     <slot />
   </h2>
 </template>

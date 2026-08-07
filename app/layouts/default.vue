@@ -93,14 +93,14 @@ const isHome = computed(() => route.path === '/')
               to="/"
               class="transition-colors hover:text-hero-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-hero-accent"
             >home</NuxtLink>
-            <NuxtLink
-              to="/cv"
-              class="transition-colors hover:text-hero-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-hero-accent"
-            >cv</NuxtLink>
             <a
               href="#contact"
               class="transition-colors hover:text-hero-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-hero-accent"
             >contact</a>
+            <NuxtLink
+              to="/cv"
+              class="transition-colors hover:text-hero-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-hero-accent"
+            >cv</NuxtLink>
           </nav>
 
           <ClientOnly>
