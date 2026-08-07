@@ -36,7 +36,7 @@ useHead({ bodyAttrs: { class: 'cv-document' } })
     The padding is screen-only: on paper the same measure comes from the @page
     margin, and keeping both would double it.
   -->
-  <article class="mx-auto w-[210mm] bg-ground px-[16mm] py-[16mm] font-document text-[10.5pt] leading-[1.5] text-ink print:w-auto print:p-0">
+  <article class="mx-auto w-[210mm] bg-ground px-[16mm] py-[16mm] font-document text-[11.5pt] leading-[1.5] text-ink print:w-auto print:p-0">
     <header class="mb-[12mm] grid grid-cols-[34mm_minmax(0,1fr)] items-center gap-x-[9mm]">
       <img
         :src="profile.photo"
@@ -45,10 +45,10 @@ useHead({ bodyAttrs: { class: 'cv-document' } })
       >
       <!-- The one accent on the document. -->
       <div class="border-b-[1pt] border-accent pb-[4mm]">
-        <h1 class="text-[21pt] font-semibold leading-[1.1] tracking-[-0.015em]">
+        <h1 class="text-[22pt] font-semibold leading-[1.1] tracking-[-0.015em]">
           {{ profile.name }}
         </h1>
-        <p class="mt-[2.4mm] text-[10.5pt] uppercase tracking-[0.18em] text-muted">
+        <p class="mt-[2.4mm] text-[11.5pt] uppercase tracking-[0.18em] text-muted">
           {{ profile.title }}
         </p>
       </div>
@@ -83,7 +83,7 @@ useHead({ bodyAttrs: { class: 'cv-document' } })
       <div
         v-for="group in skills"
         :key="group.name"
-        class="grid grid-cols-[26mm_minmax(0,1fr)] items-baseline gap-x-[4mm] border-b border-rule py-[2.6mm] first:pt-0 last:border-b-0 last:pb-0"
+        class="grid grid-cols-[29mm_minmax(0,1fr)] items-baseline gap-x-[4mm] border-b border-rule py-[2.6mm] first:pt-0 last:border-b-0 last:pb-0"
       >
         <span class="font-semibold">{{ group.name }}</span>
         <p class="text-muted">
@@ -93,7 +93,7 @@ useHead({ bodyAttrs: { class: 'cv-document' } })
     </div>
 
     <CvSectionHead>Contact</CvSectionHead>
-    <div class="mb-[11mm] grid grid-cols-[26mm_minmax(0,1fr)] items-baseline gap-x-[4mm] gap-y-[3mm]">
+    <div class="mb-[11mm] grid grid-cols-[29mm_minmax(0,1fr)] items-baseline gap-x-[4mm] gap-y-[3mm]">
       <CvField label="Email">
         {{ profile.email }}
       </CvField>
