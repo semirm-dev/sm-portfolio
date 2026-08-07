@@ -57,8 +57,23 @@ const technologies = computed(() =>
           >{{ shortUrl(project.website) }}</a>
         </CvField>
 
+        <!--
+          The name carries the link and the URL is not printed, unlike the
+          Website row above. Those are bare domains; these are deep links — the
+          VCF Aria one is 180 characters — and a row that wraps three times to
+          show an address nobody types is worse than an underline. Clickable in
+          the PDF, which is how this is read.
+        -->
         <CvField label="Project">
-          {{ project.project }}{{ project.client ? ` (${project.client})` : '' }}
+          <a
+            v-if="project.projectUrl"
+            :href="project.projectUrl"
+            rel="noopener noreferrer"
+            target="_blank"
+            class="underline decoration-rule underline-offset-2"
+          >{{ project.project }}</a><template v-else>
+            {{ project.project }}
+          </template>{{ project.client ? ` (${project.client})` : '' }}
         </CvField>
 
         <CvField
