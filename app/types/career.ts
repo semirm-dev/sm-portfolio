@@ -49,9 +49,20 @@ export interface Profile {
   handle: string
   title: string
   location: string
+  /**
+   * Path to the portrait under `public/`. A photograph of him is a fact about
+   * him, so it belongs in the record rather than in a component's markup.
+   * Required: a CV that silently renders without a face is worse than a build
+   * that stops.
+   */
+  photo: string
   /** Drives both the navbar prompt and the manifest's availability line. */
   availability: 'open' | 'closed'
   email: string
+  /** Rendered in the CV's contact block when present. */
+  phone?: string
+  /** His own site. Rendered in the CV's contact block when present. */
+  website?: string
   github: string
   linkedin: string
   languages: string[]

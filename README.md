@@ -1,6 +1,7 @@
 # semir.mahovkic
 
-Personal portfolio — a two-page Nuxt site: a landing page and a work history.
+Personal portfolio — a three-page Nuxt site: a landing page, a work history,
+and a CV.
 
 Live design tokens, career data and copy all live in this repo; there is no CMS
 and no database.
@@ -43,6 +44,15 @@ npm run generate     # static output in .output/public
 
 Any static host serves it. Every route is prerendered, including the career
 endpoint's payload.
+
+The CV PDF is **not** built during a deploy. It is committed at
+`public/Semir_Mahovkic-CV.pdf` and copied into the output like any other
+static asset, so the host needs no browser and the build stays a plain
+`nuxt generate`.
+
+Rebuild it with `npm run cv` after editing `server/data/career.json` — that
+drives a headless Chromium over the built `/cv` page
+(`scripts/build-cv-pdf.mjs`). Nothing checks that you remembered.
 
 Response headers live in `vercel.json`, because `nuxt generate` emits files and
 not responses — there is nowhere else in the repo for them to come from. They

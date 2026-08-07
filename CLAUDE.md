@@ -2,7 +2,7 @@
 
 Guidance for Claude Code working in this repository.
 
-This is a **personal portfolio**: a small, single-author Nuxt site with two
+This is a **personal portfolio**: a small, single-author Nuxt site with three
 public pages. Keep it lean — prefer deleting over accumulating, and don't add
 infrastructure the site doesn't need.
 
@@ -24,6 +24,29 @@ npm run typecheck && npm run lint && npm run build
 ```
 
 There is **no test runner**. Do not add one without asking.
+
+```bash
+npm run cv           # rebuild public/Semir_Mahovkic-CV.pdf
+```
+
+**`npm run cv` is not part of the deploy, and that is the point.** The PDF is
+committed under `public/`, so `nuxt generate` copies it like any other static
+asset and the host never needs a browser. Chromium wants a dozen system
+libraries a build image may or may not carry, and a document that changes a few
+times a year does not justify putting that in the path of every deploy —
+`.puppeteerrc.cjs` skips the browser download entirely when `CI` or `VERCEL` is
+set, so `puppeteer` costs a build machine nothing.
+
+The price is that **the PDF can go stale: re-run `npm run cv` after editing
+`server/data/career.json`.** Nothing checks this for you.
+
+Locally that needs one library this WSL box does not ship. Both the full
+binary and `chrome-headless-shell` fail identically without it — `Code: 127`,
+`libasound.so.2: cannot open shared object file`:
+
+```bash
+sudo apt-get install -y libasound2t64   # Ubuntu 24.04; libasound2 on older
+```
 
 ## Architecture
 
@@ -48,8 +71,9 @@ Data lives in JSON, maths lives in TypeScript, and neither reaches across.
 (contact, location, availability, languages, ownership, and the summary
 paragraphs), `skills`, `selectedWork`, `technologyAliases` and `projects`. No
 component may state a fact about Semir in its own markup — the pages are
-renderers over this record, which is what lets a PDF export be another one.
-That includes the navbar wordmark, the footer links and the YAML manifest.
+renderers over this record, which is what lets `app/pages/cv.vue` be a third
+one, printed to PDF rather than served as HTML. That includes the navbar
+wordmark, the footer links and the YAML manifest.
 
 Two things are deliberately *not* in it. The hero headline and the SEO
 descriptions are copy about this page rather than facts about him, and any
@@ -78,8 +102,35 @@ a component** — that collapses the seam this structure exists to keep open.
 ## Pages
 
 `app/pages/index.vue` (hero, skills, selected work) and `app/pages/work.vue`
-(head, technology graph, history). Both render inside
-`app/layouts/default.vue`, which carries the navbar and footer.
+(head, technology graph, history) render inside `app/layouts/default.vue`,
+which carries the navbar and footer.
+
+`app/pages/cv.vue` is the third renderer over the same record: an A4 document,
+printed to `public/Semir_Mahovkic-CV.pdf` by `scripts/build-cv-pdf.mjs` when
+you run `npm run cv`. It has its own layout, `app/layouts/cv.vue` — a back
+link and a download button in a `print:hidden` header — so nothing outside the
+document's own `<article>` reaches the PDF.
+
+**Its history is one entry per project, the same list `/work` renders.** An
+earlier version merged consecutive projects at one employer, copying the old
+Canva CV's layout — it printed the three Endava engagements as a single
+`11/2021 - 07/2024` row and lost the dates of each. The document is generated
+from the record so that the two cannot disagree; a layout that collapses the
+record is that guarantee quietly failing.
+
+Pagination is the printer's: entries carry `break-inside-avoid`, section heads
+`break-after-avoid`, so adding a job reflows the document instead of breaking
+a hand-measured page split.
+
+The `@page cv` rule in `main.css` is named for the same reason the tokens are
+scoped — unnamed, it would resize and re-margin every printed page on the
+site, `/` and `/work` included. **It is bound from `<body>`, not from the
+document's own root:** `pages/cv.vue` sets a `cv-document` class via
+`useHead`'s `bodyAttrs`, and `main.css` matches it with `body.cv-document`.
+Binding it to the `<article>` instead leaves the default page on every
+ancestor above it, and Chrome breaks into the named page and back out again,
+emitting a blank fifth sheet for four pages of content — "simplifying" this
+back to a class on the article reintroduces that page.
 
 ## Design
 
@@ -88,9 +139,9 @@ indigo `#2d46b9`, measuring 7.9:1 on white — legible as type anywhere, which i
 what lets a single value do every job. If you propose a new accent and it can't
 clear 4.5:1 on white, it doesn't belong in that variable. `--color-on-accent` is
 the paired token for type set on an accent fill — currently white, since white
-clears 7.9:1 on both accent weights. Nothing sets type on an accent fill outside
-the masthead, so `--color-on-accent` is waiting for the next one rather than in
-use.
+clears 7.9:1 on both accent weights. The masthead and the CV's Download PDF
+button are the only places that set type on an accent fill, and both use
+`--color-on-accent`.
 
 The accent's lighter weights do work below the masthead, and neither of them
 reaches for that token: `--color-accent-rule` draws link underlines and the

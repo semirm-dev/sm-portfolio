@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  Two pages, listed by hand. There is no generator because a site this size does
-  not need one — but that means adding a page requires editing three places: the
-  file under app/pages/, `nitro.prerender.routes` in nuxt.config.ts, and here.
+  Three pages, listed by hand. There is no generator because a site this size
+  does not need one — but that means adding a page requires editing three
+  places: the file under app/pages/, `nitro.prerender.routes` in
+  nuxt.config.ts, and here.
 
   URLs use the www host: the apex 308-redirects to it, and a sitemap that lists
   redirects makes a crawler take two hops to reach every page.
@@ -17,5 +18,8 @@
   </url>
   <url>
     <loc>https://www.semirmahovkic.xyz/work</loc>
+  </url>
+  <url>
+    <loc>https://www.semirmahovkic.xyz/cv</loc>
   </url>
 </urlset>

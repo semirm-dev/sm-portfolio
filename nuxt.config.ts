@@ -39,7 +39,7 @@ export default defineNuxtConfig({
   // honoured regardless of preset. Do not "simplify" this to a wildcard.
   nitro: {
     prerender: {
-      routes: ['/', '/work'],
+      routes: ['/', '/work', '/cv'],
     },
   },
 

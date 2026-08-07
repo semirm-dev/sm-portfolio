@@ -28,6 +28,7 @@ export async function useCareer() {
   }
 
   const record = computed(() => data.value ?? unavailable(error.value))
+  const projectsNewest = computed(() => projectsNewestFirst(record.value.projects))
 
   return {
     record,
@@ -35,7 +36,7 @@ export async function useCareer() {
     skills: computed(() => record.value.skills),
     selectedWork: computed(() => record.value.selectedWork),
     projects: computed(() => record.value.projects),
-    projectsNewest: computed(() => projectsNewestFirst(record.value.projects)),
+    projectsNewest,
     total: computed(() => careerDuration(record.value.projects)),
     /** Whole years, for the prose and the manifest. `total` is the exact span. */
     years: computed(() => careerYears(record.value.projects)),

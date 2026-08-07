@@ -178,6 +178,29 @@
   }
 }
 
+/*
+ * The CV's sheet. Named, and bound to the document by `body.cv-document`
+ * below: `@page` cannot be scoped with a selector, so an unnamed rule would
+ * resize and re-margin every printed page on the site. `/` and `/work` are
+ * still expected to print sanely.
+ *
+ * The bottom margin is deeper than the sides to leave room for the running
+ * foot the build script draws into it.
+ */
+@page cv {
+  size: A4;
+  margin: 16mm 16mm 20mm;
+}
+
+/*
+ * Bound from `<body>` rather than from the document itself: see the note in
+ * `pages/cv.vue`. Only the CV route sets this class, so `/` and `/work` keep
+ * the browser's default sheet.
+ */
+body.cv-document {
+  page: cv;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

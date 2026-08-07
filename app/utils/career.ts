@@ -50,7 +50,8 @@ export function formatMonth(value: string): string {
   return `${String(month).padStart(2, '0')}/${year}`
 }
 
-export function formatProjectEnd(project: Project): string {
+/** Takes the two fields it reads rather than a whole `Project`. */
+export function formatProjectEnd(project: Pick<Project, 'end' | 'current'>): string {
   return project.current ? 'Present' : formatMonth(project.end)
 }
 
@@ -154,4 +155,13 @@ export function careerYears(projects: Project[]): number {
 /** Fills the `{years}` token a stored summary paragraph may carry. */
 export function resolveSummaryText(text: string, years: number): string {
   return text.replaceAll('{years}', String(years))
+}
+
+/**
+ * `https://www.evoila.com/` reads as `evoila.com`. A CV prints its links rather
+ * than hiding them behind link text, and the scheme and the `www.` carry no
+ * information a reader needs.
+ */
+export function shortUrl(url: string): string {
+  return url.replace(/^https?:\/\//, '').replace(/^www\./, '').replace(/\/$/, '')
 }
