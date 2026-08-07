@@ -61,7 +61,7 @@ useHead({ bodyAttrs: { class: 'cv-document' } })
       bold runs through a paragraph are the colour this document is without.
       `{years}` still resolves, in both branches.
     -->
-    <div class="mb-[11mm]">
+    <div class="mb-[9mm]">
       <p
         v-for="(paragraph, index) in profile.summary"
         :key="index"
@@ -77,7 +77,7 @@ useHead({ bodyAttrs: { class: 'cv-document' } })
     </div>
 
     <CvSectionHead>Technical skills</CvSectionHead>
-    <div class="mb-[11mm]">
+    <div class="mb-[9mm]">
       <!-- The separator is joined here, not stored: the record should not
            decide how it gets printed. -->
       <div
@@ -93,7 +93,7 @@ useHead({ bodyAttrs: { class: 'cv-document' } })
     </div>
 
     <CvSectionHead>Contact</CvSectionHead>
-    <div class="mb-[11mm] grid grid-cols-[29mm_minmax(0,1fr)] items-baseline gap-x-[4mm] gap-y-[3mm]">
+    <div class="mb-[9mm] grid break-inside-avoid grid-cols-[29mm_minmax(0,1fr)] items-baseline gap-x-[4mm] gap-y-[3mm]">
       <CvField label="Email">
         {{ profile.email }}
       </CvField>
