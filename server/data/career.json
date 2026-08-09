@@ -251,8 +251,9 @@
       "start": "2019-06",
       "end": "2021-11",
       "technologies": [
-        "Angular",
         "dotnet",
+        "Typescript",
+        "Angular",
         "AWS",
         "Websockets",
         "Redis",
@@ -275,6 +276,7 @@
       "end": "2022-07",
       "technologies": [
         "dotnet",
+        "Typescript",
         "Angular",
         "Microservices",
         "Embedded software"
@@ -366,9 +368,10 @@
       "end": "2026-07",
       "technologies": [
         "Golang",
+        "Typescript",
+        "React",
         "Aeron",
         "Postgres",
-        "React",
         "FIX",
         "Claude Code"
       ],
@@ -390,10 +393,11 @@
       "end": "2026-07",
       "technologies": [
         "PHP",
+        "Typescript",
+        "Vue",
         "Laravel",
         "Notifications",
         "Inertia",
-        "Vue",
         "Postgres",
         "Claude Code"
       ],
