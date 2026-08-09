@@ -70,6 +70,7 @@
         "Aeron",
         "RabbitMQ",
         "MQTT",
+        "Redis PubSub",
         "AWS SQS/SNS",
         "WebSockets",
         "FIX Protocol"
