@@ -29,12 +29,7 @@
           "text": "Golang",
           "emphasis": "accent"
         },
-        ", ",
-        {
-          "text": "Kubernetes",
-          "emphasis": "accent"
-        },
-        ", and cloud-native technologies. My expertise covers soft real-time systems, asynchronous communications, and distributed applications for some really cool and big projects (",
+        " and cloud-native technologies. My expertise covers soft real-time systems, asynchronous communications, and distributed applications for some really cool and big projects (",
         {
           "text": "Cisco's Cloud Native Firewall",
           "emphasis": "strong"
