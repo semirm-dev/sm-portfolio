@@ -69,7 +69,10 @@ Data lives in JSON, maths lives in TypeScript, and neither reaches across.
 
 **The record is the whole CV, not just the job history.** It carries `profile`
 (contact, location, availability, languages, ownership, and the summary
-paragraphs), `skills`, `selectedWork`, `technologyAliases` and `projects`. No
+paragraphs), `skills`, `selectedWork`, `technologyAliases` and `projects` —
+each of which carries the role `title` held on it, where there was one worth
+naming. `profile.location` is *his* — `Remote` — and each project's is the
+employer's office; nothing may print one in place of the other. No
 component may state a fact about Semir in its own markup — the pages are
 renderers over this record, which is what lets `app/pages/cv.vue` be a third
 one, printed to PDF rather than served as HTML. That includes the navbar
@@ -111,16 +114,38 @@ you run `npm run cv`. It has its own layout, `app/layouts/cv.vue` — a back
 link and a download button in a `print:hidden` header — so nothing outside the
 document's own `<article>` reaches the PDF.
 
-**Its history is one entry per project, the same list `/work` renders.** An
-earlier version merged consecutive projects at one employer, copying the old
-Canva CV's layout — it printed the three Endava engagements as a single
-`11/2021 - 07/2024` row and lost the dates of each. The document is generated
-from the record so that the two cannot disagree; a layout that collapses the
-record is that guarantee quietly failing.
+**Its history is one row per project, the same list `/work` renders — and no
+row may lose its dates.** An earlier version merged consecutive projects at
+one employer, copying the old Canva CV's layout — it printed the three Endava
+engagements as a single `11/2021 - 07/2024` row and lost the dates of each.
+The document is generated from the record so that the two cannot disagree; a
+layout that *merges* rows is that guarantee quietly failing.
+
+Contact details are one row under the name, not a labelled section — they are
+the first thing looked for. LinkedIn and GitHub print as link text because
+nobody types a LinkedIn slug; his own domain prints in full because someone
+holding a printed sheet might.
+
+*Condensing* a row is not merging it. Everything starting before `EARLIER_ROLES_BEFORE`
+(`2021-11`, the month the Endava run begins) prints through `CvEarlierEntry`
+instead of `CvEntry`: still one row per project, still its own start and end,
+but three lines rather than a full block. Only the responsibility list is
+dropped, and `/work` still has it. The cut is computed in
+`app/utils/career.ts`, not flagged in the record — a `condensed: true` field
+would be the record deciding how it gets printed, which is the same mistake as
+storing the separator between technologies.
 
 Pagination is the printer's: entries carry `break-inside-avoid`, section heads
 `break-after-avoid`, so adding a job reflows the document instead of breaking
 a hand-measured page split.
+
+**One break is forced, and only one:** `break-before-page` on the Work
+experience head, so page one is always the header, the profile and the skills
+and nothing else. That page is a fixed unit rather than a consequence — left
+to flow it picks up whichever entry happens to fit, and the first thing a
+reader sees changes shape every time a job is added. It is inert on screen:
+fragmentation applies to paged media only. Do not add a second one; every
+other page boundary must stay a consequence of the content.
 
 The `@page cv` rule in `main.css` is named for the same reason the tokens are
 scoped — unnamed, it would resize and re-margin every printed page on the

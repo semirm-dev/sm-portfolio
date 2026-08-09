@@ -7,6 +7,12 @@
  */
 export interface Project {
   company: string
+  /**
+   * The role held on this engagement, where it differs from `profile.title` or
+   * is worth naming — `Senior Golang Engineer`, `Senior Cloud Native Engineer`.
+   * Optional: the two earliest entries predate any title worth printing.
+   */
+  title?: string
   /** What the graph labels this entry, where `project` is the wrong name to show. */
   label?: string
   location: string

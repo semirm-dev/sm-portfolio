@@ -4,7 +4,7 @@
     "handle": "semir.mahovkic",
     "title": "Senior Software Engineer",
     "location": "Remote",
-    "photo": "/semir-mahovkic.png",
+    "photo": "/semir-mahovkic.jpg",
     "availability": "open",
     "email": "smahovkic89@gmail.com",
     "website": "https://semirmahovkic.xyz",
@@ -24,149 +24,80 @@
     ],
     "summary": [
       [
-        "Over {years} years of experience in software development, I specialize in ",
-        {
-          "text": "Golang",
-          "emphasis": "accent"
-        },
-        " and ",
+        "Senior Software Engineer with {years}+ years of experience designing high-throughput, ",
         {
           "text": "cloud-native",
           "emphasis": "accent"
         },
-        " technologies. My expertise covers soft real-time systems, asynchronous communications, and distributed applications for some really cool and big projects (",
+        " architectures, distributed systems, and low-latency platforms. Proven expertise in ",
         {
-          "text": "Cisco's Cloud Native Firewall",
+          "text": "Golang",
+          "emphasis": "accent"
+        },
+        ", Kubernetes ecosystem, asynchronous messaging, and end-to-end application lifecycle management. Track record of delivering critical software for industry leaders, including ",
+        {
+          "text": "Cisco",
           "emphasis": "strong"
         },
         ", ",
         {
-          "text": "Sportradar's data sync/streaming platform",
+          "text": "Sportradar",
           "emphasis": "strong"
         },
-        ", ",
+        ", and ",
         {
-          "text": "Agilent's laboratory custom analysis",
+          "text": "Broadcom/VMware",
           "emphasis": "strong"
         },
-        ", ",
-        {
-          "text": "TVM's low latency trading platform — submillisecond",
-          "emphasis": "strong"
-        },
-        "), utilizing tools like ",
-        {
-          "text": "RabbitMQ",
-          "emphasis": "strong"
-        },
-        ", ",
-        {
-          "text": "MQTT",
-          "emphasis": "strong"
-        },
-        ", ",
-        {
-          "text": "SQS/SNS",
-          "emphasis": "strong"
-        },
-        ", ",
-        {
-          "text": "PubSub",
-          "emphasis": "strong"
-        },
-        ", ",
-        {
-          "text": "gRPC",
-          "emphasis": "strong"
-        },
-        ", ",
-        {
-          "text": "Aeron",
-          "emphasis": "strong"
-        },
-        " and ",
-        {
-          "text": "WebSockets",
-          "emphasis": "strong"
-        },
-        "."
-      ],
-      [
-        "Additionally, I have experience setting up, configuring and implementing Keycloak IAM on Kubernetes environments, integrating it with Grafana, ArgoCD and backend services (Golang and .NET) to enable smooth authentication and access control."
-      ],
-      [
-        "I can take full ownership of an application's lifecycle — from coding and building to deploying and monitoring."
+        ". Experienced in AI-assisted software development to accelerate engineering velocity."
       ]
     ]
   },
   "skills": [
     {
-      "name": "Golang",
+      "name": "Languages & Core",
       "technologies": [
+        "Golang (Gin)",
+        "C# (.NET Core)",
+        "PHP (Laravel)",
+        "TypeScript (Node)"
+      ]
+    },
+    {
+      "name": "Messaging & Transport",
+      "technologies": [
+        "gRPC (Streams)",
+        "Aeron",
         "RabbitMQ",
         "MQTT",
-        "SQS",
-        "SNS",
-        "gRPC + streams",
+        "AWS SQS/SNS",
         "WebSockets",
-        "Kubernetes Operators",
-        "Gin",
-        "Gorm",
-        "Jaeger",
+        "FIX Protocol"
+      ]
+    },
+    {
+      "name": "Cloud Native, DevOps & Observability",
+      "technologies": [
+        "Kubernetes (Operators, CRDs)",
         "Docker",
-        "GraphQL",
-        "Temporal",
-        "FX",
-        "Wire",
-        "Aeron",
-        "FIX",
-        "Claude Code"
-      ]
-    },
-    {
-      "name": "PHP",
-      "technologies": [
-        "Laravel",
-        "Websockets",
-        "Redis",
-        "MySQL",
-        "SQS/SNS",
-        "Postgres",
-        "RabbitMQ",
-        "Inertia",
-        "Notifications",
-        "Reverb",
-        "Social Logins",
-        "PDF generating",
-        "Claude Code"
-      ]
-    },
-    {
-      "name": "C#",
-      "technologies": [
-        ".NET Core",
-        "IdentityServer4",
-        "HangFire",
-        "Jaeger",
-        "WebSockets",
-        "Automapper",
-        "Docker"
-      ]
-    },
-    {
-      "name": "Kubernetes",
-      "technologies": [
-        "Operators/CRDs",
-        "Helm charts",
-        "ArgoCD (app-of-apps)",
+        "Helm",
+        "ArgoCD (GitOps app-of-apps pattern)",
         "Prometheus",
-        "Loki",
-        "RabbitMQ",
-        "Jaeger",
-        "Elasticsearch",
         "Grafana",
         "OpenTelemetry Collector",
-        "SealedSecrets"
+        "Loki",
+        "Jaeger",
+        "Keycloak IAM"
+      ]
+    },
+    {
+      "name": "Databases & Caching",
+      "technologies": [
+        "PostgreSQL",
+        "MySQL",
+        "Redis",
+        "MongoDB",
+        "Elasticsearch"
       ]
     }
   ],
@@ -185,6 +116,11 @@
       "org": "Endava · Sportradar",
       "title": "Sportradar",
       "summary": "Real-time data synchronisation services for Sportradar, a leading sports streaming platform. Golang, gRPC streams and Kubernetes, kept low-latency across the distribution path."
+    },
+    {
+      "org": "Evoila · Broadcom/VMware",
+      "title": "VCF Aria Automation",
+      "summary": "Custom TypeScript plugins, actions and workflows in Aria Automation, so customers can automate VM provisioning across their private cloud. Catalog item forms, and internal libraries reworked for reusability and type safety."
     }
   ],
   "technologyAliases": {
@@ -210,10 +146,7 @@
         "SQLite"
       ],
       "responsibilities": [
-        "Developed backend services for a dental monitoring application, enhancing service efficiency.",
-        "Built a location-based e-commerce platform for heavy truck and machinery rentals, optimizing the user experience for real-time transactions.",
-        "Used AngularJS for client facing frontends.",
-        "Led the development of Android applications for restaurants and commercialists to manage orders and track status in real-time, improving workflow and reducing errors."
+        "Developed PHP/Laravel backends, mobile APIs, and Android applications for logistics and dental monitoring platforms."
       ]
     },
     {
@@ -236,18 +169,17 @@
         "gRPC"
       ],
       "responsibilities": [
-        "Developed real-time backend services for a cryptocurrency exchange, providing instant price updates across web and mobile platforms.",
-        "Utilized Kubernetes for managing and orchestrating scalable services, ensuring high availability and reliability in a cloud-native environment.",
-        "Integrated RabbitMQ for event-driven messaging and Websockets/MQTT for real-time communication."
+        "Built real-time Golang microservices and Kubernetes infrastructure for a crypto exchange platform utilizing RabbitMQ, gRPC, and WebSockets."
       ]
     },
     {
       "company": "Mistral",
+      "title": "Software Engineer",
       "location": "Sarajevo, Bosnia and Herzegovina",
       "website": "https://www.mistral.ba/",
       "project": "MTVO",
       "projectUrl": "https://www.activationstation.org/purpose",
-      "summary": "Masters of Void Organization.",
+      "client": "Masters of Void Organization",
       "start": "2019-06",
       "end": "2021-11",
       "technologies": [
@@ -260,13 +192,12 @@
         "MSSQL"
       ],
       "responsibilities": [
-        "Developed real-time data synchronization services for a virtual goods trading platform, enabling smooth, cross-browser synchronization.",
-        "Assisted frontend team with building client facing features with Angular to speed up the development.",
-        "Setup testing environment for continuous integration and deployment pipelines, ensuring high-quality code."
+        "Developed real-time data synchronization backends using .NET, WebSockets, Redis, and AWS for virtual asset trading platforms."
       ]
     },
     {
       "company": "Endava",
+      "title": "Senior Software Engineer",
       "location": "London, UK",
       "website": "https://www.endava.com/",
       "project": "Agilent",
@@ -282,12 +213,12 @@
         "Embedded software"
       ],
       "responsibilities": [
-        "Developed .NET microservices running on the instruments themselves, custom hardware built on Windows Embedded.",
-        "Built Angular interfaces for configuring analysis runs and reading back results."
+        "Developed .NET microservices deployed on Windows Embedded hardware for laboratory instruments and Angular interfaces for custom chemical analysis workflows."
       ]
     },
     {
       "company": "Endava",
+      "title": "Senior Software Engineer",
       "location": "London, UK",
       "website": "https://www.endava.com/",
       "project": "CSFN",
@@ -306,13 +237,12 @@
         "Redis"
       ],
       "responsibilities": [
-        "Led a team in developing Kubernetes Operators for Cisco's Firewall and VPN, automating deployments, security configurations, and resource management.",
-        "Designed and implemented a Kubernetes Operator that integrates AWS Shield with newly deployed Kubernetes services, enhancing service security.",
-        "Implemented resource access control by refining Kubernetes RBAC and integrating AWS IAM, enhancing security across cloud environments."
+        "Led engineering team developing Kubernetes Operators for Cisco's Cloud Native Firewall & VPN to automate lifecycle, resource management, and security policies. Integrated AWS Shield and IAM RBAC."
       ]
     },
     {
       "company": "Endava",
+      "title": "Senior Software Engineer",
       "location": "London, UK",
       "website": "https://www.endava.com/",
       "project": "Sportradar",
@@ -326,11 +256,12 @@
         "Redis"
       ],
       "responsibilities": [
-        "Implemented real-time data synchronization services for Sportradar, a leading sports streaming platform, leveraging Golang, gRPC and Kubernetes to ensure low-latency of data distribution."
+        "Implemented high-concurrency real-time data synchronization services in Golang, gRPC, and Kubernetes for sports streaming and odds distribution."
       ]
     },
     {
       "company": "Evoila",
+      "title": "Senior Cloud Native Engineer",
       "location": "Mainz, Germany",
       "website": "https://www.evoila.com/",
       "project": "MFC",
@@ -350,15 +281,15 @@
         "Claude Code"
       ],
       "responsibilities": [
-        "Building and managing Kubernetes environments, using Helm charts to define, package, and deploy microservices efficiently.",
-        "Implementing GitOps CD with ArgoCD, using the app-of-apps pattern to automate and streamline Kubernetes application deployments.",
-        "Developed and integrated an observability stack on Kubernetes, setting up Grafana, Loki, Prometheus, Elasticsearch, and OpenTelemetry Collector to enable monitoring, logging, and distributed tracing across services.",
-        "Configured and integrated Keycloak IAM, enabling seamless login for Grafana, ArgoCD, and backend services (Golang and .NET).",
-        "Developing asynchronous services to synchronize data from multiple data feed providers, improving data accuracy and reducing latency."
+        "Built asynchronous .NET microservices to stream and reconcile data feed providers, improving data accuracy and reducing processing latency.",
+        "Designed GitOps CD pipelines via ArgoCD using the app-of-apps pattern to automate and streamline multi-service Kubernetes deployments.",
+        "Deployed a complete Kubernetes observability stack (Grafana, Loki, Prometheus, Elasticsearch, OpenTelemetry Collector) for distributed tracing and monitoring.",
+        "Configured and integrated Keycloak IAM SSO across Grafana, ArgoCD, and backend services (.NET)."
       ]
     },
     {
       "company": "ByteBuds",
+      "title": "Senior Golang Engineer",
       "location": "Sarajevo, Bosnia and Herzegovina",
       "website": "https://bytebuds.io/",
       "project": "TVM",
@@ -376,11 +307,9 @@
         "Claude Code"
       ],
       "responsibilities": [
-        "Developed low latency backend system for online trading platform with zero allocs in hot path.",
-        "Implemented client facing interfaces for order placement and tracking on the platform.",
-        "Used Aeron protocol to implement low latency communication between services.",
-        "Integrated with multiple LPs (liquidity providers), end to end order executions.",
-        "Setup of Github actions for automated deployments."
+        "Engineered a sub-millisecond, low-latency online trading backend in Golang with zero-allocation memory patterns in hot execution paths.",
+        "Implemented ultra-low latency inter-service communication using the Aeron messaging protocol.",
+        "Integrated multiple Liquidity Provider (LP) APIs for real-time automated order routing and execution."
       ]
     },
     {
@@ -405,6 +334,7 @@
     },
     {
       "company": "Evoila",
+      "title": "Senior Software Engineer / Infrastructure Automation Specialist",
       "label": "VMware",
       "location": "Mainz, Germany",
       "website": "https://www.evoila.com/",
@@ -420,9 +350,8 @@
         "Claude Code"
       ],
       "responsibilities": [
-        "Implement custom forms in Aria Automation for catalog items so customers can automate deployment of VMs for their private Cloud infrastructure.",
-        "Implementing custom solutions (plugins) for automating infrastructure configurations and management in Aria Automation (custom workflows, actions).",
-        "Improve existing libraries for better reusability and type safety, taking advantage of the TypeScript type system."
+        "Architected custom TypeScript plugins, actions, and workflows in Aria Automation to automate VM provisioning and private cloud infrastructure management.",
+        "Enhanced internal automation libraries leveraging TypeScript's advanced type system to maximize reusability, type safety, and maintainability."
       ]
     }
   ]

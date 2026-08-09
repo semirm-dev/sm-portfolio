@@ -80,6 +80,40 @@ export function projectsNewestFirst(projects: Project[]): Project[] {
   return [...projects].reverse()
 }
 
+/**
+ * Where the CV stops printing a full entry and starts printing a dated line.
+ *
+ * Not an arbitrary date: `2021-11` is the month the Endava engagements begin,
+ * and with them the run of cloud-native infrastructure work the document is
+ * about. What comes before it is a different career, and a reader deciding on
+ * an interview does not need five bullets of it.
+ *
+ * The rule this is allowed to bend, and the one it is not: an entry may lose
+ * its responsibilities, but no entry may lose its dates. The old Canva CV
+ * merged the three Endava engagements into one `11/2021 - 07/2024` row, and
+ * the document then disagreed with the record it was generated from. Every
+ * project still prints its own start and end below — condensed, not merged.
+ */
+export const EARLIER_ROLES_BEFORE = '2021-11'
+
+/**
+ * Splits the CV's history into the entries printed in full and the condensed
+ * tail. Order is preserved, so both halves stay in the record's order rather
+ * than being re-sorted by a date that overlapping spans cannot express.
+ */
+export function splitEarlierRoles(projects: Project[]): {
+  recent: Project[]
+  earlier: Project[]
+} {
+  const cutoff = monthStart(EARLIER_ROLES_BEFORE)
+  const isEarlier = (project: Project) => monthStart(project.start) < cutoff
+
+  return {
+    recent: projects.filter(project => !isEarlier(project)),
+    earlier: projects.filter(isEarlier),
+  }
+}
+
 export function normaliseTechnology(
   aliases: Record<string, string>,
   name: string,
@@ -158,9 +192,12 @@ export function resolveSummaryText(text: string, years: number): string {
 }
 
 /**
- * `https://www.evoila.com/` reads as `evoila.com`. A CV prints its links rather
- * than hiding them behind link text, and the scheme and the `www.` carry no
- * information a reader needs.
+ * `https://semirmahovkic.xyz/` reads as `semirmahovkic.xyz`. The scheme and the
+ * `www.` carry no information a reader needs.
+ *
+ * The CV's header row names LinkedIn and GitHub rather than printing their
+ * addresses — nobody types a LinkedIn slug — but his own domain is short, and
+ * it is the one address a reader might copy off a printed sheet.
  */
 export function shortUrl(url: string): string {
   return url.replace(/^https?:\/\//, '').replace(/^www\./, '').replace(/\/$/, '')

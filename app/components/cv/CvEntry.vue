@@ -40,23 +40,28 @@ const technologies = computed(() =>
         one; a rule caps the header without competing. It also survives a
         hand-print, where background graphics are off and no fill exists.
       -->
-      <h3 class="-mt-[1mm] mb-[2mm] border-b border-rule pb-[1.4mm] text-[13.5pt] font-semibold leading-[1.3] tracking-[-0.01em]">
+      <h3 class="-mt-[1mm] border-b border-rule pb-[1.4mm] text-[13.5pt] font-semibold leading-[1.3] tracking-[-0.01em]">
         {{ project.company }}<span class="text-[11.5pt] font-normal tracking-normal text-muted"> — {{ project.location }}</span>
       </h3>
 
-      <div class="grid grid-cols-[29mm_minmax(0,1fr)] items-baseline gap-x-[4mm] gap-y-[0.8mm]">
-        <CvField
-          v-if="project.website"
-          label="Website"
-        >
-          <a
-            :href="project.website"
-            rel="noopener noreferrer"
-            target="_blank"
-            class="underline decoration-rule underline-offset-2"
-          >{{ shortUrl(project.website) }}</a>
-        </CvField>
+      <!--
+        The role, not the employer's name again. It sits outside the field grid
+        below because it is the second half of the heading, not a labelled
+        value — a `Title` label would be the only one whose label says nothing
+        the value doesn't.
+      -->
+      <p
+        v-if="project.title"
+        class="mt-[1.6mm] mb-[2mm] font-semibold"
+      >
+        {{ project.title }}
+      </p>
+      <div
+        v-else
+        class="mb-[2mm]"
+      />
 
+      <div class="grid grid-cols-[29mm_minmax(0,1fr)] items-baseline gap-x-[4mm] gap-y-[0.8mm]">
         <!--
           The name carries the link and the URL is not printed, unlike the
           Website row above. Those are bare domains; these are deep links — the

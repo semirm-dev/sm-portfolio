@@ -145,9 +145,14 @@ const workGrid = useReveal()
           Selected work
         </SectionHead>
 
+        <!--
+          Two columns before four: at `lg` a quarter of the container is
+          narrower than these summaries read well in, so the row only splits
+          into four once `xl` has widened the container enough to carry it.
+        -->
         <div
           ref="workGrid"
-          class="grid gap-3 lg:grid-cols-3"
+          class="grid gap-3 md:grid-cols-2 xl:grid-cols-4"
         >
           <WorkCard
             v-for="work in selectedWork"

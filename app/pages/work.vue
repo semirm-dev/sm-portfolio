@@ -9,6 +9,16 @@ usePageSeo({
   siteName: profile.value.handle,
   description: 'Full work history of Semir Mahovkic, senior software engineer: Cisco Secure Firewall Cloud Native, Sportradar, MultiFeedCenter, TradeView Markets and more.',
 })
+
+/*
+ * The same split the CV makes, from the same constant — the two pages drawing
+ * their line in different places would be worse than neither drawing one.
+ *
+ * What differs is what the split is *for*. The CV condenses the tail to save a
+ * page; here every entry stays exactly as it was, and the heading only marks
+ * where the current run of work begins.
+ */
+const history = computed(() => splitEarlierRoles(projectsNewest.value))
 </script>
 
 <template>
@@ -29,11 +39,34 @@ usePageSeo({
 
       <ol class="mt-10">
         <ProjectEntry
-          v-for="project in projectsNewest"
+          v-for="project in history.recent"
           :key="projectKey(project)"
           :project="project"
         />
       </ol>
+
+      <!--
+        Two lists rather than a divider row inside one: an entry's hover reads
+        its next sibling (`has-[+li:hover]`) to drop its own border, and a
+        label sitting between two entries as an `li` would be that sibling.
+
+        It borrows the masthead heading's shape above — accent label, muted
+        note, rule beneath — because it does the same job one level down.
+      -->
+      <template v-if="history.earlier.length">
+        <h2 class="mt-12 flex flex-wrap items-baseline justify-between gap-3 border-b border-rule pb-3 text-[12.5px] font-semibold uppercase tracking-[0.13em] text-muted">
+          <span class="text-accent">Earlier roles</span>
+          <span>before {{ formatMonth(EARLIER_ROLES_BEFORE) }}</span>
+        </h2>
+
+        <ol class="mt-8">
+          <ProjectEntry
+            v-for="project in history.earlier"
+            :key="projectKey(project)"
+            :project="project"
+          />
+        </ol>
+      </template>
     </div>
   </section>
 </template>

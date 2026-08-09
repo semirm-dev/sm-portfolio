@@ -54,6 +54,19 @@ defineProps<{ project: Project }>()
         <span class="text-[13px] font-normal tracking-[0.01em] text-muted">{{ project.location }}</span>
       </h2>
 
+      <!--
+        The role, where the record names one. It reads as part of the heading
+        rather than as another labelled row like `Project` below: the employer
+        and the title are one fact, and splitting them across two label styles
+        would say otherwise.
+      -->
+      <p
+        v-if="project.title"
+        class="mt-1 text-[14.5px] font-medium"
+      >
+        {{ project.title }}
+      </p>
+
       <p class="mt-2.5 flex flex-wrap items-baseline gap-x-2 gap-y-1">
         <span class="text-[11px] font-semibold uppercase tracking-[0.11em] text-muted">Project</span>
         <!--
