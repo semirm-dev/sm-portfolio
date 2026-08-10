@@ -123,8 +123,8 @@
     },
     {
       "org": "Evoila · Broadcom/VMware",
-      "title": "VCF Aria Automation",
-      "summary": "Custom TypeScript plugins, actions and workflows in Aria Automation, so customers can automate VM provisioning across their private cloud. Catalog item forms, and internal libraries reworked for reusability and type safety."
+      "title": "VCF Automation 9 — Self-Service VM Provisioning",
+      "summary": "Custom actions, workflows and configuration elements in VCF Automation 9, so customers can automate VM provisioning across their private cloud. Catalog item forms, and internal libraries reworked for reusability and type safety."
     }
   ],
   "technologyAliases": {
@@ -344,20 +344,23 @@
       "label": "VMware",
       "location": "Mainz, Germany",
       "website": "https://www.evoila.com/",
-      "project": "VCF Aria Automation",
+      "project": "Self-service VM provisioning on VCF Automation 9",
       "projectUrl": "https://techdocs.broadcom.com/us/en/vmware-cis/vcf/vcf-9-0-and-later/9-0/overview-of-vmware-cloud-foundation-9/what-is-vmware-cloud-foundation-and-vmware-vsphere-foundation/vcf-automation-overview.html",
-      "client": "Broadcom/VMware",
+      "client": "Broadcom Professional Services",
       "start": "2025-11",
       "end": "2026-07",
       "current": true,
       "technologies": [
         "Typescript",
-        "VMware Cloud Automation",
+        "VCF Automation 9",
+        "vRealize Orchestrator",
+        "NetBox IPAM",
         "Claude Code"
       ],
       "responsibilities": [
-        "Architected custom TypeScript plugins, actions, and workflows in Aria Automation to automate VM provisioning and private cloud infrastructure management.",
-        "Enhanced internal automation libraries leveraging TypeScript's advanced type system to maximize reusability, type safety, and maintainability."
+        "Implemented a self-service VM provisioning catalog on VCF Automation 9 (formerly Aria Automation) — 20+ Orchestrator actions, workflows and configuration elements on a dynamic request form and Kubernetes-native VM deployment.",
+        "Automated IP address management against NetBox IPAM and vCenter — live IP availability, hostname generation with uniqueness validation, and event-driven IP registration after deployment (via VCF Automation subscriptions).",
+        "Improved shared, reusable TypeScript automation libraries and built a generic, strongly typed configuration layer on top of them, turning environment-specific mappings into configuration instead of code."
       ]
     }
   ]

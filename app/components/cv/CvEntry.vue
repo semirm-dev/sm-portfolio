@@ -65,9 +65,9 @@ const technologies = computed(() =>
         <!--
           The name carries the link and the URL is not printed, unlike the
           Website row above. Those are bare domains; these are deep links — the
-          VCF Aria one is 180 characters — and a row that wraps three times to
-          show an address nobody types is worse than an underline. Clickable in
-          the PDF, which is how this is read.
+          VCF Automation one is 180 characters — and a row that wraps three
+          times to show an address nobody types is worse than an underline.
+          Clickable in the PDF, which is how this is read.
         -->
         <CvField label="Project">
           <a
