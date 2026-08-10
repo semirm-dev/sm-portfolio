@@ -170,6 +170,7 @@
         "AWS",
         "Redis",
         "Postgres",
+        "Cassandra",
         "gRPC"
       ],
       "responsibilities": [
@@ -307,6 +308,7 @@
         "React",
         "Aeron",
         "Postgres",
+        "ClickHouse",
         "FIX",
         "Claude Code"
       ],
