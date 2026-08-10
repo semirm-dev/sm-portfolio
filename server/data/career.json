@@ -59,8 +59,8 @@
       "technologies": [
         "Golang (Gin)",
         "C# (.NET Core)",
-        "PHP (Laravel)",
-        "TypeScript (Node)"
+        "TypeScript (Node)",
+        "PHP (Laravel)"
       ]
     },
     {
@@ -98,7 +98,10 @@
         "MySQL",
         "Redis",
         "MongoDB",
-        "Elasticsearch"
+        "Elasticsearch",
+        "SQLite",
+        "Cassandra",
+        "ClickHouse"
       ]
     }
   ],
