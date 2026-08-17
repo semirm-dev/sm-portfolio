@@ -12,9 +12,9 @@
     "linkedin": "https://www.linkedin.com/in/semir-mahovkic-a42ba7135",
     "languages": [
       "go",
-      "php",
       "csharp",
-      "typescript"
+      "typescript",
+      "php"
     ],
     "ownership": [
       "code",
