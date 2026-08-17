@@ -24,32 +24,37 @@
     ],
     "summary": [
       [
-        "Senior Software Engineer with {years}+ years of experience designing high-throughput, ",
+        "{years}+ years across trading, real-time data and cloud infrastructure — sub-millisecond backends for ",
         {
-          "text": "cloud-native",
-          "emphasis": "accent"
+          "text": "TradeView Markets",
+          "emphasis": "strong"
         },
-        " architectures, distributed systems, and low-latency platforms. Proven expertise in ",
-        {
-          "text": "Golang",
-          "emphasis": "accent"
-        },
-        ", the Kubernetes ecosystem, asynchronous messaging, and end-to-end application lifecycle management. Track record of delivering critical software for industry leaders, including ",
+        ", Kubernetes Operators for ",
         {
           "text": "Cisco",
           "emphasis": "strong"
         },
-        ", ",
+        " Secure Firewall Cloud Native, real-time odds distribution for ",
         {
           "text": "Sportradar",
           "emphasis": "strong"
         },
-        ", and ",
+        ", embedded .NET inside ",
         {
-          "text": "Broadcom/VMware",
+          "text": "Agilent",
           "emphasis": "strong"
         },
-        ". Experienced in AI-assisted software development to accelerate engineering velocity."
+        "'s laboratory instruments, and self-service VM provisioning on ",
+        {
+          "text": "VMware",
+          "emphasis": "strong"
+        },
+        "'s VCF Automation. ",
+        {
+          "text": "Golang",
+          "emphasis": "accent"
+        },
+        " and the Kubernetes ecosystem first, .NET and TypeScript where the work calls for it. End-to-end ownership — code, build, deploy, monitor."
       ]
     ]
   },
