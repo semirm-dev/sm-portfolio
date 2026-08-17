@@ -50,16 +50,12 @@
           "emphasis": "strong"
         },
         "'s VCF Automation. ",
-        {
-          "text": "Golang",
-          "emphasis": "accent"
-        },
-        " and the ",
+        "Golang, .NET and TypeScript in production, much of it ",
         {
           "text": "cloud-native",
           "emphasis": "accent"
         },
-        " ecosystem first, .NET and TypeScript where the work calls for it."
+        "."
       ],
       [
         "End-to-end ownership — code, build, deploy, monitor."
