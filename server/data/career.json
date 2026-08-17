@@ -137,6 +137,7 @@
       "location": "Lukavac, Bosnia and Herzegovina",
       "website": "https://www.imel.ba/",
       "project": "Android + backend",
+      "summary": "Logistics tracking and dental monitoring platforms — the Android apps and the backends and mobile APIs behind them.",
       "start": "2015-05",
       "end": "2017-08",
       "technologies": [
@@ -185,6 +186,7 @@
       "project": "MTVO",
       "projectUrl": "https://www.activationstation.org/purpose",
       "client": "Masters of Void Organization",
+      "summary": "A virtual goods trading platform built around spiritual sessions, with each session tracked as it runs.",
       "start": "2019-06",
       "end": "2021-11",
       "technologies": [
@@ -197,7 +199,7 @@
         "MSSQL"
       ],
       "responsibilities": [
-        "Developed real-time data synchronization backends using .NET, WebSockets, Redis, and AWS for virtual asset trading platforms."
+        "Developed real-time data synchronization backends using .NET, WebSockets, Redis, and AWS for virtual goods trading and session tracking."
       ]
     },
     {
@@ -275,6 +277,7 @@
       "website": "https://www.evoila.com/",
       "project": "MFC",
       "client": "MultiFeedCenter",
+      "summary": "Third-party data feeds ingested from many providers and reconciled into a single stream for downstream consumers.",
       "start": "2024-07",
       "end": "2025-11",
       "technologies": [
@@ -305,6 +308,7 @@
       "project": "Self-service VM provisioning on VCF Automation 9",
       "projectUrl": "https://techdocs.broadcom.com/us/en/vmware-cis/vcf/vcf-9-0-and-later/9-0/overview-of-vmware-cloud-foundation-9/what-is-vmware-cloud-foundation-and-vmware-vsphere-foundation/vcf-automation-overview.html",
       "client": "Broadcom Professional Services",
+      "summary": "VMware's private-cloud automation platform — a self-service catalog where customers request and provision their own VMs.",
       "start": "2025-11",
       "end": "2026-07",
       "current": true,
