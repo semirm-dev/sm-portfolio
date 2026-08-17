@@ -49,7 +49,9 @@
           "text": "VMware",
           "emphasis": "strong"
         },
-        "'s VCF Automation. ",
+        "'s VCF Automation."
+      ],
+      [
         "Production Go, .NET, and TypeScript — much of it ",
         {
           "text": "cloud-native",
