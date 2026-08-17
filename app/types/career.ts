@@ -9,7 +9,7 @@ export interface Project {
   company: string
   /**
    * The role held on this engagement, where it differs from `profile.title` or
-   * is worth naming — `Senior Golang Engineer`, `Senior Cloud Native Engineer`.
+   * is worth naming — `Senior Go Engineer`, `Senior Cloud Native Engineer`.
    * Optional: an entry may omit it where there was no title worth naming.
    */
   title?: string

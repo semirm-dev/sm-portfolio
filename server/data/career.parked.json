@@ -3,16 +3,16 @@
   "projects": [
     {
       "company": "ByteBuds",
-      "title": "Senior Golang Engineer",
+      "title": "Senior Go Engineer",
       "location": "Sarajevo, Bosnia and Herzegovina",
       "website": "https://bytebuds.io/",
       "project": "TVM",
       "projectUrl": "https://www.tvmarkets.com/en/",
-      "client": "TradeView Markets",
+      "client": "Tradeview Markets",
       "start": "2026-04",
       "end": "2026-07",
       "technologies": [
-        "Golang",
+        "Go",
         "TypeScript",
         "Vue",
         "Nuxt",
@@ -23,7 +23,7 @@
         "Claude Code"
       ],
       "responsibilities": [
-        "Engineered a sub-millisecond, low-latency online trading backend in Golang with zero-allocation memory patterns in hot execution paths.",
+        "Engineered a sub-millisecond, low-latency online trading backend in Go with zero-allocation memory patterns in hot execution paths.",
         "Implemented ultra-low latency inter-service communication using the Aeron messaging protocol.",
         "Integrated multiple Liquidity Provider (LP) APIs for real-time automated order routing and execution."
       ]

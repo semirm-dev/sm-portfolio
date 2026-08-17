@@ -7,7 +7,7 @@ const { profile, projectsNewest, total } = await useCareer()
 usePageSeo({
   title: 'Work history',
   siteName: profile.value.handle,
-  description: 'Full work history of Semir Mahovkic, senior software engineer: Cisco Secure Firewall Cloud Native, Sportradar, MultiFeedCenter, TradeView Markets, and more.',
+  description: 'Full work history of Semir Mahovkic, senior software engineer: Cisco Secure Firewall Cloud Native, Sportradar, MultiFeedCenter, Tradeview Markets, and more.',
 })
 
 /*

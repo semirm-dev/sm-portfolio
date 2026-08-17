@@ -26,7 +26,7 @@
       [
         "{years}+ years of software engineering — sub-millisecond backends for ",
         {
-          "text": "TradeView Markets",
+          "text": "Tradeview Markets",
           "emphasis": "strong"
         },
         ", Kubernetes Operators for ",
@@ -50,7 +50,7 @@
           "emphasis": "strong"
         },
         "'s VCF Automation. ",
-        "Golang, .NET and TypeScript in production, much of it ",
+        "Production Go, .NET, and TypeScript — much of it ",
         {
           "text": "cloud-native",
           "emphasis": "accent"
@@ -66,7 +66,7 @@
     {
       "name": "Languages & Core",
       "technologies": [
-        "Golang (Gin)",
+        "Go (Gin)",
         "C# (.NET Core)",
         "TypeScript (Node)",
         "PHP (Laravel)"
@@ -122,13 +122,13 @@
     },
     {
       "org": "ByteBuds · TVM",
-      "title": "TradeView Markets",
+      "title": "Tradeview Markets",
       "summary": "Designed and implemented a low-latency (sub-millisecond) backend for an online trading platform with zero allocations in the hot path. Aeron for inter-service transport, FIX integration with multiple liquidity providers, end-to-end order execution."
     },
     {
       "org": "Endava · Sportradar",
       "title": "Sportradar",
-      "summary": "Real-time data synchronization services for a leading sports data provider, feeding live scores and odds to streaming and betting platforms. Golang, gRPC streams, and Kubernetes, with latency kept low across the distribution path."
+      "summary": "Real-time data synchronization services for a leading sports data provider, feeding live scores and odds to streaming and betting platforms. Go, gRPC streams, and Kubernetes, with latency kept low across the distribution path."
     },
     {
       "org": "Evoila · Broadcom/VMware",
@@ -175,7 +175,7 @@
       "start": "2018-03",
       "end": "2019-05",
       "technologies": [
-        "Golang",
+        "Go",
         "Kubernetes",
         "RabbitMQ",
         "WebSockets",
@@ -186,7 +186,7 @@
         "gRPC"
       ],
       "responsibilities": [
-        "Built real-time Golang microservices and Kubernetes infrastructure for a crypto exchange platform, using RabbitMQ, gRPC, and WebSockets."
+        "Built real-time Go microservices and Kubernetes infrastructure for a crypto exchange platform, using RabbitMQ, gRPC, and WebSockets."
       ]
     },
     {
@@ -246,7 +246,7 @@
       "start": "2022-08",
       "end": "2023-07",
       "technologies": [
-        "Golang",
+        "Go",
         "Kubernetes",
         "Helm charts",
         "ArgoCD",
@@ -272,13 +272,13 @@
       "start": "2023-08",
       "end": "2024-07",
       "technologies": [
-        "Golang",
+        "Go",
         "gRPC (streams)",
         "Kubernetes",
         "Redis"
       ],
       "responsibilities": [
-        "Implemented data synchronization services in Golang, gRPC streams, and Kubernetes, keeping latency low across the sports streaming and odds distribution path."
+        "Implemented data synchronization services in Go, gRPC streams, and Kubernetes, keeping latency low across the sports streaming and odds distribution path."
       ]
     },
     {
