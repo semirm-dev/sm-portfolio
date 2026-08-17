@@ -16,7 +16,7 @@ const projectCount = computed(() => projects.value.length)
 usePageSeo({
   title: profile.value.title,
   siteName: profile.value.handle,
-  description: `Senior software engineer with over ${years.value} years of experience. Golang, Kubernetes and cloud-native technologies — soft real-time systems, asynchronous communications and distributed applications.`,
+  description: `Senior software engineer with over ${years.value} years of experience. Golang, Kubernetes and cloud-native technologies — soft real-time systems, asynchronous communications, and distributed applications.`,
 })
 
 // Both grids sit below the fold, so they are revealed on scroll. The hero keeps

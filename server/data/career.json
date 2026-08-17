@@ -34,7 +34,7 @@
           "text": "Golang",
           "emphasis": "accent"
         },
-        ", Kubernetes ecosystem, asynchronous messaging, and end-to-end application lifecycle management. Track record of delivering critical software for industry leaders, including ",
+        ", the Kubernetes ecosystem, asynchronous messaging, and end-to-end application lifecycle management. Track record of delivering critical software for industry leaders, including ",
         {
           "text": "Cisco",
           "emphasis": "strong"
@@ -114,17 +114,17 @@
     {
       "org": "ByteBuds · TVM",
       "title": "TradeView Markets",
-      "summary": "Designed and implemented low-latency (sub-millisecond) backend for an online trading platform with zero allocations in the hot path. Aeron for inter-service transport, FIX integration with multiple liquidity providers, end-to-end order execution."
+      "summary": "Designed and implemented a low-latency (sub-millisecond) backend for an online trading platform with zero allocations in the hot path. Aeron for inter-service transport, FIX integration with multiple liquidity providers, end-to-end order execution."
     },
     {
       "org": "Endava · Sportradar",
       "title": "Sportradar",
-      "summary": "Real-time data synchronisation services for Sportradar, a leading sports streaming platform. Golang, gRPC streams and Kubernetes, kept low-latency across the distribution path."
+      "summary": "Real-time data synchronization services for a leading sports data provider, feeding live scores and odds to streaming and betting platforms. Golang, gRPC streams, and Kubernetes, with latency kept low across the distribution path."
     },
     {
       "org": "Evoila · Broadcom/VMware",
       "title": "VCF Automation 9 — Self-Service VM Provisioning",
-      "summary": "Implemented custom actions, workflows and configuration elements in VCF Automation 9, so customers can automate VM provisioning across their private cloud. Built the catalog item forms, and reworked internal libraries for reusability and type safety."
+      "summary": "Implemented custom actions, workflows, and configuration elements in VCF Automation 9, so customers can automate VM provisioning across their private cloud. Built the catalog item's request form, and reworked internal libraries for reusability and type safety."
     }
   ],
   "technologyAliases": {
@@ -145,7 +145,7 @@
         "Laravel",
         "AngularJS",
         "Linux",
-        "Websockets",
+        "WebSockets",
         "Android",
         "MySQL",
         "SQLite"
@@ -160,14 +160,14 @@
       "website": "https://mop.ba/",
       "project": "NAGA",
       "projectUrl": "https://naga.com/en",
-      "summary": "Online cryptoexchange platform.",
+      "summary": "Online crypto exchange platform.",
       "start": "2018-03",
       "end": "2019-05",
       "technologies": [
         "Golang",
         "Kubernetes",
         "RabbitMQ",
-        "Websockets",
+        "WebSockets",
         "AWS",
         "Redis",
         "Postgres",
@@ -175,7 +175,7 @@
         "gRPC"
       ],
       "responsibilities": [
-        "Built real-time Golang microservices and Kubernetes infrastructure for a crypto exchange platform utilizing RabbitMQ, gRPC, and WebSockets."
+        "Built real-time Golang microservices and Kubernetes infrastructure for a crypto exchange platform, using RabbitMQ, gRPC, and WebSockets."
       ]
     },
     {
@@ -190,11 +190,11 @@
       "start": "2019-06",
       "end": "2021-11",
       "technologies": [
-        "dotnet",
-        "Typescript",
+        ".NET",
+        "TypeScript",
         "Angular",
         "AWS",
-        "Websockets",
+        "WebSockets",
         "Redis",
         "MSSQL"
       ],
@@ -209,12 +209,12 @@
       "website": "https://www.endava.com/",
       "project": "Agilent",
       "projectUrl": "https://www.agilent.com/",
-      "summary": "Custom software for Agilent's laboratory instruments, used for chemical analysis and research — from fuel and oil quality testing to cancer research.",
+      "summary": "Custom software for Agilent's laboratory instruments, used for chemical analysis — from fuel and oil quality testing to cancer research.",
       "start": "2021-11",
       "end": "2022-07",
       "technologies": [
-        "dotnet",
-        "Typescript",
+        ".NET",
+        "TypeScript",
         "Angular",
         "Windows Embedded"
       ],
@@ -245,7 +245,7 @@
         "Redis"
       ],
       "responsibilities": [
-        "Led the engineering team developing Kubernetes Operators for Cisco's Cloud Native Firewall & VPN to automate lifecycle, resource management, and security policies.",
+        "Led the engineering team developing Kubernetes Operators for Cisco Secure Firewall Cloud Native to automate lifecycle, resource management, and security policies.",
         "Designed an Operator that wires AWS Shield into newly deployed services.",
         "Tightened access control in Kubernetes RBAC and AWS IAM."
       ]
@@ -281,7 +281,7 @@
       "start": "2024-07",
       "end": "2025-11",
       "technologies": [
-        "dotnet",
+        ".NET",
         "Kubernetes",
         "Helm charts",
         "ArgoCD",
@@ -293,7 +293,7 @@
         "Claude Code"
       ],
       "responsibilities": [
-        "Built asynchronous .NET microservices to stream and reconcile data feed providers, improving data accuracy and reducing processing latency.",
+        "Built asynchronous .NET microservices to stream and reconcile feeds from third-party providers, improving data accuracy and reducing processing latency.",
         "Designed GitOps CD pipelines via ArgoCD using the app-of-apps pattern to automate and streamline multi-service Kubernetes deployments.",
         "Deployed a complete Kubernetes observability stack (Grafana, Loki, Prometheus, Elasticsearch, OpenTelemetry Collector) for distributed tracing and monitoring.",
         "Configured and integrated Keycloak IAM SSO across Grafana, ArgoCD, and backend services (.NET)."
@@ -313,14 +313,14 @@
       "end": "2026-07",
       "current": true,
       "technologies": [
-        "Typescript",
+        "TypeScript",
         "VCF Automation 9",
         "vRealize Orchestrator",
         "NetBox IPAM",
         "Claude Code"
       ],
       "responsibilities": [
-        "Implemented a self-service VM provisioning catalog on VCF Automation 9 (formerly Aria Automation) — 20+ Orchestrator actions, workflows and configuration elements on a dynamic request form and Kubernetes-native VM deployment.",
+        "Implemented a self-service VM provisioning catalog item on VCF Automation 9 (formerly Aria Automation) — a dynamic request form backed by 20+ Orchestrator actions, workflows, and configuration elements, driving Kubernetes-native VM deployment.",
         "Automated IP address management against NetBox IPAM and vCenter — live IP availability, hostname generation with uniqueness validation, and event-driven IP registration after deployment (via VCF Automation subscriptions).",
         "Improved shared, reusable TypeScript automation libraries and built a generic, strongly typed configuration layer on top of them, turning environment-specific mappings into configuration instead of code."
       ]

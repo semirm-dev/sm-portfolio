@@ -23,7 +23,7 @@ definePageMeta({ layout: 'cv' })
 usePageSeo({
   title: 'CV',
   siteName: profile.value.handle,
-  description: 'The full CV — profile, technical skills and the complete work history — as an A4 document, downloadable as a PDF.',
+  description: 'The full CV — profile, technical skills, and the complete work history — as an A4 document, downloadable as a PDF.',
 })
 
 /*

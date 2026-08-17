@@ -7,7 +7,7 @@ const { profile, projectsNewest, total } = await useCareer()
 usePageSeo({
   title: 'Work history',
   siteName: profile.value.handle,
-  description: 'Full work history of Semir Mahovkic, senior software engineer: Cisco Secure Firewall Cloud Native, Sportradar, MultiFeedCenter, TradeView Markets and more.',
+  description: 'Full work history of Semir Mahovkic, senior software engineer: Cisco Secure Firewall Cloud Native, Sportradar, MultiFeedCenter, TradeView Markets, and more.',
 })
 
 /*
@@ -26,7 +26,7 @@ const history = computed(() => splitEarlierRoles(projectsNewest.value))
     <div class="mx-auto max-w-[115rem] px-6 py-12 lg:px-10 xl:px-20">
       <h1 class="animate-rise flex flex-wrap items-baseline justify-between gap-3 border-b border-rule pb-3 text-[12.5px] font-semibold uppercase tracking-[0.13em] text-muted">
         <span class="text-accent">Work history</span>
-        <span>{{ projectsNewest.length }} projects · {{ total }}</span>
+        <span>{{ projectsNewest.length }} {{ projectsNewest.length === 1 ? 'project' : 'projects' }} · {{ total }}</span>
       </h1>
 
       <!--

@@ -13,7 +13,7 @@
       "end": "2026-07",
       "technologies": [
         "Golang",
-        "Typescript",
+        "TypeScript",
         "Vue",
         "Nuxt",
         "Aeron",
@@ -38,7 +38,7 @@
       "end": "2026-07",
       "technologies": [
         "PHP",
-        "Typescript",
+        "TypeScript",
         "Vue",
         "Nuxt",
         "Laravel",
