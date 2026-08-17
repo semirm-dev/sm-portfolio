@@ -214,11 +214,11 @@
         "dotnet",
         "Typescript",
         "Angular",
-        "Microservices",
-        "Embedded software"
+        "Windows Embedded"
       ],
       "responsibilities": [
-        "Developed .NET microservices deployed on Windows Embedded hardware for laboratory instruments and Angular interfaces for custom chemical analysis workflows."
+        "Developed .NET microservices deployed on Windows Embedded hardware inside laboratory instruments.",
+        "Built Angular interfaces for custom chemical analysis workflows."
       ]
     },
     {
@@ -228,7 +228,8 @@
       "website": "https://www.endava.com/",
       "project": "CSFN",
       "projectUrl": "https://aws.amazon.com/marketplace/pp/prodview-3lsp4y4zoa6jw",
-      "client": "Cisco Secure Firewall Cloud Native",
+      "client": "Cisco",
+      "summary": "Cisco Secure Firewall Cloud Native — the firewall and VPN Cisco ships as an appliance, delivered instead as a Kubernetes service on AWS.",
       "start": "2022-08",
       "end": "2023-07",
       "technologies": [
@@ -242,7 +243,9 @@
         "Redis"
       ],
       "responsibilities": [
-        "Led engineering team developing Kubernetes Operators for Cisco's Cloud Native Firewall & VPN to automate lifecycle, resource management, and security policies. Integrated AWS Shield and IAM RBAC."
+        "Led the engineering team developing Kubernetes Operators for Cisco's Cloud Native Firewall & VPN to automate lifecycle, resource management, and security policies.",
+        "Designed an Operator that wires AWS Shield into newly deployed services.",
+        "Tightened access control across Kubernetes RBAC and AWS IAM."
       ]
     },
     {
@@ -252,6 +255,7 @@
       "website": "https://www.endava.com/",
       "project": "Sportradar",
       "projectUrl": "https://sportradar.com/",
+      "summary": "Live sports data and odds, distributed in real time to streaming and betting platforms.",
       "start": "2023-08",
       "end": "2024-07",
       "technologies": [
