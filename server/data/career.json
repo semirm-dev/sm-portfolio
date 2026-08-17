@@ -124,7 +124,7 @@
     {
       "org": "Evoila · Broadcom/VMware",
       "title": "VCF Automation 9 — Self-Service VM Provisioning",
-      "summary": "Custom actions, workflows and configuration elements in VCF Automation 9, so customers can automate VM provisioning across their private cloud. Catalog item forms, and internal libraries reworked for reusability and type safety."
+      "summary": "Implemented custom actions, workflows and configuration elements in VCF Automation 9, so customers can automate VM provisioning across their private cloud. Built the catalog item forms, and reworked internal libraries for reusability and type safety."
     }
   ],
   "technologyAliases": {
