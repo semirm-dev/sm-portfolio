@@ -265,7 +265,7 @@
         "Redis"
       ],
       "responsibilities": [
-        "Implemented high-concurrency real-time data synchronization services in Golang, gRPC, and Kubernetes for sports streaming and odds distribution."
+        "Implemented data synchronization services in Golang, gRPC streams, and Kubernetes, keeping latency low across the sports streaming and odds distribution path."
       ]
     },
     {
