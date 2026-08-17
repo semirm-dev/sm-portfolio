@@ -52,7 +52,7 @@ const workGrid = useReveal()
             class="animate-rise mt-4 text-[clamp(35px,4.6vw,58px)] font-bold leading-[1.04] tracking-[-0.042em] text-balance"
             style="animation-delay: 120ms"
           >
-            I build backends that <em class="not-italic text-hero-accent">hold under load</em>.
+            I build systems that <em class="not-italic text-hero-accent">hold under load</em>.
           </h1>
 
           <div
