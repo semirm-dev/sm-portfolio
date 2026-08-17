@@ -133,6 +133,7 @@
   "projects": [
     {
       "company": "Imel d.o.o.",
+      "title": "Software Engineer",
       "label": "Imel",
       "location": "Lukavac, Bosnia and Herzegovina",
       "website": "https://www.imel.ba/",
@@ -156,6 +157,7 @@
     },
     {
       "company": "MOP",
+      "title": "Software Engineer",
       "location": "Sarajevo, Bosnia and Herzegovina",
       "website": "https://mop.ba/",
       "project": "NAGA",

@@ -10,7 +10,7 @@ export interface Project {
   /**
    * The role held on this engagement, where it differs from `profile.title` or
    * is worth naming — `Senior Golang Engineer`, `Senior Cloud Native Engineer`.
-   * Optional: the two earliest entries predate any title worth printing.
+   * Optional: an entry may omit it where there was no title worth naming.
    */
   title?: string
   /** What the graph labels this entry, where `project` is the wrong name to show. */
