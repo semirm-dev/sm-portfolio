@@ -293,54 +293,6 @@
       ]
     },
     {
-      "company": "ByteBuds",
-      "title": "Senior Golang Engineer",
-      "location": "Sarajevo, Bosnia and Herzegovina",
-      "website": "https://bytebuds.io/",
-      "project": "TVM",
-      "projectUrl": "https://www.tvmarkets.com/en/",
-      "client": "TradeView Markets",
-      "start": "2026-04",
-      "end": "2026-07",
-      "technologies": [
-        "Golang",
-        "Typescript",
-        "Vue",
-        "Nuxt",
-        "Aeron",
-        "Postgres",
-        "ClickHouse",
-        "FIX",
-        "Claude Code"
-      ],
-      "responsibilities": [
-        "Engineered a sub-millisecond, low-latency online trading backend in Golang with zero-allocation memory patterns in hot execution paths.",
-        "Implemented ultra-low latency inter-service communication using the Aeron messaging protocol.",
-        "Integrated multiple Liquidity Provider (LP) APIs for real-time automated order routing and execution."
-      ]
-    },
-    {
-      "company": "BytOps",
-      "location": "Lukavac, Bosnia and Herzegovina",
-      "website": "https://bytops.xyz/",
-      "project": "Fakturko",
-      "projectUrl": "https://fakturko.xyz/",
-      "start": "2026-04",
-      "end": "2026-07",
-      "technologies": [
-        "PHP",
-        "Typescript",
-        "Vue",
-        "Nuxt",
-        "Laravel",
-        "Notifications",
-        "Inertia",
-        "Postgres",
-        "Claude Code"
-      ],
-      "summary": "Personal project to manage and track invoices. Developer friendly, templated invoices."
-    },
-    {
       "company": "Evoila",
       "title": "Senior Software Engineer / Infrastructure Automation Specialist",
       "label": "VMware",
