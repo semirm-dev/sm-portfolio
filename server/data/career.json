@@ -24,7 +24,7 @@
     ],
     "summary": [
       [
-        "{years}+ years across trading, real-time data and cloud infrastructure — sub-millisecond backends for ",
+        "{years}+ years of software engineering — sub-millisecond backends for ",
         {
           "text": "TradeView Markets",
           "emphasis": "strong"
@@ -54,7 +54,15 @@
           "text": "Golang",
           "emphasis": "accent"
         },
-        " and the Kubernetes ecosystem first, .NET and TypeScript where the work calls for it. End-to-end ownership — code, build, deploy, monitor."
+        " and the ",
+        {
+          "text": "cloud-native",
+          "emphasis": "accent"
+        },
+        " ecosystem first, .NET and TypeScript where the work calls for it."
+      ],
+      [
+        "End-to-end ownership — code, build, deploy, monitor."
       ]
     ]
   },
