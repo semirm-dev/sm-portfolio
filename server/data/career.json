@@ -109,12 +109,12 @@
     {
       "org": "Endava · Cisco",
       "title": "Secure Firewall Cloud Native",
-      "summary": "Led a team building Kubernetes Operators for Cisco's firewall and VPN. Designed an Operator that wires AWS Shield into newly deployed services, and tightened access control across Kubernetes RBAC and AWS IAM."
+      "summary": "Led a team building Kubernetes Operators for Cisco's firewall and VPN. Designed an Operator that wires AWS Shield into newly deployed services, and tightened access control in Kubernetes RBAC and AWS IAM."
     },
     {
       "org": "ByteBuds · TVM",
       "title": "TradeView Markets",
-      "summary": "Low-latency (sub-millisecond) backend for an online trading platform with zero allocations in the hot path. Aeron for inter-service transport, FIX integration with multiple liquidity providers, end-to-end order execution."
+      "summary": "Designed and implemented low-latency (sub-millisecond) backend for an online trading platform with zero allocations in the hot path. Aeron for inter-service transport, FIX integration with multiple liquidity providers, end-to-end order execution."
     },
     {
       "org": "Endava · Sportradar",
@@ -247,7 +247,7 @@
       "responsibilities": [
         "Led the engineering team developing Kubernetes Operators for Cisco's Cloud Native Firewall & VPN to automate lifecycle, resource management, and security policies.",
         "Designed an Operator that wires AWS Shield into newly deployed services.",
-        "Tightened access control across Kubernetes RBAC and AWS IAM."
+        "Tightened access control in Kubernetes RBAC and AWS IAM."
       ]
     },
     {
