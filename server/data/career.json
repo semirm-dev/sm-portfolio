@@ -324,7 +324,7 @@
       "responsibilities": [
         "Implemented a self-service VM provisioning catalog item on VCF Automation 9 (formerly Aria Automation) — a dynamic request form backed by 20+ Orchestrator actions, workflows, and configuration elements, driving Kubernetes-native VM deployment.",
         "Automated IP address management against NetBox IPAM and vCenter — live IP availability, hostname generation with uniqueness validation, and event-driven IP registration after deployment (via VCF Automation subscriptions).",
-        "Improved shared, reusable TypeScript automation libraries and built a generic, strongly typed configuration layer on top of them, turning environment-specific mappings into configuration instead of code."
+        "Improved shared, reusable TypeScript automation libraries and built a generic, strongly typed configuration layer on top of them."
       ]
     }
   ]
