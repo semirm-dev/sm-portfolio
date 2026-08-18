@@ -130,7 +130,7 @@
     {
       "org": "Endava · Sportradar",
       "title": "Sportradar",
-      "summary": "Real-time data synchronization services for a leading sports data provider, feeding live scores and odds to streaming and betting platforms. Go, gRPC streams, and Kubernetes, with latency kept low across the distribution path."
+      "summary": "Built the data synchronization jobs for the rights and channel management platform behind a leading sports data provider's streaming product. Matches, tournaments and competitors consumed over gRPC streams in Go, with a sync state service so each job resumes from the last applied update."
     },
     {
       "org": "Evoila · Broadcom/VMware",
@@ -270,17 +270,22 @@
       "website": "https://www.endava.com/",
       "project": "Sportradar",
       "projectUrl": "https://sportradar.com/",
-      "summary": "Live sports data and odds, distributed in real time to streaming and betting platforms.",
+      "summary": "The rights and channel management platform behind Sportradar's streaming product — which sports, tournaments and territories each betting operator is licensed to show.",
       "start": "2023-08",
       "end": "2024-07",
       "technologies": [
         "Go",
         "gRPC (streams)",
+        "GraphQL",
+        "MySQL",
+        "Redis",
         "Kubernetes",
-        "Redis"
+        "AWS"
       ],
       "responsibilities": [
-        "Implemented data synchronization services in Go, gRPC streams, and Kubernetes, keeping latency low across the sports streaming and odds distribution path."
+        "Built the Go jobs that synchronized matches, tournaments, categories and competitors from Sportradar's sports data service, consumed over gRPC streams and reconciled into the platform's own database.",
+        "Added a sync state service that records the last applied update per feed, so a job resumes where it stopped instead of re-reading the stream.",
+        "Exposed media assets through the GraphQL API as presigned S3 URLs."
       ]
     },
     {
