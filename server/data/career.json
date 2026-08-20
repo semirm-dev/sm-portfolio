@@ -10,18 +10,8 @@
     "website": "https://semirmahovkic.xyz",
     "github": "https://github.com/semirm-dev",
     "linkedin": "https://www.linkedin.com/in/semir-mahovkic-a42ba7135",
-    "languages": [
-      "go",
-      "csharp",
-      "typescript",
-      "php"
-    ],
-    "ownership": [
-      "code",
-      "build",
-      "deploy",
-      "monitor"
-    ],
+    "languages": ["go", "csharp", "typescript", "php"],
+    "ownership": ["code", "build", "deploy", "monitor"],
     "summary": [
       [
         "{years}+ years building systems for fast-moving startups and large-scale enterprises — sub-millisecond backends for ",
@@ -59,9 +49,7 @@
         },
         "."
       ],
-      [
-        "End-to-end ownership — code, build, deploy, monitor."
-      ]
+      ["End-to-end ownership — code, build, deploy, monitor."]
     ]
   },
   "skills": [
@@ -225,12 +213,7 @@
       "summary": "Custom software for Agilent's laboratory instruments, used for chemical analysis — from fuel and oil quality testing to cancer research.",
       "start": "2021-11",
       "end": "2022-07",
-      "technologies": [
-        ".NET",
-        "TypeScript",
-        "Angular",
-        "Windows Embedded"
-      ],
+      "technologies": [".NET", "TypeScript", "Angular", "Windows Embedded"],
       "responsibilities": [
         "Developed .NET microservices deployed on Windows Embedded hardware inside laboratory instruments.",
         "Built Angular interfaces for custom chemical analysis workflows."
